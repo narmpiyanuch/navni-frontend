@@ -1,5 +1,5 @@
 import whiteLogo from '../assets/whiteLogo.png'
-import ButtonLoginbyGoogle from '../feature/auth/BottonLoginByGoogle'
+import ButtonByGoogle from '../feature/auth/BottonByGoogle'
 import ButtonInputForm from '../feature/auth/ButtonInputForm'
 import FooterForHome from '../feature/auth/FooterForHome'
 import InputLoginForm from '../feature/auth/InputLoginForm'
@@ -23,10 +23,10 @@ export default function LoginPage() {
                         {labelInput.map((el) => <InputLoginForm key={el.id} title={el.title} />
                         )}
                     </div>
-                    <ButtonInputForm />
+                    <ButtonInputForm title='Log In' />
                 </form>
                 <p className='text-MonoColor-50 text-[12px] py-2'>OR</p>
-                <ButtonLoginbyGoogle />
+                <ButtonByGoogle title='Sign in with google' />
             </div>
             <div className='fixed top-[64%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen rounded-[40px_40px_0px_0px] mt-8'>
                 <FooterForHome />
