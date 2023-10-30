@@ -18,7 +18,7 @@ export default function InputRegisterForm({
                         ? ` border-Error-main `
                         : `border-Primary-main  bg-MonoColor-50  active:border-2 active:border-Primary-darker`
                 }
-                 `}
+                `}
                 value={value}
                 name={name}
                 onChange={onChange}
