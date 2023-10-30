@@ -5,6 +5,7 @@ import HomePageForUser from "../pages/userPage/HomePageForUser"
 import RegisterPageForUser from "../pages/userPage/RegisterPageForUser"
 import { RouterProvider } from "react-router-dom"
 import TopUpToAmoutPage from "../pages/userPage/PaymentFlowPage/TopUpToAmoutPage"
+import TopUpToMyWalletPage from "../pages/userPage/PaymentFlowPage/TopUpToMyWalletPage"
 
 const router = createBrowserRouter([
     {
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
         ), children: [
             { path: '/', element: <HomePageForUser /> },
             { path: '/register', element: <RegisterPageForUser /> },
-            { path: '/topup', element: <TopUpToAmoutPage /> }
+            { path: '/topup', element: <TopUpToAmoutPage /> },
+            { path: '/topupmywallet', element: <TopUpToMyWalletPage /> }
 
         ]
     }
