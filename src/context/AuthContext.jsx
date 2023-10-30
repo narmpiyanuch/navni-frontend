@@ -13,13 +13,13 @@ export const AuthContext = createContext();
 export default function AuthContextProvider({ children }) {
     const [authUser, setAuthUser] = useState(null);
 
-    // useEffect(() => {
-    //     if (getAccessToken()) {
-    //         axios.get("/auth/me").then((res) => {
-    //             setAuthUser(res.data.user);
-    //         });
-    //     }
-    // }, []);
+    useEffect(() => {
+        if (getAccessToken()) {
+            axios.get("/auth/me").then((res) => {
+                setAuthUser(res.data.user);
+            });
+        }
+    }, []);
 
     const login = async (credential) => {
         const res = await axios.post("auth/login", credential);
