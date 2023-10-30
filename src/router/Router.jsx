@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom"
 import HomePageForUser from "../pages/userPage/HomePageForUser"
 import RegisterPageForUser from "../pages/userPage/RegisterPageForUser"
 import { RouterProvider } from "react-router-dom"
+import MyWellet from "../pages/userPage/MyWallet"
 
 const router = createBrowserRouter([
     {
@@ -18,7 +19,8 @@ const router = createBrowserRouter([
             </div>
         ), children: [
             { path: '/', element: <HomePageForUser /> },
-            { path: '/register', element: <RegisterPageForUser /> }
+            { path: '/register', element: <RegisterPageForUser /> },
+            { path: '/myWallet', element: <MyWellet /> }
         ]
     }
 ]);
