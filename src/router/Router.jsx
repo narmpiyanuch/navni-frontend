@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom"
 import HomePageForUser from "../pages/userPage/HomePageForUser"
 import RegisterPageForUser from "../pages/userPage/RegisterPageForUser"
 import { RouterProvider } from "react-router-dom"
+import TopUpToAmoutPage from "../pages/userPage/PaymentFlowPage/TopUpToAmoutPage"
 
 const router = createBrowserRouter([
     {
@@ -18,7 +19,9 @@ const router = createBrowserRouter([
             </div>
         ), children: [
             { path: '/', element: <HomePageForUser /> },
-            { path: '/register', element: <RegisterPageForUser /> }
+            { path: '/register', element: <RegisterPageForUser /> },
+            { path: '/topup', element: <TopUpToAmoutPage /> }
+
         ]
     }
 ]);
