@@ -4,8 +4,12 @@ import ButtonInputForm from "../../feature/auth/ButtonInputForm";
 import ButtonByGoogle from "../../feature/auth/BottonByGoogle";
 import { useState } from "react";
 import InputErrorMessage from "../../feature/auth/InputErrorMessage";
+import { registerSchemaForUser } from "../../validators/Auth-validator";
+import validaterFn from "../../validators/validateFN";
+import { useAuth } from "../../feature/hook/use-auth";
 
 export default function RegisterPageForUser() {
+    const { register } = useAuth();
     const [input, setInput] = useState({
         email: "",
         password: "",
@@ -13,6 +17,7 @@ export default function RegisterPageForUser() {
         firstName: "",
         lastName: "",
         phoneNumber: "",
+        role: "USER",
     });
     const [error, setError] = useState({});
 
@@ -21,12 +26,17 @@ export default function RegisterPageForUser() {
         setError({ ...error, [e.target.name]: "" });
     };
 
-    const handleSubmitForm = (e) => {
-        e.preventDefault();
-        // const validationError = validaterFn(registerSchema, input);
-        // if (validationError) {
-        //     return setError(validationError);
-        // }
+    const handleSubmitForm = async (e) => {
+        try {
+            e.preventDefault();
+            const validationError = validaterFn(registerSchemaForUser, input);
+            if (validationError) {
+                return setError(validationError);
+            }
+            register(input);
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (
@@ -102,7 +112,7 @@ export default function RegisterPageForUser() {
                             <InputRegisterForm
                                 title={"Password"}
                                 type={"password"}
-                                name={"confirmPassword"}
+                                name={"password"}
                                 value={input.password}
                                 onChange={handdleChangInput}
                             />
@@ -122,9 +132,7 @@ export default function RegisterPageForUser() {
                             />
                             {error.confirmPassword && (
                                 <InputErrorMessage
-                                    message={
-                                        "Password did not match. Try again"
-                                    }
+                                    message={"Password did't match. Try again"}
                                 />
                             )}
                         </div>
