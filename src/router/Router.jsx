@@ -4,16 +4,14 @@ import { Outlet } from "react-router-dom";
 import HomePageForUser from "../pages/userPage/HomePageForUser";
 import RegisterPageForUser from "../pages/userPage/RegisterPageForUser";
 import { RouterProvider } from "react-router-dom";
-import RedirectIfAuthenticated from "../feature/auth/RedirectIfAuthenticated";
+import TopUpToAmoutPage from "../pages/userPage/PaymentFlowPage/TopUpToAmoutPage";
+import TopUpToMyWalletPage from "../pages/userPage/PaymentFlowPage/TopUpToMyWalletPage";
+import QRcodePaymentPage from "../pages/userPage/PaymentFlowPage/QRcodePaymentPage";
 
 const router = createBrowserRouter([
   {
     path: "login",
-    element: (
-      <RedirectIfAuthenticated>
-        <LoginPage />
-      </RedirectIfAuthenticated>
-    ),
+    element: <LoginPage />,
   },
   {
     path: "/",
@@ -25,6 +23,9 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePageForUser /> },
       { path: "/register", element: <RegisterPageForUser /> },
+      { path: "/topup", element: <TopUpToAmoutPage /> },
+      { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
+      { path: "/qrcode", element: <QRcodePaymentPage /> },
     ],
   },
 ]);
