@@ -7,7 +7,7 @@ export default function TopUpSuccess() {
         <div>
             <div className='flex flex-col m-auto items-center justify-center  h-screen w-screen gap-2'>
                 <div className="flex flex-col items-center gap-10">
-                    <span class="material-symbols-outlined text-MonoColor-50 text-[32px] bg-OtherColor-lightGreen rounded-full p-2">check</span>
+                    <span className="material-symbols-outlined text-MonoColor-50 text-[32px] bg-OtherColor-lightGreen rounded-full p-2">check</span>
                     <p className="text-[24px] text-OtherColor-lightGreen font-semibold">Top-up successful</p>
                 </div>
                 <img src={purpleLogoNB} alt='logo' className='w-[180px]' />

@@ -7,20 +7,19 @@ import {
   removeAccessToken,
 } from "../utils/local-storage";
 import axios from "../config/axios";
-import { Children } from "react";
 
-export const AuthContext = createContext({ Children });
+export const AuthContext = createContext();
 
-export default function AuthContextProvider() {
+export default function AuthContextProvider({ children }) {
   const [authUser, setAuthUser] = useState(null);
 
-  useEffect(() => {
-    if (getAccessToken()) {
-      axios.get("/auth/me").then((res) => {
-        setAuthUser(res.data.user);
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (getAccessToken()) {
+  //     axios.get("/auth/me").then((res) => {
+  //       setAuthUser(res.data.user);
+  //     });
+  //   }
+  // }, []);
 
   const login = async (credential) => {
     const res = await axios.post("auth/user/login", credential);
@@ -35,7 +34,7 @@ export default function AuthContextProvider() {
 
   return (
     <AuthContext.Provider value={{ login, authUser, logout }}>
-      {Children}
+      {children}
     </AuthContext.Provider>
   );
 }
