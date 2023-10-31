@@ -2,10 +2,14 @@ import purpleTukTuk from '../../../assets/purpleTukTuk.png'
 import NumberButton from '../../../feature/taxi/NumberButton'
 import PurpleButton from '../../../feature/payment/PurpleButton'
 import { useState } from 'react'
+import ModalNotEnoughPayment from '../../../component/ModalNotEnoughPayment'
+import ModalPayment from '../../../component/ModalPayment'
 
 export default function ChooseNemberPeoplePage() {
+    const [isOpen, setIsOpen] = useState(false);
     const [click, setClick] = useState('')
     const personIconId = [1, 2, 3, 4, 5, 6]
+
     console.log(click)
     return (
         <div className='flex flex-col m-auto items-center justify-start  h-screen w-screen gap-2'>
@@ -49,7 +53,7 @@ export default function ChooseNemberPeoplePage() {
             </div>
             <div>
                 <div className='flex items-center gap-4'>
-                    <input type='checkbox' className='outline-none w-[20px] h-[20px]' />
+                    <input type='checkbox' className='outline-none w-[20px] h-[20px]' onClick={() => { setClick('6') }} />
                     <label className='text-[20px] text-MonoColor-700 font-semibold'>I want a whole car</label>
                 </div>
                 <div className='text-[12px] text-MonoColor-400 pl-10'>
@@ -58,8 +62,10 @@ export default function ChooseNemberPeoplePage() {
                 </div>
             </div>
             <div className='pt-4'>
-                <PurpleButton title='Payment' />
+                <PurpleButton title='Payment' onClick={() => setIsOpen(true)} />
             </div>
+            {/* <ModalNotEnoughPayment open={isOpen} onClose={() => setIsOpen(false)} /> */}
+            <ModalPayment open={isOpen} onClose={() => setIsOpen(false)} />
 
         </div >
     )

@@ -1,7 +1,7 @@
 
 
-export default function PurpleButton({ title }) {
+export default function PurpleButton({ title, onClick }) {
     return (
-        <button className='bg-Primary-dark rounded-2xl text-MonoColor-50 py-2 px-10 text-[18px] font-normal  active:text-MonoColor-600 active:bg-Primary-light'>{title}</button>
+        <button onClick={onClick} className='bg-Primary-dark rounded-2xl text-MonoColor-50 py-2 px-10 text-[18px] font-normal  active:text-MonoColor-600 active:bg-Primary-light'>{title}</button>
     )
 }
