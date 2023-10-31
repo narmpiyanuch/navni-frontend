@@ -11,6 +11,9 @@ import TopUpSuccess from "../pages/userPage/PaymentFlowPage/TopUpSuccess"
 import TopUpFail from "../pages/userPage/PaymentFlowPage/TopUpFail"
 import TaxiPage from "../pages/userPage/Booking/TaxiPage"
 import ChooseNemberPeoplePage from "../pages/userPage/Booking/ChooseNemberPeoplePage"
+import WaitingTaxiPage from "../pages/userPage/Booking/WaitingTaxiPage"
+import OnTheWayPage from "../pages/userPage/Booking/OnTheWayPage"
+import ServiceSuccesPage from "../pages/userPage/Booking/ServiceSuccesPage"
 
 const router = createBrowserRouter([
   {
@@ -33,6 +36,9 @@ const router = createBrowserRouter([
       { path: '/failtopup', element: <TopUpFail /> },
       { path: '/taxi', element: <TaxiPage /> },
       { path: '/numberpeople', element: <ChooseNemberPeoplePage /> },
+      { path: '/waitingtaxi', element: <WaitingTaxiPage /> },
+      { path: '/ontheway', element: <OnTheWayPage /> },
+      { path: '/serviceend', element: <ServiceSuccesPage /> },
     ]
   }
 ]);
