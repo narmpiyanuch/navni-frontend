@@ -1,66 +1,69 @@
 import { useState } from "react";
 import { useAuth } from "../hook/use-auth";
 import ButtonInputForm from "./ButtonInputForm";
+import { GoogleLogin } from "@react-oauth/google";
+// import { GoogleLogin } from "react-google-login";
+// import { gapi } from "gapi-script";
 import InputLoginForm from "./InputLoginForm";
-<<<<<<< HEAD
-import loginSchema from "../../validators/Auth-validator";
-import InputErrorMessage from "./InputErrorMessage";
-=======
 import { loginSchema } from "../../validators/Auth-validator";
->>>>>>> develop
+import InputErrorMessage from "./InputErrorMessage";
+// import { useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
 export default function LoginForm() {
-    const validateLogin = (input) => {
-        const { error } = loginSchema.validate(input, { abortEarly: false });
-        console.dir(error);
-        if (error) {
-            const result = error.details.reduce((acc, el) => {
-                const { message, path } = el;
-                acc[path[0]] = message;
-                return acc;
-            }, {});
-            return result;
-        }
-    };
+  const [input, setInput] = useState({
+    email: "",
+    password: "",
+  });
 
-    const [input, setInput] = useState({
-        email: "",
-        password: "",
-    });
+  // const navigate = useNavigate();
 
-    const [error, setError] = useState({});
+  const { login } = useAuth();
 
-    const { login } = useAuth();
+  const validateLogin = (input) => {
+    const { error } = loginSchema.validate(input, { abortEarly: false });
+    console.dir(error);
+    if (error) {
+      const result = error.details.reduce((acc, el) => {
+        const { message, path } = el;
+        acc[path[0]] = message;
+        return acc;
+      }, {});
+      return result;
+    }
+  };
 
-<<<<<<< HEAD
-  // const handleChangeInput = (e) => {
-  //   setInput({
-  //     ...input,
-  //     [e.target.name]: e.target.value,
+  // useEffect(() => {
+  //   const initClient = () => {
+  //     gapi.client.init({
+  //       clientId: clientId,
+  //       scope: "",
+  //     });
+  //   };
+  //   gapi.load("client:auth2", () => {
+  //     initClient();
   //   });
-  // };
-=======
-    const handleChangeInput = (e) => {
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value,
-        });
-    };
->>>>>>> develop
+  // }, []);
 
-    const handleSubmitForm = (e) => {
-        e.preventDefault();
-        const validationError = validateLogin(input);
-        if (validationError) {
-            return setError(validationError);
-        }
-        setError({});
-        login(input).catch((error) => {
-            console.log(error);
-        });
-    };
+  const [error, setError] = useState({});
 
-<<<<<<< HEAD
+  const onError = (res) => {
+    console.log("failed", res);
+  };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    const validationError = validateLogin(input);
+    if (validationError) {
+      return setError(validationError);
+    }
+    setError({});
+    login(input).catch((error) => {
+      console.log(error);
+    });
+  };
+
   return (
     <form
       className="flex flex-col items-center gap-4 pt-8"
@@ -74,6 +77,7 @@ export default function LoginForm() {
           value={input.email}
           onChange={(e) => setInput({ ...input, email: e.target.value })}
           hasError={error.email}
+          type="email"
         />
         {error.email && <InputErrorMessage message={error.email} />}
         <InputLoginForm
@@ -85,32 +89,16 @@ export default function LoginForm() {
         />
         {error.password && <InputErrorMessage message={error.password} />}
       </div>
-      <ButtonInputForm title="Log In" />
+      <ButtonInputForm title="Log In" type={"submit"} />
+      <p className="text-MonoColor-50 text-[12px] py-2">OR</p>
+      <GoogleLogin
+        onSuccess={(credentialResponse) => {
+          const userData = jwtDecode(credentialResponse.credential);
+          login(userData);
+          console.log(userData);
+        }}
+        onError={onError}
+      />
     </form>
   );
-=======
-    return (
-        <form
-            className="flex flex-col items-center gap-4 pt-8"
-            onSubmit={handleSubmitForm}
-        >
-            <div className="flex flex-col gap-4 items-end">
-                <InputLoginForm
-                    title={"Email"}
-                    value={input.email}
-                    onChange={handleChangeInput}
-                    hasError={error.email}
-                />
-                <InputLoginForm
-                    title={"Password"}
-                    value={input.password}
-                    type="password"
-                    onChange={handleChangeInput}
-                    hasError={error.password}
-                />
-            </div>
-            <ButtonInputForm title="Log In" />
-        </form>
-    );
->>>>>>> develop
 }
