@@ -1,6 +1,9 @@
 import React from 'react'
+import ModalSuccess from './ModalSuccess'
+import { useState } from 'react';
 
 export default function ModalCancelTrip({ onClose, open }) {
+    const [isCancel, setIsCancel] = useState(false);
     return (
         <>
             {open && (<>
@@ -16,11 +19,12 @@ export default function ModalCancelTrip({ onClose, open }) {
                             </div>
                             <div className='flex gap-4'>
                                 <button className='text-[16px] text-Primary-darker border-2 border-Primary-darker rounded-lg w-[80px] h-[32px] active:bg-Primary-darker active:text-MonoColor-50' onClick={onClose}>Stay</button>
-                                <button className='text-[16px] text-Error-pressed border-2 border-Error-pressed rounded-lg w-[80px] h-[32px] active:bg-Error-pressed active:text-MonoColor-50'>Cancel</button>
+                                <button className='text-[16px] text-Error-pressed border-2 border-Error-pressed rounded-lg w-[80px] h-[32px] active:bg-Error-pressed active:text-MonoColor-50' onClick={() => setIsCancel(true)} >Cancel</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <ModalSuccess open={isCancel} onClose={() => setIsCancel(false)} />
             </>)}
         </>
     )
