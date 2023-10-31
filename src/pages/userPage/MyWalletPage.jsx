@@ -1,4 +1,5 @@
 import MyWalletAmount from "../../feature/auth/MyWalletAmount";
+import TopUpByQR from "../../feature/auth/TopUpByQR";
 import WalletButton from "../../feature/payment/WalletButton";
 
 export default function MyWalletPage() {
@@ -24,6 +25,8 @@ export default function MyWalletPage() {
             </div>
 
             <MyWalletAmount />
+
+            <TopUpByQR />
 
         </div>
     )
