@@ -1,12 +1,14 @@
 import logoBGpurple from '../../../assets/logoBGpurple.jpg'
-import PurpleButton from '../../../feature/payment/PurpleButton'
+import ModalCancelTrip from '../../../component/ModalCancelTrip';
+
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 
 export default function WaitingTaxiPage() {
     const [isOpen, setIsOpen] = useState(false);
-    const [isOpenPin, setIsOpenPin] = useState(false);
+    const [isCancel, setIsCancel] = useState(false);
+
     return (
         <div className=" flex flex-col m-auto items-center justify-center bg-MonoColor-50 h-screen w-screen gap-2">
             <button className='relative h-full  w-full p-10 bg-Primary-light'>
@@ -50,11 +52,12 @@ export default function WaitingTaxiPage() {
                         </div>
                         <div className='flex flex-col gap-2 justify-center items-center'>
                             <button className='w-[100px] h-[32px] bg-Primary-darker text-MonoColor-50 rounded-xl text-[14px] active:bg-Primary-main active:text-MonoColor-700' >Picked Up</button>
-                            <button className='w-[100px] h-[32px] bg-Error-hover text-MonoColor-50 rounded-xl text-[14px] active:bg-red-500 active:text-MonoColor-700'>Cancel</button>
+                            <button className='w-[100px] h-[32px] bg-Error-hover text-MonoColor-50 rounded-xl text-[14px] active:bg-red-500 active:text-MonoColor-700' onClick={() => setIsCancel(true)} >Cancel</button>
                         </div>
                     </div>
                 </div>
             </div>
+            <ModalCancelTrip open={isCancel} onClose={() => setIsCancel(false)} />
         </div>
     )
 }
