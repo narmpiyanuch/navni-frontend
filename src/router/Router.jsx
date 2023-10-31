@@ -7,6 +7,7 @@ import { RouterProvider } from "react-router-dom";
 import TopUpToAmoutPage from "../pages/userPage/PaymentFlowPage/TopUpToAmoutPage";
 import TopUpToMyWalletPage from "../pages/userPage/PaymentFlowPage/TopUpToMyWalletPage";
 import QRcodePaymentPage from "../pages/userPage/PaymentFlowPage/QRcodePaymentPage";
+import MyWalletPage from "../pages/userPage/MyWalletPage";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
       { path: "/topup", element: <TopUpToAmoutPage /> },
       { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
       { path: "/qrcode", element: <QRcodePaymentPage /> },
+      { path: "/mywallet", element: <MyWalletPage /> },
     ],
   },
 ]);
