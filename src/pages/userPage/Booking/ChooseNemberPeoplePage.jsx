@@ -5,10 +5,12 @@ import { useState } from 'react'
 
 export default function ChooseNemberPeoplePage() {
     const [click, setClick] = useState('')
+    const personIconId = [1, 2, 3, 4, 5, 6]
+    console.log(click)
     return (
         <div className='flex flex-col m-auto items-center justify-start  h-screen w-screen gap-2'>
             <div className=' flex flex-col pt-10 items-start w-full '>
-                <span class="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4"> navigate_before</span>
+                <span className="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4"> navigate_before</span>
             </div>
             <div className='flex flex-col items-center justify-center h-[140px] w-full  drop-shadow-md gap-2'>
                 <div className='flex justify-center items-center gap-6'>
@@ -36,12 +38,8 @@ export default function ChooseNemberPeoplePage() {
                 <img src={purpleTukTuk} alt='tuktuk' className='w-[240px]' />
                 <div className='absolute top-[72px] left-[72px]'>
                     <div className='grid grid-cols-3 '>
-                        <span class="material-symbols-outlined text-[40px] text-Primary-dark">boy</span>
-                        <span class="material-symbols-outlined text-[40px] text-MonoColor-300">boy</span>
-                        <span class="material-symbols-outlined text-[40px] text-MonoColor-300">boy</span>
-                        <span class="material-symbols-outlined text-[40px] text-MonoColor-300">boy</span>
-                        <span class="material-symbols-outlined text-[40px] text-MonoColor-300">boy</span>
-                        <span class="material-symbols-outlined text-[40px] text-MonoColor-300">boy</span>
+                        {personIconId.map((el) => (<span key={el} className={`material-symbols-outlined text-[40px] ${el <= click ? 'text-Primary-dark' : "text-MonoColor-400"} `}>boy</span>))}
+
                     </div>
                 </div>
             </div>
