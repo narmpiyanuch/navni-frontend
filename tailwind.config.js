@@ -23,7 +23,7 @@ export default {
                     hover: "#D90716",
                     pressed: "#9D060F",
                 },
-                OterColor: {
+                OtherColor: {
                     yellow: "#FDC503",
                     darkGreen: "#4BA080",
                     lightGreen: "#41CD98",
