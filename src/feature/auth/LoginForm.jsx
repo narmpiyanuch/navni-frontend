@@ -3,6 +3,7 @@ import { useAuth } from "../hook/use-auth";
 import ButtonInputForm from "./ButtonInputForm";
 import InputLoginForm from "./InputLoginForm";
 import loginSchema from "../../validators/Auth-validator";
+import InputErrorMessage from "./InputErrorMessage";
 
 export default function LoginForm() {
   const validateLogin = (input) => {
@@ -27,12 +28,12 @@ export default function LoginForm() {
 
   const { login } = useAuth();
 
-  const handleChangeInput = (e) => {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const handleChangeInput = (e) => {
+  //   setInput({
+  //     ...input,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -49,22 +50,26 @@ export default function LoginForm() {
   return (
     <form
       className="flex flex-col items-center gap-4 pt-8"
-      onSubmit={handleSubmitForm}
+      onSubmit={(event) => {
+        handleSubmitForm(event);
+      }}
     >
       <div className="flex flex-col gap-4 items-end">
         <InputLoginForm
           title={"Email"}
           value={input.email}
-          onChange={handleChangeInput}
+          onChange={(e) => setInput({ ...input, email: e.target.value })}
           hasError={error.email}
         />
+        {error.email && <InputErrorMessage message={error.email} />}
         <InputLoginForm
           title={"Password"}
           value={input.password}
           type="password"
-          onChange={handleChangeInput}
+          onChange={(e) => setInput({ ...input, password: e.target.value })}
           hasError={error.password}
         />
+        {error.password && <InputErrorMessage message={error.password} />}
       </div>
       <ButtonInputForm title="Log In" />
     </form>
