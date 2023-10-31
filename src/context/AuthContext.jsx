@@ -16,6 +16,7 @@ export default function AuthContextProvider({ children }) {
     "1057347670375-8he167c3ublu3j6k4h9knm8qdn4f5r96.apps.googleusercontent.com";
 
   const [profile, setProfile] = useState(null);
+
   const [authUser, setAuthUser] = useState(null);
 
   useEffect(() => {
@@ -47,6 +48,12 @@ export default function AuthContextProvider({ children }) {
     console.log("failed", res);
   };
 
+  const register = async (credential) => {
+    const res = await axios.post("/auth/register", credential);
+    addAccessToken(res.data.accessToken);
+    setAuthUser(res.data.user);
+  };
+
   const login = async (credential) => {
     const res = await axios.post("auth/user/login", credential);
     addAccessToken(res.data.accessToken);
@@ -70,6 +77,7 @@ export default function AuthContextProvider({ children }) {
         onFailure,
         profile,
         clientId,
+        register,
       }}
     >
       {children}

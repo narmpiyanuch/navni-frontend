@@ -2,51 +2,65 @@ import { useState } from "react";
 import { useAuth } from "../hook/use-auth";
 import ButtonInputForm from "./ButtonInputForm";
 import InputLoginForm from "./InputLoginForm";
+<<<<<<< HEAD
 import loginSchema from "../../validators/Auth-validator";
 import InputErrorMessage from "./InputErrorMessage";
+=======
+import { loginSchema } from "../../validators/Auth-validator";
+>>>>>>> develop
 
 export default function LoginForm() {
-  const validateLogin = (input) => {
-    const { error } = loginSchema.validate(input, { abortEarly: false });
-    console.dir(error);
-    if (error) {
-      const result = error.details.reduce((acc, el) => {
-        const { message, path } = el;
-        acc[path[0]] = message;
-        return acc;
-      }, {});
-      return result;
-    }
-  };
+    const validateLogin = (input) => {
+        const { error } = loginSchema.validate(input, { abortEarly: false });
+        console.dir(error);
+        if (error) {
+            const result = error.details.reduce((acc, el) => {
+                const { message, path } = el;
+                acc[path[0]] = message;
+                return acc;
+            }, {});
+            return result;
+        }
+    };
 
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-  });
+    const [input, setInput] = useState({
+        email: "",
+        password: "",
+    });
 
-  const [error, setError] = useState({});
+    const [error, setError] = useState({});
 
-  const { login } = useAuth();
+    const { login } = useAuth();
 
+<<<<<<< HEAD
   // const handleChangeInput = (e) => {
   //   setInput({
   //     ...input,
   //     [e.target.name]: e.target.value,
   //   });
   // };
+=======
+    const handleChangeInput = (e) => {
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value,
+        });
+    };
+>>>>>>> develop
 
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-    const validationError = validateLogin(input);
-    if (validationError) {
-      return setError(validationError);
-    }
-    setError({});
-    login(input).catch((error) => {
-      console.log(error);
-    });
-  };
+    const handleSubmitForm = (e) => {
+        e.preventDefault();
+        const validationError = validateLogin(input);
+        if (validationError) {
+            return setError(validationError);
+        }
+        setError({});
+        login(input).catch((error) => {
+            console.log(error);
+        });
+    };
 
+<<<<<<< HEAD
   return (
     <form
       className="flex flex-col items-center gap-4 pt-8"
@@ -74,4 +88,29 @@ export default function LoginForm() {
       <ButtonInputForm title="Log In" />
     </form>
   );
+=======
+    return (
+        <form
+            className="flex flex-col items-center gap-4 pt-8"
+            onSubmit={handleSubmitForm}
+        >
+            <div className="flex flex-col gap-4 items-end">
+                <InputLoginForm
+                    title={"Email"}
+                    value={input.email}
+                    onChange={handleChangeInput}
+                    hasError={error.email}
+                />
+                <InputLoginForm
+                    title={"Password"}
+                    value={input.password}
+                    type="password"
+                    onChange={handleChangeInput}
+                    hasError={error.password}
+                />
+            </div>
+            <ButtonInputForm title="Log In" />
+        </form>
+    );
+>>>>>>> develop
 }
