@@ -10,6 +10,7 @@ import QRcodePaymentPage from "../pages/userPage/PaymentFlowPage/QRcodePaymentPa
 import TopUpSuccess from "../pages/userPage/PaymentFlowPage/TopUpSuccess"
 import TopUpFail from "../pages/userPage/PaymentFlowPage/TopUpFail"
 import TaxiPage from "../pages/userPage/Booking/TaxiPage"
+import ChooseNemberPeoplePage from "../pages/userPage/Booking/ChooseNemberPeoplePage"
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { path: '/successtopup', element: <TopUpSuccess /> },
       { path: '/failtopup', element: <TopUpFail /> },
       { path: '/taxi', element: <TaxiPage /> },
+      { path: '/numberpeople', element: <ChooseNemberPeoplePage /> },
     ]
   }
 ]);

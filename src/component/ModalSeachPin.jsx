@@ -16,7 +16,7 @@ export default function ModalSearchPin({ open, onClose }) {
                 <div className=" fixed inset-0 bg-MonoColor-900 opacity-50 z-20"></div>
                 <div className=" fixed inset-0 z-30 ">
                     <div className=" flex justify-center items-center min-h-full p-4 ">
-                        <div className="fixed top-[30%]  items-center justify-start bg-MonoColor-50 h-full w-screen rounded-[20px_20px_0px_0px] overflow-hidden">
+                        <div className="fixed top-[30%] items-center justify-start bg-MonoColor-50 h-full w-screen rounded-[20px_20px_0px_0px] overflow-hidden transit ">
                             <div className='flex bg-Primary-darker h-[60px] justify-between px-4 items-center gap-4'>
                                 <p className='text-[14px] text-MonoColor-50 '>Choose your pick-up and drop-off point</p>
                                 <span className="material-symbols-outlined text-MonoColor-50 hover:cursor-pointer" onClick={onClose}>close</span>
