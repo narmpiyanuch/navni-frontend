@@ -58,12 +58,14 @@ export default function HomePageForUser() {
                     </button>
                 </div>
                 <div className='flex gap-10 items-center justify-center mt-10'>
-                    <div className='flex flex-col justify-center items-center relative w-[132px] h-[100px] rounded-3xl bg-Primary-light active:bg-Primary-main'>
-                        <div className='flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute top-[-30px] border-4  border-Primary-light'>
-                            <img src={calendar} alt='tuktuk' className='w-[40px]' />
-                        </div>
-                        <p className='text-MonoColor-50 text-[20px] font-semibold pt-4'>History</p>
-                    </div>
+                    <button className='flex flex-col justify-center items-center relative w-[132px] h-[100px] rounded-3xl bg-Primary-light active:bg-Primary-main'>
+                        <Link to='/servicehistory'>
+                            <div className='flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute top-[-30px] border-4  border-Primary-light'>
+                                <img src={calendar} alt='tuktuk' className='w-[40px]' />
+                            </div>
+                            <p className='text-MonoColor-50 text-[20px] font-semibold pt-4'>History</p>
+                        </Link>
+                    </button>
                     <div className='flex flex-col justify-center items-center relative w-[132px] h-[100px] rounded-3xl bg-Primary-light active:bg-Primary-main'>
                         <div className='flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute top-[-30px] border-4  border-Primary-light'>
                             <img src={information} alt='tuktuk' className='w-[40px]' />

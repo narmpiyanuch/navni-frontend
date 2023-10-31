@@ -17,11 +17,11 @@ export default function WaitingTaxiPage() {
             </button>
             <div className="fixed top-[60%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen">
                 <div className='flex items-center justify-center h-[120px] bg-MonoColor-50 drop-shadow-md gap-2'>
-                    <button className='flex flex-col relative pr-8'>
+                    <div className='flex flex-col relative pr-8'>
                         <div className='absolute outline-none top-[-32px] left-[10px] w-[20px] h-[20px] border-4 border-Primary-dark bg-MonoColor-50 rounded-full z-10'></div>
                         <hr className='absolute border-2 border-Primary-dark w-[40px] rotate-90' />
                         <div className='absolute outline-none top-[12px] left-[10px] w-[20px] h-[20px] border-4 border-Primary-dark bg-Primary-dark rounded-full'></div>
-                    </button>
+                    </div>
                     <div className='flex flex-col items-start justify-center  w-[240px] h-[100px]  gap-6'>
                         <div className='flex gap-4'>
                             <p className='text-[16px] flex font-semibold text-MonoColor-400 bg-transparent'>From</p>
