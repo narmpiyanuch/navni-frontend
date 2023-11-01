@@ -19,21 +19,7 @@ export default function LoginForm() {
         password: "",
     });
 
-    // const navigate = useNavigate();
-
     const { login } = useAuth();
-
-    // useEffect(() => {
-    //   const initClient = () => {
-    //     gapi.client.init({
-    //       clientId: clientId,
-    //       scope: "",
-    //     });
-    //   };
-    //   gapi.load("client:auth2", () => {
-    //     initClient();
-    //   });
-    // }, []);
 
     const [error, setError] = useState({});
 
