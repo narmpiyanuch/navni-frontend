@@ -1,8 +1,5 @@
 import whiteLogo from "../assets/whiteLogo.png";
-import ButtonByGoogle from "../feature/auth/BottonByGoogle";
-// import ButtonInputForm from "../feature/auth/ButtonInputForm";
 import FooterForHome from "../feature/auth/FooterForHome";
-// import InputLoginForm from "../feature/auth/InputLoginForm";
 import LoginForm from "../feature/auth/LoginForm";
 
 export default function LoginPage() {
@@ -16,8 +13,6 @@ export default function LoginPage() {
           </p>
         </div>
         <LoginForm />
-        <p className="text-MonoColor-50 text-[12px] py-2">OR</p>
-        <ButtonByGoogle title="Sign in with google" />
       </div>
       <div className="fixed top-[64%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen rounded-[40px_40px_0px_0px] mt-8">
         <FooterForHome />
