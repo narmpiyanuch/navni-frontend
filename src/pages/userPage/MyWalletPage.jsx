@@ -1,4 +1,3 @@
-import MyWalletAmount from "../../feature/auth/MyWalletAmount";
 import TopUpByQR from "../../feature/auth/TopUpByQR";
 import WalletButton from "../../feature/payment/WalletButton";
 
@@ -23,8 +22,6 @@ export default function MyWalletPage() {
             <div className="pt-10">
                 <p className="text-[18px] text-MonoColor-400">My Wallet History</p>
             </div>
-
-            <MyWalletAmount />
 
             <TopUpByQR />
 
