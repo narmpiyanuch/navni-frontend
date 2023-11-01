@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import TopUpByQR from "../../feature/auth/TopUpByQR";
 import WalletButton from "../../feature/payment/WalletButton";
 
@@ -6,7 +7,9 @@ export default function MyWalletPage() {
         <div className="flex flex-col items-center">
 
             <div className="flex pt-10 items-start w-full">
-                <span className="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4"> navigate_before</span>
+                <Link to='/'>
+                    <span className="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4"> navigate_before</span>
+                </Link>
             </div>
 
             <div className="">
