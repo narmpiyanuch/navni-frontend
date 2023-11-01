@@ -1,4 +1,4 @@
-import React from 'react'
+
 import qrCode from '../../../assets/qr-code.png'
 import credit from '../../../assets/credit-cards-payment.png'
 
@@ -7,7 +7,7 @@ export default function TopUpToMyWalletPage() {
         <div>
             <div className='flex flex-col m-auto items-center justify-start  h-screen w-screen gap-2'>
                 <div className=' flex flex-col pt-10 items-start w-full '>
-                    <span class="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4"> navigate_before</span>
+                    <span className="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4"> navigate_before</span>
                 </div>
                 <div className='flex items-center'>
                     <p className='text-Primary-dark text-[24px] font-normal item-center'>Top-up to My Wallet</p>
