@@ -7,7 +7,6 @@ import {
   removeAccessToken,
 } from "../utils/local-storage";
 import axios from "../config/axios";
-import { Children } from "react";
 
 export const AuthContext = createContext();
 
@@ -22,6 +21,12 @@ export default function AuthContextProvider({ children }) {
   //   }
   // }, []);
 
+  const register = async (credential) => {
+    const res = await axios.post("/auth/register", credential);
+    addAccessToken(res.data.accessToken);
+    setAuthUser(res.data.user);
+  };
+
   const login = async (credential) => {
     const res = await axios.post("auth/user/login", credential);
     addAccessToken(res.data.accessToken);
@@ -29,12 +34,24 @@ export default function AuthContextProvider({ children }) {
   };
 
   const logout = async () => {
+    console.log("click");
     removeAccessToken();
     setAuthUser(null);
   };
 
   return (
+<<<<<<< HEAD
     <AuthContext.Provider value={{ login, authUser, logout }}>
+=======
+    <AuthContext.Provider
+      value={{
+        login,
+        authUser,
+        logout,
+        register,
+      }}
+    >
+>>>>>>> develop
       {children}
     </AuthContext.Provider>
   );

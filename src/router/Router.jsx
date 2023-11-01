@@ -7,19 +7,45 @@ import { RouterProvider } from "react-router-dom";
 import TopUpToAmoutPage from "../pages/userPage/PaymentFlowPage/TopUpToAmoutPage";
 import TopUpToMyWalletPage from "../pages/userPage/PaymentFlowPage/TopUpToMyWalletPage";
 import QRcodePaymentPage from "../pages/userPage/PaymentFlowPage/QRcodePaymentPage";
+<<<<<<< HEAD
 import MyWalletPage from "../pages/userPage/MyWalletPage";
+=======
+import TopUpSuccess from "../pages/userPage/PaymentFlowPage/TopUpSuccess";
+import TopUpFail from "../pages/userPage/PaymentFlowPage/TopUpFail";
+import RedirectIfAuthenticated from "../feature/auth/RedirectIfAuthenticated";
+import RedirectIfNotAuthenticated from "../feature/auth/RedirectIfNotAuthenticated";
+import TaxiPage from "../pages/userPage/Booking/TaxiPage";
+import ChooseNemberPeoplePage from "../pages/userPage/Booking/ChooseNemberPeoplePage";
+import WaitingTaxiPage from "../pages/userPage/Booking/WaitingTaxiPage";
+import ServiceSuccesPage from "../pages/userPage/Booking/ServiceSuccesPage";
+import ServiceHistory from "../pages/userPage/ServiceHistory";
+import InformationPage from "../pages/userPage/InformationPage";
+import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
+>>>>>>> develop
 
 const router = createBrowserRouter([
   {
     path: "login",
-    element: <LoginPage />,
+    element: (
+      <RedirectIfAuthenticated>
+        <LoginPage />
+      </RedirectIfAuthenticated>
+    ),
+  },
+  {
+    path: "/register",
+    element: (
+      <RedirectIfAuthenticated>
+        <RegisterPageForUser />,
+      </RedirectIfAuthenticated>
+    ),
   },
   {
     path: "/",
     element: (
-      <div>
+      <RedirectIfNotAuthenticated>
         <Outlet />
-      </div>
+      </RedirectIfNotAuthenticated>
     ),
     children: [
       { path: "/", element: <HomePageForUser /> },
@@ -27,7 +53,19 @@ const router = createBrowserRouter([
       { path: "/topup", element: <TopUpToAmoutPage /> },
       { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
       { path: "/qrcode", element: <QRcodePaymentPage /> },
+<<<<<<< HEAD
       { path: "/mywallet", element: <MyWalletPage /> },
+=======
+      { path: "/successtopup", element: <TopUpSuccess /> },
+      { path: "/failtopup", element: <TopUpFail /> },
+      { path: "/taxi", element: <TaxiPage /> },
+      { path: "/numberpeople", element: <ChooseNemberPeoplePage /> },
+      { path: "/waitingtaxi", element: <WaitingTaxiPage /> },
+      { path: "/serviceend", element: <ServiceSuccesPage /> },
+      { path: "/servicehistory", element: <ServiceHistory /> },
+      { path: "/information", element: <InformationPage /> },
+      { path: "/registerdiver", element: <RegisterDiverPage /> },
+>>>>>>> develop
     ],
   },
 ]);

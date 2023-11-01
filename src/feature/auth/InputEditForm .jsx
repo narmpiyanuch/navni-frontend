@@ -1,4 +1,4 @@
-export default function InputRegisterForm({
+export default function InputEditForm({
     title,
     name,
     value,
@@ -8,16 +8,15 @@ export default function InputRegisterForm({
 }) {
     return (
         <div className=" flex gap-4">
-            <span className="text-Primary-main text-[18px] font-normal">
+            <span className="text-Primary-dark text-[16px] font-normal">
                 {title}
             </span>
             <input
-                className={`w-[200px] px-2 border-2 outline-none rounded-2xl
-                ${
-                    hasError
+                className={`w-[160px] px-2 border-2 outline-none rounded-2xl
+                ${hasError
                         ? ` border-Error-main `
-                        : `border-Primary-main  bg-MonoColor-50  active:border-2 active:border-Primary-darker`
-                }
+                        : `border-Primary-dark  bg-MonoColor-50  active:border-2 active:border-Primary-darker`
+                    }
                 `}
                 value={value}
                 name={name}
