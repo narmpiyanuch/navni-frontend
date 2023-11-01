@@ -15,6 +15,7 @@ import WaitingTaxiPage from "../pages/userPage/Booking/WaitingTaxiPage"
 import OnTheWayPage from "../pages/userPage/Booking/OnTheWayPage"
 import ServiceSuccesPage from "../pages/userPage/Booking/ServiceSuccesPage"
 import ServiceHistory from "../pages/userPage/ServiceHistory"
+import InformationPage from "../pages/userPage/InformationPage"
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
       { path: '/ontheway', element: <OnTheWayPage /> },
       { path: '/serviceend', element: <ServiceSuccesPage /> },
       { path: '/servicehistory', element: <ServiceHistory /> },
+      { path: '/information', element: <InformationPage /> },
     ]
   }
 ]);

@@ -66,12 +66,14 @@ export default function HomePageForUser() {
                             <p className='text-MonoColor-50 text-[20px] font-semibold pt-4'>History</p>
                         </Link>
                     </button>
-                    <div className='flex flex-col justify-center items-center relative w-[132px] h-[100px] rounded-3xl bg-Primary-light active:bg-Primary-main'>
-                        <div className='flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute top-[-30px] border-4  border-Primary-light'>
-                            <img src={information} alt='tuktuk' className='w-[40px]' />
-                        </div>
-                        <p className='text-MonoColor-50 text-[20px] font-semibold pt-4'>Information</p>
-                    </div>
+                    <button className='flex flex-col justify-center items-center relative w-[132px] h-[100px] rounded-3xl bg-Primary-light active:bg-Primary-main'>
+                        <Link to='/information'>
+                            <div className='flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute top-[-30px] left-[32px] border-4  border-Primary-light'>
+                                <img src={information} alt='tuktuk' className='w-[40px]' />
+                            </div>
+                            <p className='text-MonoColor-50 text-[20px] font-semibold pt-4'>Information</p>
+                        </Link>
+                    </button>
                 </div>
                 <div className='flex gap-10 items-center justify-center mt-8'>
                     <div className='flex flex-col justify-center items-center relative w-[320px] h-[40px] rounded-3xl bg-Secondary-main active:bg-Secondary-dark'>
