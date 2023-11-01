@@ -1,4 +1,4 @@
-import React from 'react'
+
 import qrCode from '../../../assets/qr-code.png'
 import credit from '../../../assets/credit-cards-payment.png'
 

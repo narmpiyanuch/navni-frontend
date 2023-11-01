@@ -7,9 +7,6 @@ import { RouterProvider } from "react-router-dom";
 import TopUpToAmoutPage from "../pages/userPage/PaymentFlowPage/TopUpToAmoutPage";
 import TopUpToMyWalletPage from "../pages/userPage/PaymentFlowPage/TopUpToMyWalletPage";
 import QRcodePaymentPage from "../pages/userPage/PaymentFlowPage/QRcodePaymentPage";
-<<<<<<< HEAD
-import MyWalletPage from "../pages/userPage/MyWalletPage";
-=======
 import TopUpSuccess from "../pages/userPage/PaymentFlowPage/TopUpSuccess";
 import TopUpFail from "../pages/userPage/PaymentFlowPage/TopUpFail";
 import RedirectIfAuthenticated from "../feature/auth/RedirectIfAuthenticated";
@@ -21,7 +18,7 @@ import ServiceSuccesPage from "../pages/userPage/Booking/ServiceSuccesPage";
 import ServiceHistory from "../pages/userPage/ServiceHistory";
 import InformationPage from "../pages/userPage/InformationPage";
 import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
->>>>>>> develop
+import MyWalletPage from "../pages/userPage/MyWalletPage";
 
 const router = createBrowserRouter([
   {
@@ -53,9 +50,7 @@ const router = createBrowserRouter([
       { path: "/topup", element: <TopUpToAmoutPage /> },
       { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
       { path: "/qrcode", element: <QRcodePaymentPage /> },
-<<<<<<< HEAD
       { path: "/mywallet", element: <MyWalletPage /> },
-=======
       { path: "/successtopup", element: <TopUpSuccess /> },
       { path: "/failtopup", element: <TopUpFail /> },
       { path: "/taxi", element: <TaxiPage /> },
@@ -65,7 +60,6 @@ const router = createBrowserRouter([
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
       { path: "/registerdiver", element: <RegisterDiverPage /> },
->>>>>>> develop
     ],
   },
 ]);
