@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
 import { Outlet } from "react-router-dom";
+import LoginPage from "../pages/LoginPage";
 import HomePageForUser from "../pages/userPage/HomePageForUser";
 import RegisterPageForUser from "../pages/userPage/RegisterPageForUser";
 import { RouterProvider } from "react-router-dom";
@@ -21,49 +21,49 @@ import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
 
 const router = createBrowserRouter([
-  {
-    path: "login",
-    element: (
-      <RedirectIfAuthenticated>
-        <LoginPage />
-      </RedirectIfAuthenticated>
-    ),
-  },
-  {
-    path: "/register",
-    element: (
-      <RedirectIfAuthenticated>
-        <RegisterPageForUser />,
-      </RedirectIfAuthenticated>
-    ),
-  },
-  {
-    path: "/",
-    element: (
-      <RedirectIfNotAuthenticated>
-        <Outlet />
-      </RedirectIfNotAuthenticated>
-    ),
-    children: [
-      { path: "/", element: <HomePageForUser /> },
-      { path: "/register", element: <RegisterPageForUser /> },
-      { path: "/topup", element: <TopUpToAmoutPage /> },
-      { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
-      { path: "/qrcode", element: <QRcodePaymentPage /> },
-      { path: "/mywallet", element: <MyWalletPage /> },
-      { path: "/successtopup", element: <TopUpSuccess /> },
-      { path: "/failtopup", element: <TopUpFail /> },
-      { path: "/taxi", element: <TaxiPage /> },
-      { path: "/numberpeople", element: <ChooseNemberPeoplePage /> },
-      { path: "/waitingtaxi", element: <WaitingTaxiPage /> },
-      { path: "/serviceend", element: <ServiceSuccesPage /> },
-      { path: "/servicehistory", element: <ServiceHistory /> },
-      { path: "/information", element: <InformationPage /> },
-      { path: "/registerdiver", element: <RegisterDiverPage /> },
-    ],
-  },
+    {
+        path: "login",
+        element: (
+            <RedirectIfAuthenticated>
+                <LoginPage />
+            </RedirectIfAuthenticated>
+        ),
+    },
+    {
+        path: "/register",
+        element: (
+            <RedirectIfAuthenticated>
+                <RegisterPageForUser />,
+            </RedirectIfAuthenticated>
+        ),
+    },
+    {
+        path: "/",
+        element: (
+            <RedirectIfNotAuthenticated>
+                <Outlet />
+            </RedirectIfNotAuthenticated>
+        ),
+        children: [
+            { path: "/", element: <HomePageForUser /> },
+            { path: "/register", element: <RegisterPageForUser /> },
+            { path: "/topup", element: <TopUpToAmoutPage /> },
+            { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
+            { path: "/qrcode", element: <QRcodePaymentPage /> },
+            { path: "/mywallet", element: <MyWalletPage /> },
+            { path: "/successtopup", element: <TopUpSuccess /> },
+            { path: "/failtopup", element: <TopUpFail /> },
+            { path: "/taxi", element: <TaxiPage /> },
+            { path: "/numberpeople", element: <ChooseNemberPeoplePage /> },
+            { path: "/waitingtaxi", element: <WaitingTaxiPage /> },
+            { path: "/serviceend", element: <ServiceSuccesPage /> },
+            { path: "/servicehistory", element: <ServiceHistory /> },
+            { path: "/information", element: <InformationPage /> },
+            { path: "/registerdiver", element: <RegisterDiverPage /> },
+        ],
+    },
 ]);
 
 export default function Router() {
-  return <RouterProvider router={router} />;
+    return <RouterProvider router={router} />;
 }
