@@ -11,6 +11,7 @@ import InputErrorMessage from "./InputErrorMessage";
 // import { useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import validaterFn from "../../validators/validateFN";
 
 export default function LoginForm() {
     const [input, setInput] = useState({
@@ -21,19 +22,6 @@ export default function LoginForm() {
     // const navigate = useNavigate();
 
     const { login } = useAuth();
-
-    const validateLogin = (input) => {
-        const { error } = loginSchema.validate(input, { abortEarly: false });
-        console.dir(error);
-        if (error) {
-            const result = error.details.reduce((acc, el) => {
-                const { message, path } = el;
-                acc[path[0]] = message;
-                return acc;
-            }, {});
-            return result;
-        }
-    };
 
     // useEffect(() => {
     //   const initClient = () => {
@@ -55,7 +43,7 @@ export default function LoginForm() {
 
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        const validationError = validateLogin(input);
+        const validationError = validaterFn(loginSchema, input);
         if (validationError) {
             return setError(validationError);
         }

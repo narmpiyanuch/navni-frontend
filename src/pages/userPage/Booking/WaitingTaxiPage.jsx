@@ -50,8 +50,9 @@ export default function WaitingTaxiPage() {
                             <p className='text-[16px] flex font-semibold bg-transparent text-MonoColor-700 '>5-10 mins</p>
                         </div>
                         <div className='flex flex-col gap-2 justify-center items-center'>
-                            <button className='w-[100px] h-[32px] bg-Primary-darker text-MonoColor-50 rounded-xl text-[14px] active:bg-Primary-main active:text-MonoColor-700' ><Link to='/ontheway'>Picked Up</Link></button>
-                            <button className='w-[100px] h-[32px] bg-Error-hover text-MonoColor-50 rounded-xl text-[14px] active:bg-red-500 active:text-MonoColor-700' onClick={() => setIsCancel(true)} >Cancel</button>
+                            {false ? (<button className='w-[100px] h-[32px] bg-OtherColor-darkGreen text-MonoColor-50 rounded-xl text-[14px] active:bg-OtherColor-lightGreen active:text-MonoColor-700' >On the way</button>) : (
+                                <button className='w-[100px] h-[32px] bg-Error-hover text-MonoColor-50 rounded-xl text-[14px] active:bg-red-500 active:text-MonoColor-700' onClick={() => setIsCancel(true)} >Cancel</button>)}
+                            {/* (รอแก้อีกที) */}
                         </div>
                     </div>
                 </div>
