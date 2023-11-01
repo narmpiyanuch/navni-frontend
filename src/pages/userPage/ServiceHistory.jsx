@@ -9,7 +9,7 @@ export default function ServiceHistory() {
             <div className='flex flex-col m-auto items-center justify-start  h-screen w-screen gap-2'>
                 <div className=' flex flex-col pt-10 items-start w-full '>
                     <Link to='/'>
-                        <span class="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4"> navigate_before</span>
+                        <span className="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4"> navigate_before</span>
                     </Link>
                 </div>
                 <div className='flex items-center'>
