@@ -18,6 +18,7 @@ import ServiceSuccesPage from "../pages/userPage/Booking/ServiceSuccesPage";
 import ServiceHistory from "../pages/userPage/ServiceHistory";
 import InformationPage from "../pages/userPage/InformationPage";
 import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
+import MyWalletPage from "../pages/userPage/MyWalletPage";
 
 const router = createBrowserRouter([
     {
@@ -49,6 +50,7 @@ const router = createBrowserRouter([
             { path: "/topup", element: <TopUpToAmoutPage /> },
             { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
             { path: "/qrcode", element: <QRcodePaymentPage /> },
+            { path: "/mywallet", element: <MyWalletPage /> },
             { path: "/successtopup", element: <TopUpSuccess /> },
             { path: "/failtopup", element: <TopUpFail /> },
             { path: "/taxi", element: <TaxiPage /> },
