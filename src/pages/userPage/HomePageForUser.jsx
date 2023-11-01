@@ -6,8 +6,11 @@ import messageChat from '../../assets/chat.png'
 import navniLogo from '../../assets/purpleLogo.png'
 import { Link } from 'react-router-dom'
 import { useAuth } from "../../feature/hook/use-auth";
+import ModalEditProfile from '../../component/ModalEditProfile'
+import { useState } from 'react'
 
 export default function HomePageForUser() {
+  const [isOpen, setIsOpen] = useState(false);
   const { logout } = useAuth();
 
   const handleLogOut = () => {
@@ -26,7 +29,7 @@ export default function HomePageForUser() {
               <p className="text-[18px] text-MonoColor-50">
                 Hello (First name)
               </p>
-              <button className="text-[12px] text-OtherColor-yellow active:text-MonoColor-300">
+              <button onClick={() => setIsOpen(true)} className="text-[12px] text-OtherColor-yellow active:text-MonoColor-300">
                 Edit Profile
               </button>
             </div>
@@ -109,6 +112,7 @@ export default function HomePageForUser() {
           </div>
         </div>
       </div>
+      <ModalEditProfile open={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 }
