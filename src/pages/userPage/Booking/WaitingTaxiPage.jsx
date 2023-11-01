@@ -17,11 +17,11 @@ export default function WaitingTaxiPage() {
             </button>
             <div className="fixed top-[60%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen">
                 <div className='flex items-center justify-center h-[120px] bg-MonoColor-50 drop-shadow-md gap-2'>
-                    <button className='flex flex-col relative pr-8'>
+                    <div className='flex flex-col relative pr-8'>
                         <div className='absolute outline-none top-[-32px] left-[10px] w-[20px] h-[20px] border-4 border-Primary-dark bg-MonoColor-50 rounded-full z-10'></div>
                         <hr className='absolute border-2 border-Primary-dark w-[40px] rotate-90' />
                         <div className='absolute outline-none top-[12px] left-[10px] w-[20px] h-[20px] border-4 border-Primary-dark bg-Primary-dark rounded-full'></div>
-                    </button>
+                    </div>
                     <div className='flex flex-col items-start justify-center  w-[240px] h-[100px]  gap-6'>
                         <div className='flex gap-4'>
                             <p className='text-[16px] flex font-semibold text-MonoColor-400 bg-transparent'>From</p>
@@ -50,8 +50,9 @@ export default function WaitingTaxiPage() {
                             <p className='text-[16px] flex font-semibold bg-transparent text-MonoColor-700 '>5-10 mins</p>
                         </div>
                         <div className='flex flex-col gap-2 justify-center items-center'>
-                            <button className='w-[100px] h-[32px] bg-Primary-darker text-MonoColor-50 rounded-xl text-[14px] active:bg-Primary-main active:text-MonoColor-700' ><Link to='/ontheway'>Picked Up</Link></button>
-                            <button className='w-[100px] h-[32px] bg-Error-hover text-MonoColor-50 rounded-xl text-[14px] active:bg-red-500 active:text-MonoColor-700' onClick={() => setIsCancel(true)} >Cancel</button>
+                            {false ? (<button className='w-[100px] h-[32px] bg-OtherColor-darkGreen text-MonoColor-50 rounded-xl text-[14px] active:bg-OtherColor-lightGreen active:text-MonoColor-700' >On the way</button>) : (
+                                <button className='w-[100px] h-[32px] bg-Error-hover text-MonoColor-50 rounded-xl text-[14px] active:bg-red-500 active:text-MonoColor-700' onClick={() => setIsCancel(true)} >Cancel</button>)}
+                            {/* (รอแก้อีกที) */}
                         </div>
                     </div>
                 </div>
