@@ -1,23 +1,12 @@
 import { useState } from "react";
 import { useAuth } from "../hook/use-auth";
+
 import ButtonInputForm from "./ButtonInputForm";
 import InputLoginForm from "./InputLoginForm";
 import { loginSchema } from "../../validators/Auth-validator";
+import validateFN from "../../validators/validateFN";
 
 export default function LoginForm() {
-    const validateLogin = (input) => {
-        const { error } = loginSchema.validate(input, { abortEarly: false });
-        console.dir(error);
-        if (error) {
-            const result = error.details.reduce((acc, el) => {
-                const { message, path } = el;
-                acc[path[0]] = message;
-                return acc;
-            }, {});
-            return result;
-        }
-    };
-
     const [input, setInput] = useState({
         email: "",
         password: "",
@@ -36,7 +25,7 @@ export default function LoginForm() {
 
     const handleSubmitForm = (e) => {
         e.preventDefault();
-        const validationError = validateLogin(input);
+        const validationError = validateFN(loginSchema, input);
         if (validationError) {
             return setError(validationError);
         }
