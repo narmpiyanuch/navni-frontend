@@ -19,8 +19,9 @@ import ServiceHistory from "../pages/userPage/ServiceHistory";
 import InformationPage from "../pages/userPage/InformationPage";
 import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
+import HomeDiver from "../pages/diverPage/HomeDiver"
+import StartDiverPage from "../pages/diverPage/StartDiverPage";
 import ServiceHistoryDriver from "../pages/userPage/ServiceHistoryDriver";
-import HomeDiver from "../pages/diverPage/HomeDiver";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
         <Outlet />
       </RedirectIfNotAuthenticated>
     ),
+
     children: [
       { path: "/home", element: <HomePageForUser /> },
       { path: "/topup", element: <TopUpToAmoutPage /> },
@@ -65,8 +67,10 @@ const router = createBrowserRouter([
       { path: "/serviceend", element: <ServiceSuccesPage /> },
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
+      { path: "/registerdiver", element: <RegisterDiverPage /> },
       { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
-      { path: "/homediver", element: <HomeDiver /> },
+      { path: '/homediver', element: <HomeDiver /> },
+      { path: '/startdive', element: <StartDiverPage /> },
     ],
   },
 ]);
