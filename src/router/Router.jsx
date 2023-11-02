@@ -39,13 +39,12 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/",
-    // element: (
-    //   <RedirectIfNotAuthenticated>
-    //     <Outlet />
-    //   </RedirectIfNotAuthenticated>
+
     element: (
+      <RedirectIfNotAuthenticated>
         <Outlet />
+      </RedirectIfNotAuthenticated>
+
     ),
     children: [
       { path: "/", element: <HomePageForUser /> },
