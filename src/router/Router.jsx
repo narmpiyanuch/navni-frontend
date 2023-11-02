@@ -20,6 +20,7 @@ import InformationPage from "../pages/userPage/InformationPage";
 import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
 import HomeDiver from "../pages/diverPage/HomeDiver"
+import StartDiverPage from "../pages/diverPage/StartDiverPage";
 
 const router = createBrowserRouter([
   {
@@ -40,10 +41,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
+    // element: (
+    //   <RedirectIfNotAuthenticated>
+    //     <Outlet />
+    //   </RedirectIfNotAuthenticated>
+    // ),
     element: (
-      <RedirectIfNotAuthenticated>
-        <Outlet />
-      </RedirectIfNotAuthenticated>
+
+      <Outlet />
+
     ),
     children: [
       { path: "/", element: <HomePageForUser /> },
@@ -62,6 +68,7 @@ const router = createBrowserRouter([
       { path: "/information", element: <InformationPage /> },
       { path: "/registerdiver", element: <RegisterDiverPage /> },
       { path: '/homediver', element: <HomeDiver /> },
+      { path: '/startdive', element: <StartDiverPage /> },
     ],
   },
 ]);

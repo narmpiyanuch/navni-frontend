@@ -77,7 +77,7 @@ export default function HomePageForUser() {
                         </div>
                         <div className="flex items-center justify-center">
                             <div className="w-[200px] h-[60px] absolute bg-Secondary-lightest bottom-0 "></div>
-                            <Link to="/mywallet">
+                            <Link to="/mywallet" className="flex justify-center items-center">
                                 <button className="w-[28px] h-[28px] rounded-full absolute bg-MonoColor-50 bottom-[16px] text-center text-Primary-dark font-semibold text-[20px] active:bg-Primary-main">
                                     +
                                 </button>

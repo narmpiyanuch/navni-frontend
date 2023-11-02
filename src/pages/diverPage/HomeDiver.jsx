@@ -1,11 +1,9 @@
 import user from '../../assets/user.png'
 import tuktuk from '../../assets/tuktuk.png'
 import calendar from '../../assets/calendar.png'
-import information from '../../assets/support.png'
 import messageChat from '../../assets/chat.png'
 import { Link } from 'react-router-dom'
 import { useAuth } from "../../feature/hook/use-auth";
-import { useState } from 'react'
 import purpleLogo from '../../assets/purpleLogoNonbackground.png'
 
 
