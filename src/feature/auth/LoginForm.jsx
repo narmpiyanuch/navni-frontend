@@ -53,7 +53,7 @@ export default function LoginForm() {
                     onChange={(e) =>
                         setInput({ ...input, email: e.target.value })
                     }
-                    hasError={error.email}
+                    // hasError={error.email}
                     type="email"
                 />
                 {error.email && <InputErrorMessage message={error.email} />}
@@ -64,7 +64,7 @@ export default function LoginForm() {
                     onChange={(e) =>
                         setInput({ ...input, password: e.target.value })
                     }
-                    hasError={error.password}
+                    // hasError={error.password}
                 />
                 {error.password && (
                     <InputErrorMessage message={error.password} />
