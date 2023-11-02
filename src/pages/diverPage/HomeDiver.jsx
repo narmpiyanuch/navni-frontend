@@ -53,7 +53,7 @@ export default function HomeDiver() {
             <div>
                 <div className='flex  flex-col items-center justify-center pt-12 gap-10'>
                     <button className='flex flex-col justify-center items-center relative w-[320px] h-[80px] rounded-3xl bg-Primary-light active:bg-Primary-main'>
-                        <Link to='/servicehistory' className='flex justify-center'>
+                        <Link to='/startdive' className='flex justify-center'>
                             <div className='flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute top-[-30px]  border-4 border-Primary-light'>
                                 <img src={tuktuk} alt='tuktuk' className='w-[40px]' />
                             </div>

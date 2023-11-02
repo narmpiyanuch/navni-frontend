@@ -2,7 +2,7 @@ import React from 'react'
 import ModalSuccess from './ModalSuccess'
 import { useState } from 'react';
 
-export default function ModalCancelTrip({ onClose, open }) {
+export default function ModalCancelTrip({ onClose, open, to }) {
     const [isCancel, setIsCancel] = useState(false);
     return (
         <>
@@ -24,7 +24,7 @@ export default function ModalCancelTrip({ onClose, open }) {
                         </div>
                     </div>
                 </div>
-                <ModalSuccess open={isCancel} onClose={() => setIsCancel(false)} />
+                <ModalSuccess to={to} open={isCancel} onClose={() => setIsCancel(false)} />
             </>)}
         </>
     )

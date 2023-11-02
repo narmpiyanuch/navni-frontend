@@ -1,6 +1,6 @@
-import React from 'react'
 
-export default function ToDestinationSmall({ setIsOpen, setIsSuccess }) {
+
+export default function ToDestinationSmall({ setIsOpen, setIsSuccess, setIsCancelTrip }) {
     return (
         <div className="flex fixed top-[24%] flex-col items-center justify-start bg-MonoColor-50 drop-shadow-xl w-[360px] h-[100px] rounded-[40px_40px_40px_40px] drop-shadow-[0_35px_35px_rgba(0,0,0,0.25) overflow-hidden">
             <div className="fixed flex items-start pt-6 justify-around  h-full rounded-[20px_20px_0px_0px]] w-[360px]">
@@ -21,7 +21,7 @@ export default function ToDestinationSmall({ setIsOpen, setIsSuccess }) {
                     <button onClick={() => setIsSuccess(true)} className='w-[56px] py-2 bg-OtherColor-darkGreen text-MonoColor-50 rounded-xl text-[14px] active:bg-OtherColor-lightGreen active:text-MonoColor-700' >
                         <p className='text-[14px] font-semibold'>Done</p>
                     </button>
-                    <button className='w-[56px] py-2 bg-Error-pressed text-MonoColor-50 rounded-xl text-[14px] active:bg-Error-main active:text-MonoColor-50' >
+                    <button onClick={() => setIsCancelTrip(true)} className='w-[56px] py-2 bg-Error-pressed text-MonoColor-50 rounded-xl text-[14px] active:bg-Error-main active:text-MonoColor-50' >
                         <p className='text-[14px] font-semibold'>Cancel</p>
                     </button>
                 </div>

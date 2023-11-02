@@ -1,6 +1,6 @@
 import purplePerson from '../../assets/purplePerson.png'
 
-export default function ToDistinationExpand({ setIsOpen, setIsSuccess }) {
+export default function ToDistinationExpand({ setIsOpen, setIsSuccess, setIsCancelTrip }) {
     return (
         <div className="flex fixed top-[24%] flex-col items-center justify-start bg-MonoColor-50 drop-shadow-xl w-[360px] h-[240px] rounded-[40px_40px_40px_40px] overflow-hidden px-10">
             <div className="fixed  items-center justify-start pt-4  bg-MonoColor-50 h-full rounded-[20px_20px_0px_0px] drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] w-screen">
@@ -42,7 +42,7 @@ export default function ToDistinationExpand({ setIsOpen, setIsSuccess }) {
                             <button onClick={() => setIsSuccess(true)} className='w-[56px] py-2 bg-OtherColor-darkGreen text-MonoColor-50 rounded-xl text-[14px] active:bg-OtherColor-lightGreen active:text-MonoColor-700' >
                                 <p className='text-[14px] font-semibold'>Done</p>
                             </button>
-                            <button onClick={() => setIsPickUp(true)} className='w-[56px] py-2 bg-Error-pressed text-MonoColor-50 rounded-xl text-[14px] active:bg-Error-main active:text-MonoColor-50' >
+                            <button onClick={() => setIsCancelTrip(true)} className='w-[56px] py-2 bg-Error-pressed text-MonoColor-50 rounded-xl text-[14px] active:bg-Error-main active:text-MonoColor-50' >
                                 <p className='text-[14px] font-semibold'>Cancel</p>
                             </button>
                         </div>

@@ -5,10 +5,10 @@ import OrderForDiver from '../../feature/diver/OrderForDiver'
 import ComingToCustomer from '../../feature/diver/ComingToCustomer'
 import ModalAlreadyPickUp from '../../component/ModalAlreadyPickUp'
 import { useState } from 'react'
-import ToDistinationExpand from '../../feature/diver/ToDistinationExpand'
-import ToDestinationSmall from '../../feature/diver/ToDestinationSmall'
 import ToDestination from '../../feature/diver/ToDestination'
 import ModalDropOffFinish from '../../component/ModalDropOffFinish'
+import ModalCancelTrip from '../../component/ModalCancelTrip'
+
 
 
 
@@ -16,8 +16,9 @@ export default function StartDiverPage() {
     const [isPickUp, setIsPickUp] = useState(false) //ModalAlreadyPickup
     const [isAccept, setIsAccept] = useState(false) //ComingToCustomer
     const [isClose, setIsClose] = useState(true) //oderForDiver
-    const [isOpenDestination, setOpenDetination] = useState(false)
-    const [isSuccess, setIsSuccess] = useState(false)
+    const [isOpenDestination, setOpenDetination] = useState(false)//ToDestination
+    const [isSuccess, setIsSuccess] = useState(false)//modalDropoffFinish
+    const [isCancelTrip, setIsCancelTrip] = useState(false)
 
     return (
         <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">
@@ -36,11 +37,12 @@ export default function StartDiverPage() {
                 setOpenDetination(true)
             }}
             />
-            {isOpenDestination && (<ToDestination setIsSuccess={setIsSuccess} />)}
+            {isOpenDestination && (<ToDestination setIsSuccess={setIsSuccess} setIsCancelTrip={setIsCancelTrip} />)}
             <ModalDropOffFinish open={isSuccess} onClose={() => {
                 setOpenDetination(false)
                 setIsSuccess(false)
             }} />
+            <ModalCancelTrip to='/homediver' open={isCancelTrip} onClose={() => { setIsCancelTrip(false) }} />
         </div>
     )
 }
