@@ -19,6 +19,7 @@ import ServiceHistory from "../pages/userPage/ServiceHistory";
 import InformationPage from "../pages/userPage/InformationPage";
 import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
+import ServiceHistoryDriver from "../pages/userPage/ServiceHistoryDriver";
 
 const router = createBrowserRouter([
   {
@@ -39,10 +40,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
+    // element: (
+    //   <RedirectIfNotAuthenticated>
+    //     <Outlet />
+    //   </RedirectIfNotAuthenticated>
     element: (
-      <RedirectIfNotAuthenticated>
         <Outlet />
-      </RedirectIfNotAuthenticated>
     ),
     children: [
       { path: "/", element: <HomePageForUser /> },
@@ -60,6 +63,7 @@ const router = createBrowserRouter([
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
       { path: "/registerdiver", element: <RegisterDiverPage /> },
+      { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
     ],
   },
 ]);
