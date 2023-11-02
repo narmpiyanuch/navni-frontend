@@ -1,12 +1,13 @@
 import whiteLogo from "../../assets/whiteLogo.png";
 import InputRegisterForm from "../../feature/auth/InputRegisterForm";
 import ButtonInputForm from "../../feature/auth/ButtonInputForm";
-// import ButtonByGoogle from "../../feature/auth/ButtonByGoogle";
+
 import { useState } from "react";
 import InputErrorMessage from "../../feature/auth/InputErrorMessage";
 import { registerSchemaForUser } from "../../validators/Auth-validator";
 import validaterFn from "../../validators/validateFN";
 import { useAuth } from "../../feature/hook/use-auth";
+import { Link } from "react-router-dom";
 
 export default function RegisterPageForUser() {
   const { register } = useAuth();
@@ -19,6 +20,7 @@ export default function RegisterPageForUser() {
     phoneNumber: "",
     role: "USER",
   });
+
   const [error, setError] = useState({});
 
   const handdleChangInput = (e) => {
@@ -51,6 +53,7 @@ export default function RegisterPageForUser() {
         <form
           className="flex flex-col items-center gap-4 pt-8"
           onSubmit={handleSubmitForm}
+          // onSubmit={() => console.log("test")}
         >
           <div className="flex flex-col gap-4 items-end">
             <div>
@@ -127,11 +130,19 @@ export default function RegisterPageForUser() {
               )}
             </div>
           </div>
-          <ButtonInputForm title="Sign Up" />
+          <ButtonInputForm title="Sign Up" type="submit" />
         </form>
         <div className="flex flex-col items-center">
           <p className="text-Primary-dark text-[12px] py-2">OR</p>
-          {/* <ButtonByGoogle title="Sign up with google" /> */}
+          <p className="font-inter text-base font-medium leading-normal text-Primary-main">
+            Already have an account ?
+            <Link
+              to="/login"
+              className="text-black font-inter text-base font-medium underline active:text-Primary-dark"
+            >
+              {" " + "Login"}
+            </Link>
+          </p>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
 import { Outlet } from "react-router-dom";
+import LoginPage from "../pages/LoginPage";
 import HomePageForUser from "../pages/userPage/HomePageForUser";
 import RegisterPageForUser from "../pages/userPage/RegisterPageForUser";
 import { RouterProvider } from "react-router-dom";
@@ -19,7 +19,11 @@ import ServiceHistory from "../pages/userPage/ServiceHistory";
 import InformationPage from "../pages/userPage/InformationPage";
 import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
+<<<<<<< HEAD
 import ServiceHistoryDriver from "../pages/userPage/ServiceHistoryDriver";
+=======
+import HomeDiver from "../pages/diverPage/HomeDiver";
+>>>>>>> develop
 
 const router = createBrowserRouter([
   {
@@ -31,13 +35,18 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/register",
+    path: "/",
     element: (
       <RedirectIfAuthenticated>
-        <RegisterPageForUser />,
+        <Outlet />
       </RedirectIfAuthenticated>
     ),
+    children: [
+      { path: "register", element: <RegisterPageForUser /> },
+      { path: "registerdiver", element: <RegisterDiverPage /> },
+    ],
   },
+
   {
 
     element: (
@@ -47,8 +56,7 @@ const router = createBrowserRouter([
 
     ),
     children: [
-      { path: "/", element: <HomePageForUser /> },
-      { path: "/register", element: <RegisterPageForUser /> },
+      { path: "/home", element: <HomePageForUser /> },
       { path: "/topup", element: <TopUpToAmoutPage /> },
       { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
       { path: "/qrcode", element: <QRcodePaymentPage /> },
@@ -61,8 +69,12 @@ const router = createBrowserRouter([
       { path: "/serviceend", element: <ServiceSuccesPage /> },
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
+<<<<<<< HEAD
       { path: "/registerdiver", element: <RegisterDiverPage /> },
       { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
+=======
+      { path: "/homediver", element: <HomeDiver /> },
+>>>>>>> develop
     ],
   },
 ]);
