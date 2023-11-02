@@ -38,8 +38,8 @@ const router = createBrowserRouter([
       </RedirectIfAuthenticated>
     ),
     children: [
-      { path: "/register", element: <RegisterPageForUser /> },
-      { path: "/registerdiver", element: <RegisterDiverPage /> },
+      { path: "register", element: <RegisterPageForUser /> },
+      { path: "registerdiver", element: <RegisterDiverPage /> },
     ],
   },
 
@@ -51,8 +51,7 @@ const router = createBrowserRouter([
       </RedirectIfNotAuthenticated>
     ),
     children: [
-      { path: "/", element: <HomePageForUser /> },
-
+      { path: "/home", element: <HomePageForUser /> },
       { path: "/topup", element: <TopUpToAmoutPage /> },
       { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
       { path: "/qrcode", element: <QRcodePaymentPage /> },
