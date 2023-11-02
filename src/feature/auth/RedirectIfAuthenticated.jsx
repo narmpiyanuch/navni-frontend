@@ -6,5 +6,6 @@ export default function RedirectIfAuthenticated({ children }) {
   if (authUser) {
     return <Navigate to="/home" />;
   }
+
   return children;
 }
