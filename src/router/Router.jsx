@@ -19,7 +19,7 @@ import ServiceHistory from "../pages/userPage/ServiceHistory";
 import InformationPage from "../pages/userPage/InformationPage";
 import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
-import HomeDiver from "../pages/diverPage/HomeDiver"
+import HomeDiver from "../pages/diverPage/HomeDiver";
 
 const router = createBrowserRouter([
   {
@@ -31,13 +31,18 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/register",
+    path: "/",
     element: (
       <RedirectIfAuthenticated>
-        <RegisterPageForUser />,
+        <Outlet />
       </RedirectIfAuthenticated>
     ),
+    children: [
+      { path: "/register", element: <RegisterPageForUser /> },
+      { path: "/registerdiver", element: <RegisterDiverPage /> },
+    ],
   },
+
   {
     path: "/",
     element: (
@@ -47,7 +52,7 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: "/", element: <HomePageForUser /> },
-      { path: "/register", element: <RegisterPageForUser /> },
+
       { path: "/topup", element: <TopUpToAmoutPage /> },
       { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
       { path: "/qrcode", element: <QRcodePaymentPage /> },
@@ -60,8 +65,7 @@ const router = createBrowserRouter([
       { path: "/serviceend", element: <ServiceSuccesPage /> },
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
-      { path: "/registerdiver", element: <RegisterDiverPage /> },
-      { path: '/homediver', element: <HomeDiver /> },
+      { path: "/homediver", element: <HomeDiver /> },
     ],
   },
 ]);
