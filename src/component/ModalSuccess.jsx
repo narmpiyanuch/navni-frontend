@@ -14,7 +14,7 @@ export default function ModalSuccess({ open }) {
                             </Link>
                         </button>
                         <div className='flex flex-col justify-center items-center text-center py-8 px-10 gap-2'>
-                            <span class="material-symbols-outlined w-[40px] h-[40px] bg-Error-pressed items-center justify-center flex text-MonoColor-50 rounded-full">done</span>
+                            <span className="material-symbols-outlined w-[40px] h-[40px] bg-Error-pressed items-center justify-center flex text-MonoColor-50 rounded-full">done</span>
                             <p className='text-[24px] font-semibold text-Error-pressed '>Trip cancel</p>
                         </div>
                         <div >
