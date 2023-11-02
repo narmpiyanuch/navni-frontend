@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { useAuth } from "../hook/use-auth";
-
-import ButtonInputForm from "./ButtonInputForm";
+import { jwtDecode } from "jwt-decode";
 import { GoogleLogin } from "@react-oauth/google";
-// import { GoogleLogin } from "react-google-login";
-// import { gapi } from "gapi-script";
+import ButtonInputForm from "./ButtonInputForm";
+
+import { useAuth } from "../hook/use-auth";
 import InputLoginForm from "./InputLoginForm";
 import { loginSchema } from "../../validators/Auth-validator";
 import InputErrorMessage from "./InputErrorMessage";
-// import { useEffect } from "react";
-// import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
 import validaterFn from "../../validators/validateFN";
 
 export default function LoginForm() {
