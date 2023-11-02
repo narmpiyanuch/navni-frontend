@@ -32,25 +32,24 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/",
+    path: "/register",
     element: (
       <RedirectIfAuthenticated>
         <Outlet />
       </RedirectIfAuthenticated>
     ),
     children: [
-      { path: "register", element: <RegisterPageForUser /> },
+      { path: "registerUser", element: <RegisterPageForUser /> },
       { path: "registerdiver", element: <RegisterDiverPage /> },
     ],
   },
 
   {
-
+    path: "/",
     element: (
       <RedirectIfNotAuthenticated>
         <Outlet />
       </RedirectIfNotAuthenticated>
-
     ),
     children: [
       { path: "/home", element: <HomePageForUser /> },
@@ -66,7 +65,6 @@ const router = createBrowserRouter([
       { path: "/serviceend", element: <ServiceSuccesPage /> },
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
-      { path: "/registerdiver", element: <RegisterDiverPage /> },
       { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
       { path: "/homediver", element: <HomeDiver /> },
     ],
