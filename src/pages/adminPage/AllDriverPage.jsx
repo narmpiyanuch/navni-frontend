@@ -4,7 +4,11 @@ export default function AllDriverPage() {
     return (
         <div className='flex flex-col w-screen h-screen'>
             <HeaderAdminPage />
-            <div>All Driver</div>
+            <div>
+                <button>
+                    <p>Diver Name list</p>
+                </button>
+            </div>
             <FooterAdminPage />
         </div >
     )
