@@ -7,7 +7,7 @@ export default function ServiceHistoryDriver() {
       <div className="flex flex-col m-auto items-center justify-start h-screen w-screen gap-2 ">
         <div className="bg-Primary-main w-full rounded-b-3xl rounded-g-3xl">
           <div className=" flex flex-col pt-10 items-start w-full">
-            <Link to="/homediver">
+            <Link to="/homedriver">
               <span className="material-symbols-outlined text-MonoColor-50  font-bold text-[32px] active:text-MonoColor-300 pl-4">
                 navigate_before
               </span>
