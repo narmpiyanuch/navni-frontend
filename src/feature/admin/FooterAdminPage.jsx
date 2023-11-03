@@ -1,22 +1,23 @@
 import chat from '../../assets/speak.png'
 import driver from '../../assets/driver.png'
 import pinLocation from '../../assets/map.png'
+import MenuBotton from './MenuBotton'
+import { useLocation } from 'react-router-dom'
+
+
+const menu = [
+    { id: 1, title: 'Live Chat', icon: `${chat}`, to: '/chatadmin' },
+    { id: 2, title: 'All Driver', icon: `${driver}`, to: '/alldriver' },
+    { id: 3, title: 'Location', icon: `${pinLocation}`, to: '/location' }
+]
 
 export default function FooterAdminPage() {
+    const { pathname } = useLocation()
+
     return (
-        <footer className='flex fixed gap-10 justify-center w-full items-end bottom-28 z-20'>
-            <button className='flex gap-6 items-center justify-center border-4 border-Primary-dark w-[240px] h-[80px] rounded-full active:bg-Primary-dark hover:cursor-pointer hover:bg-Primary-light'>
-                <img src={chat} alt='chatIcon' className='w-[48px]' />
-                <p className='text-[24px] font-bold text-Primary-dark active:text-MonoColor-50'>Live Chat</p>
-            </button>
-            <button className='flex gap-6 items-center justify-center border-4 border-Primary-dark w-[240px] h-[80px] rounded-full active:bg-Primary-dark hover:cursor-pointer hover:bg-Primary-light'>
-                <img src={driver} alt='driverIcon' className='w-[48px]' />
-                <p className='text-[24px] font-bold text-Primary-dark active:text-MonoColor-50'>All Driver</p>
-            </button>
-            <button className='flex gap-6 items-center justify-center border-4 border-Primary-dark w-[240px] h-[80px] rounded-full active:bg-Primary-dark hover:cursor-pointer hover:bg-Primary-light'>
-                <img src={pinLocation} alt='pinIcon' className='w-[48px]' />
-                <p className='text-[24px] font-bold text-Primary-dark active:text-MonoColor-50'>Location</p>
-            </button>
+        <footer className='flex fixed gap-10 justify-center w-full items-end bottom-10 z-20'>
+            {menu.map(el => (
+                <MenuBotton key={el.id} to={el.to} icon={el.icon} title={el.title} active={pathname == el.to} />))}
         </footer>
     )
 }
