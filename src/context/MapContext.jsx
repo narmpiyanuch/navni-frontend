@@ -40,7 +40,6 @@ export default function MapContextProvider({ children }) {
         pickup,
         drop,
         setDrop
-
       }}
     >
       {children}
