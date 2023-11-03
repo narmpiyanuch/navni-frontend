@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
 import user from '../../assets/user.png'
 import ButtonInputForm from '../../feature/auth/ButtonInputForm'
-import InputRegisterDiverAll from '../../feature/diver/InputRegisterDiverAll'
+import InputRegisterDriverAll from '../../feature/driver/InputRegisterDriverAll'
 
 
-export default function RegisterDiverPage() {
+export default function RegisterDriverPage() {
     return (
         <div className="flex flex-col m-auto items-center justify-start  bg-Primary-main h-screen w-screen gap-2">
             <div className=' flex flex-col pt-10 items-start w-full '>
@@ -22,7 +22,7 @@ export default function RegisterDiverPage() {
                 <form className='flex flex-col justify-center items-center w-full'>
                     <img src={user} alt='user' className='absolute border-4 rounded-full bg-MonoColor-50 border-MonoColor-50 w-[132px] top-[-80px] ' />
                     <div className='flex pt-12'>
-                        <InputRegisterDiverAll />
+                        <InputRegisterDriverAll />
                     </div>
                     <div className='flex pt-8'>
                         <ButtonInputForm title='Join Us' />
