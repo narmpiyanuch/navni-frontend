@@ -22,6 +22,7 @@ import MyWalletPage from "../pages/userPage/MyWalletPage";
 import HomeDiver from "../pages/diverPage/HomeDiver"
 import StartDiverPage from "../pages/diverPage/StartDiverPage";
 import ServiceHistoryDriver from "../pages/userPage/ServiceHistoryDriver";
+import { Navigate } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
@@ -54,7 +55,11 @@ const router = createBrowserRouter([
     ),
 
     children: [
-      { path: "/home", element: <HomePageForUser /> },
+      {path:'/',element:<Navigate replace to='/home'/>},
+      { path: "/home", element: 
+    
+      <HomePageForUser />
+     },
       { path: "/topup", element: <TopUpToAmoutPage /> },
       { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
       { path: "/qrcode", element: <QRcodePaymentPage /> },
