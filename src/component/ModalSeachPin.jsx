@@ -21,10 +21,8 @@ export default function ModalSearchPin({ open, onClose }) {
     selectArea,
     setSelectArea,
     setSubAreaTo,
-    selectAreaByTo,
-    setSelectAreaByTo,
     selectAreaTo,
-    setSelectAreaTo,
+    setPickup
   } = useMap();
 
   useEffect(() => {
@@ -32,6 +30,7 @@ export default function ModalSearchPin({ open, onClose }) {
       axios
         .post("/map/select-area", { id: selectArea.id })
         .then((res) => {
+          
           console.log(res.data.toStation);
           setSubAreaTo(res.data.toStation);
         })
@@ -85,7 +84,11 @@ export default function ModalSearchPin({ open, onClose }) {
                       placeholder="To"
                       className={`outline-none text-[18px] font-semibold text-MonoColor-400  bg-transparent pl-4`}
                     >
-                      {selectAreaTo ? selectAreaTo.stationName :areaFromByTo?areaFromByTo.stationName: "To"}
+                      {selectAreaTo
+                        ? selectAreaTo.stationName
+                        : areaFromByTo
+                        ? areaFromByTo.stationName
+                        : "To"}
                     </div>
                   </div>
                 </div>
@@ -102,6 +105,7 @@ export default function ModalSearchPin({ open, onClose }) {
                           <button
                             onClick={() => {
                               setSelectArea(el);
+                              setPickup(el)
                               // setSelectAreaTo()
                             }}
                             className="flex items-end gap-2"
@@ -130,6 +134,7 @@ export default function ModalSearchPin({ open, onClose }) {
                             onClick={() => {
                               setSelectArea(el);
                               // setSelectAreaTo()
+                              setPickup(el)
                             }}
                             className="flex items-end gap-2"
                           >

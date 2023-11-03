@@ -24,4 +24,4 @@ dist-ssr
 *.sln
 *.sw?
 
-src/config/env.js
+env.js

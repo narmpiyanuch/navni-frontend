@@ -14,6 +14,9 @@ export default function MapContextProvider({ children }) {
   const [areaFrom, setAreaFrom] = useState();
   const [areaFromByTo, setAreaFromByTo] = useState();
 
+  const [pickup,setPickup] = useState()
+  const [drop,setDrop] = useState()
+
   return (
     <MapContext.Provider
       value={{
@@ -33,6 +36,11 @@ export default function MapContextProvider({ children }) {
         setSubAreaTo,
         selectAreaTo,
         setSelectAreaTo,
+        setPickup,
+        pickup,
+        drop,
+        setDrop
+
       }}
     >
       {children}

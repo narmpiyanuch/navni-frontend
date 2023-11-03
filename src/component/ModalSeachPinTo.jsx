@@ -18,14 +18,12 @@ export default function ModalSearchPinTo({ open, onClose }) {
     areaFromByTo,
     setAreaFromByTo,
     setAreaFrom,
-
     subArea,
     selectArea,
-
     subAreaTo,
     setSelectAreaTo,
     selectAreaTo,
-
+    setDrop,
     setSelectAreaFromTo,
   } = useMap();
 
@@ -118,6 +116,7 @@ export default function ModalSearchPinTo({ open, onClose }) {
                             setSelectAreaTo(el);
                             setSelectAreaFromTo(el);
                             setAreaFromByTo();
+                            setDrop(el)
                             
                           }}
                           className="flex items-end gap-2"
@@ -143,6 +142,7 @@ export default function ModalSearchPinTo({ open, onClose }) {
                           <button
                             onClick={() => {
                               setAreaFromByTo(el);
+                              setDrop(el)
                             }}
                             className="flex items-end gap-2"
                           >

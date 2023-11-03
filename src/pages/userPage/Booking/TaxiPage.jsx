@@ -14,21 +14,14 @@ export default function TaxiPage() {
   const {
     areaFromByTo,
     selectArea,
-    selectAreaTo,
-    setSelectArea,
-    setSelectAreaTo,
-    setSubAreaTo,
+
     selectAreaFromTo,
-    setSelectAreaFromTo,
-    setSelectAreaByTo,
-    setAreaFrom,setAreaFromByTo
   } = useMap();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenPin, setIsOpenPin] = useState(false);
   const [isOpenTo, setIsOpenTo] = useState(false);
   const [isOpenPinTo, setIsOpenPinTo] = useState(false);
   const navigate = useNavigate();
-
 
   return (
     <div className=" flex flex-col m-auto items-center justify-center bg-MonoColor-50 h-screen w-screen gap-2">
@@ -86,7 +79,9 @@ export default function TaxiPage() {
           </div>
         </div>
         <div className="flex justify-end p-4">
+          <Link to={'/numberpeople'}>
           <PurpleButton title="Choose trip" />
+          </Link>
         </div>
         <ModalSearchPin open={isOpen} onClose={() => setIsOpen(false)} />
         <ModalSearchPinTo open={isOpenTo} onClose={() => setIsOpenTo(false)} />

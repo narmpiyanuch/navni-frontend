@@ -14,13 +14,12 @@ import { useEffect } from "react";
 export default function HomePageForUser() {
     
     const {
-        areaFromByTo,
-        selectArea,
-        selectAreaTo,
+        
         setSelectArea,
         setSelectAreaTo,
         setSubAreaTo,
-        selectAreaFromTo,
+        setDrop,
+        setPickup,
         setSelectAreaFromTo,
         setSelectAreaByTo,
         setAreaFrom,setAreaFromByTo
@@ -34,6 +33,8 @@ export default function HomePageForUser() {
         setSelectAreaFromTo();
         setSelectAreaByTo();
         setAreaFromByTo()
+        setDrop()
+        setPickup()
       }, []);
     const [isOpen, setIsOpen] = useState(false);
     const { logout } = useAuth();
