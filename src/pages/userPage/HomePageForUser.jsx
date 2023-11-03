@@ -8,8 +8,33 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../feature/hook/use-auth";
 import ModalEditProfile from "../../component/ModalEditProfile";
 import { useState } from "react";
+import useMap from "../../feature/hook/use-map";
+import { useEffect } from "react";
 
 export default function HomePageForUser() {
+    
+    const {
+        areaFromByTo,
+        selectArea,
+        selectAreaTo,
+        setSelectArea,
+        setSelectAreaTo,
+        setSubAreaTo,
+        selectAreaFromTo,
+        setSelectAreaFromTo,
+        setSelectAreaByTo,
+        setAreaFrom,setAreaFromByTo
+      } = useMap();
+      useEffect(() => {
+        setAreaFrom()
+        setSelectAreaFromTo()
+        setSelectArea();
+        setSelectAreaTo();
+        setSubAreaTo();
+        setSelectAreaFromTo();
+        setSelectAreaByTo();
+        setAreaFromByTo()
+      }, []);
     const [isOpen, setIsOpen] = useState(false);
     const { logout } = useAuth();
 
