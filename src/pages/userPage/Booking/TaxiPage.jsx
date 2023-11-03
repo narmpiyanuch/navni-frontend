@@ -9,12 +9,14 @@ import useMap from "../../../feature/hook/use-map";
 import ModalSearchPinTo from "../../../component/ModalSeachPinTo";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function TaxiPage() {
   const {
     areaFromByTo,
     selectArea,
-
+    drop,
+    pickup,
     selectAreaFromTo,
   } = useMap();
   const [isOpen, setIsOpen] = useState(false);
@@ -22,6 +24,12 @@ export default function TaxiPage() {
   const [isOpenTo, setIsOpenTo] = useState(false);
   const [isOpenPinTo, setIsOpenPinTo] = useState(false);
   const navigate = useNavigate();
+  const handleChooseTrip = ()=>{
+    if(drop&&pickup){
+      return navigate('/numberpeople')
+    }
+    return alert("Choose Form and To")
+  }
 
   return (
     <div className=" flex flex-col m-auto items-center justify-center bg-MonoColor-50 h-screen w-screen gap-2">
@@ -30,7 +38,7 @@ export default function TaxiPage() {
           <div className="flex absolute top-0 left-0 p-5">
             <img
               onClick={() => {
-                navigate("/");
+                navigate("/home");
               }}
               src={logoBGpurple}
               alt="logo"
@@ -79,9 +87,11 @@ export default function TaxiPage() {
           </div>
         </div>
         <div className="flex justify-end p-4">
-          <Link to={'/numberpeople'}>
-          <PurpleButton title="Choose trip" />
-          </Link>
+          {/* <Link to={'/numberpeople'}> */}
+          <PurpleButton onClick={()=>{
+            handleChooseTrip()
+          }} title="Choose trip" />
+          {/* </Link> */}
         </div>
         <ModalSearchPin open={isOpen} onClose={() => setIsOpen(false)} />
         <ModalSearchPinTo open={isOpenTo} onClose={() => setIsOpenTo(false)} />
