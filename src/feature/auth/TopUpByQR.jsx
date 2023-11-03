@@ -19,7 +19,7 @@ export default function TopUpByQR({ history }) {
                     {dayjs(item.createdAt).format("D MMM, YYYY h:mm A")}
                   </p>
                   <p className="px-6">
-                    {item.method ? `top-up by${item.method}` : "paid"}
+                    {item.method ? `top-up by ${item.method}` : "paid"}
                   </p>
                 </div>
 
