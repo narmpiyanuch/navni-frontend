@@ -23,6 +23,7 @@ import HomeDriver from "../pages/driverPage/HomeDriver"
 import StartDriverPage from "../pages/driverPage/StartDriverPage";
 import ServiceHistoryDriver from "../pages/userPage/ServiceHistoryDriver";
 import { Navigate } from "react-router-dom";
+import ChatAdminPage from "../pages/adminPage/ChatAdminPage";
 
 const router = createBrowserRouter([
   {
@@ -77,8 +78,7 @@ const router = createBrowserRouter([
       { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
       { path: '/homedriver', element: <HomeDriver /> },
       { path: '/startdrive', element: <StartDriverPage /> },
-      { path: '/startdrive', element: <StartDriverPage /> },
-
+      { path: '/chatadmin', element: <ChatAdminPage /> },
     ],
   },
 ]);
