@@ -2,7 +2,7 @@ import purpleLogo from '../../assets/purpleLogoNonbackground.png'
 
 export default function HeaderAdminPage() {
     return (
-        <header className='w-full h-80px flex justify-around items-center pt-4'>
+        <header className='w-full h-80px flex justify-around items-center pt-4 z-30'>
             <div>
                 <img src={purpleLogo} alt='logo' className='w-[72px] h-[72px]' />
             </div>
