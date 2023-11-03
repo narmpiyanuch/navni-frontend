@@ -13,37 +13,44 @@ const namePin = [
   { id: 6, title: "Wannamorn Building", distance: "40 m" },
 ];
 
-export default function ModalSearchPin({ open, onClose }) {
+export default function ModalSearchPinTo({ open, onClose }) {
   const {
     areaFromByTo,
-    areaFrom,
+    setAreaFromByTo,
+    setAreaFrom,
     subArea,
     selectArea,
-    setSelectArea,
-    setSubAreaTo,
+    subAreaTo,
+    setSelectAreaTo,
     selectAreaTo,
-    setPickup
+    setDrop,
+    setSelectAreaFromTo,
   } = useMap();
 
   useEffect(() => {
-    if (selectArea) {
+    if (selectAreaTo) {
       axios
-        .post("/map/select-area", { id: selectArea.id })
+        .post("/map/select-area", { id: selectAreaTo.id })
         .then((res) => {
-          
           console.log(res.data.toStation);
-          setSubAreaTo(res.data.toStation);
+          setAreaFrom(res.data.toStation);
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [selectArea]);
-
-  // useEffect(() => {
-  //   setSelectArea();
-  //   setSubAreaTo();
-  // }, []);
+    if (areaFromByTo!==undefined) {
+      axios
+        .post("/map/select-area", { id: areaFromByTo.id })
+        .then((res) => {
+          console.log(res.data.toStation);
+          setAreaFrom(res.data.toStation);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [selectAreaTo, areaFromByTo]);
 
   return (
     <>
@@ -73,16 +80,18 @@ export default function ModalSearchPin({ open, onClose }) {
                   <div className="flex flex-col items-start justify-center bg-Primary-lightest w-[240px] h-[100px] rounded-3xl gap-2">
                     <div
                       placeholder="From"
-                      className={`outline-none text-[18px] font-semibold ${
-                        selectArea ? "text-MonoColor-700" : "text-MonoColor-400"
-                      }  bg-transparent pl-4 `}
+                      className="outline-none text-[18px] font-semibold text-MonoColor-400 bg-transparent pl-4 active:text-MonoColor-700"
                     >
                       {selectArea ? selectArea.stationName : "From"}
                     </div>
                     <hr className="border-2 border-Primary-light w-[240px]" />
                     <div
                       placeholder="To"
-                      className={`outline-none text-[18px] font-semibold text-MonoColor-400  bg-transparent pl-4`}
+                      className={`outline-none text-[18px] font-semibold bg-transparent pl-4  ${
+                        selectAreaTo || areaFromByTo
+                          ? "text-MonoColor-700"
+                          : "text-MonoColor-400"
+                      }  `}
                     >
                       {selectAreaTo
                         ? selectAreaTo.stationName
@@ -96,35 +105,35 @@ export default function ModalSearchPin({ open, onClose }) {
                   <p className="text-[14px] text-MonoColor-400 pl-4">
                     All hop point
                   </p>
-                  {areaFrom
-                    ? areaFrom?.map((el) => (
-                        <div
-                          key={el.id}
-                          className="flex justify-between px-4 py-2 items-center"
+                  {subAreaTo &&
+                    subAreaTo?.map((el) => (
+                      <div
+                        key={el.id}
+                        className="flex justify-between px-4 py-2 items-center"
+                      >
+                        <button
+                          onClick={() => {
+                            setSelectAreaTo(el);
+                            setSelectAreaFromTo(el);
+                            setAreaFromByTo();
+                            setDrop(el)
+                            
+                          }}
+                          className="flex items-end gap-2"
                         >
-                          <button
-                            onClick={() => {
-                              setSelectArea(el);
-                              setPickup(el)
-                              // setSelectAreaTo()
-                            }}
-                            className="flex items-end gap-2"
-                          >
-                            <img
-                              src={purplePin}
-                              alt="pin"
-                              className="w-[32px]"
-                            />
-                            <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
-                              {el.stationName}
-                            </p>
-                          </button>
-                          <p className="text-[16px] text-MonoColor-400">
-                            {" "}
-                            {el?.distance}
+                          <img src={purplePin} alt="pin" className="w-[32px]" />
+                          <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
+                            {el.stationName}
                           </p>
-                        </div>
-                      ))
+                        </button>
+                        <p className="text-[16px] text-MonoColor-400">
+                          {" "}
+                          {el?.distance}
+                        </p>
+                      </div>
+                    ))}
+                  {subAreaTo
+                    ? null
                     : subArea?.map((el) => (
                         <div
                           key={el.id}
@@ -132,9 +141,8 @@ export default function ModalSearchPin({ open, onClose }) {
                         >
                           <button
                             onClick={() => {
-                              setSelectArea(el);
-                              // setSelectAreaTo()
-                              setPickup(el)
+                              setAreaFromByTo(el);
+                              setDrop(el)
                             }}
                             className="flex items-end gap-2"
                           >
