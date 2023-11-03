@@ -3,13 +3,11 @@ import PurpleButton from "../../../feature/payment/PurpleButton";
 import ModalSearchPin from "../../../component/ModalSeachPin";
 import { useState } from "react";
 import ModalClickPin from "../../../component/ModalClickPin";
-import { Link } from "react-router-dom";
 import Map from "../../../feature/googlemap/Map";
 import useMap from "../../../feature/hook/use-map";
 import ModalSearchPinTo from "../../../component/ModalSeachPinTo";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+
 
 export default function TaxiPage() {
   const {
