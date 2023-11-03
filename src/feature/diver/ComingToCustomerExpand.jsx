@@ -1,22 +1,10 @@
-import logoBGpurple from '../../../assets/logoBGpurple.jpg'
-import ModalCancelTrip from '../../../component/ModalCancelTrip';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import purplePerson from '../../assets/purplePerson.png'
 
-
-export default function WaitingTaxiPage() {
-    const [isOpen, setIsOpen] = useState(false);
-    const [isCancel, setIsCancel] = useState(false);
-
+export default function ComingtoCustomerExpand({ setIsOpen, setIsPickUp }) {
     return (
-        <div className=" flex flex-col m-auto items-center justify-center bg-MonoColor-50 h-screen w-screen gap-2">
-            <button className='relative h-full  w-full p-10 bg-Primary-light'>
-                <Link to='/' className='flex absolute top-0 left-0 p-10'>
-                    <img src={logoBGpurple} alt='logo' className='rounded-full w-[80px] border-4 border-MonoColor-50 active:border-Primary-main hover:cursor-pointer' />
-                </Link>
-            </button>
-            <div className="fixed top-[60%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen">
-                <div className='flex items-center justify-center h-[120px] bg-MonoColor-50 drop-shadow-md gap-2'>
+        <div className="flex fixed top-[24%] flex-col items-center justify-start bg-MonoColor-50 drop-shadow-xl w-[360px] h-[240px] rounded-[40px_40px_40px_40px] overflow-hidden px-10">
+            <div className="fixed  items-center justify-start pt-4  bg-MonoColor-50 h-full rounded-[20px_20px_0px_0px] drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] w-screen">
+                <div className='flex items-center justify-center h-[80px] bg-MonoColor-50 gap-2'>
                     <div className='flex flex-col relative pr-8'>
                         <div className='absolute outline-none top-[-32px] left-[10px] w-[20px] h-[20px] border-4 border-Primary-dark bg-MonoColor-50 rounded-full z-10'></div>
                         <hr className='absolute border-2 border-Primary-dark w-[40px] rotate-90' />
@@ -39,25 +27,30 @@ export default function WaitingTaxiPage() {
                         </div>
                     </div>
                 </div>
-                <div className=' flex items-center justify-center h-[120px] bg-MonoColor-50 '>
+                <div className=' flex items-center justify-center h-[100px] bg-MonoColor-50 '>
                     <div className='grid grid-cols-3 justify-center items-center gap-6'>
-                        <div className='flex flex-col gap-2 justify-center items-center'>
-                            <p className='text-[16px] flex font-semibold text-MonoColor-400 bg-transparent'>Car No.</p>
-                            <p className='text-[16px] flex font-semibold bg-transparent text-MonoColor-700 '>สก1234</p>
-                        </div>
                         <div className='flex flex-col gap-2 justify-center items-center'>
                             <p className='text-[16px] flex font-semibold text-MonoColor-400 bg-transparent'>Arriving in</p>
                             <p className='text-[16px] flex font-semibold bg-transparent text-MonoColor-700 '>5-10 mins</p>
                         </div>
+                        <div className='flex gap-2 justify-center items-center'>
+                            <img src={purplePerson} alt='personIcon' className='w-[32px]' />
+                            <p className='text-[18px] font-semibold text-Primary-dark pt-2'>X 1</p>
+                        </div>
                         <div className='flex flex-col gap-2 justify-center items-center'>
-                            {false ? (<button className='w-[100px] h-[32px] bg-OtherColor-darkGreen text-MonoColor-50 rounded-xl text-[14px] active:bg-OtherColor-lightGreen active:text-MonoColor-700' >On the way</button>) : (
-                                <button className='w-[100px] h-[32px] bg-Error-hover text-MonoColor-50 rounded-xl text-[14px] active:bg-red-500 active:text-MonoColor-700' onClick={() => setIsCancel(true)} >Cancel</button>)}
-                            {/* (รอแก้อีกที) */}
+                            <p className='text-Primary-dark text-[18px] font-medium'>Coming ...</p>
+                            <button onClick={() => setIsPickUp(true)} className='w-[100px] py-2 bg-OtherColor-darkGreen text-MonoColor-50 rounded-xl text-[14px] active:bg-OtherColor-lightGreen active:text-MonoColor-700' >
+                                <p className='text-[16px] font-semibold'>Pick up</p>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <ModalCancelTrip to='/' open={isCancel} onClose={() => setIsCancel(false)} />
-        </div>
+            <div className="flex fixed bottom-0 flex-col items-center justify-start bg-Primary-darker w-screen h-[36px] rounded-[0px_0px_40px_40px]" >
+                <button onClick={() => setIsOpen(false)} className='flex justify-end w-full pr-10'>
+                    <span className="material-symbols-outlined text-MonoColor-50 text-[40px]"> expand_less</span>
+                </button>
+            </div>
+        </div >
     )
 }
