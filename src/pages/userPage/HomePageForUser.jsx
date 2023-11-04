@@ -1,50 +1,68 @@
-import wallet from "../../assets/wallet.png";
-import tuktuk from "../../assets/tuktuk.png";
-import calendar from "../../assets/calendar.png";
-import information from "../../assets/support.png";
-import messageChat from "../../assets/chat.png";
-import navniLogo from "../../assets/purpleLogo.png";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../feature/hook/use-auth";
-import ModalEditProfile from "../../component/ModalEditProfile";
 import { useState } from "react";
-import useMap from "../../feature/hook/use-map";
 import { useEffect } from "react";
+// import { Link } from "react-router-dom";
+import { useAuth } from "../../feature/hook/use-auth";
+//import wallet from "../../assets/wallet.png";
+// import tuktuk from "../../assets/tuktuk.png";
+// import calendar from "../../assets/calendar.png";
+// import information from "../../assets/support.png";
+// import messageChat from "../../assets/chat.png";
+//import navniLogo from "../../assets/purpleLogo.png";
+import ModalEditProfile from "../../component/ModalEditProfile";
+import useMap from "../../feature/hook/use-map";
+import UserProfile from "./HomePage/UserProfile";
+import UserReservations from "./HomePage/UserReservations";
+import axios from "../../config/axios";
 
 export default function HomePageForUser() {
-    
-    const {
-        
-        setSelectArea,
-        setSelectAreaTo,
-        setSubAreaTo,
-        setDrop,
-        setPickup,
-        setSelectAreaFromTo,
-        setSelectAreaByTo,
-        setAreaFrom,setAreaFromByTo
-      } = useMap();
-      useEffect(() => {
-        setAreaFrom()
-        setSelectAreaFromTo()
-        setSelectArea();
-        setSelectAreaTo();
-        setSubAreaTo();
-        setSelectAreaFromTo();
-        setSelectAreaByTo();
-        setAreaFromByTo()
-        setDrop()
-        setPickup()
-      }, []);
-    const [isOpen, setIsOpen] = useState(false);
-    const { logout } = useAuth();
+  const [profile, setProfile] = useState();
+
+  const {
+    setSelectArea,
+    setSelectAreaTo,
+    setSubAreaTo,
+    setDrop,
+    setPickup,
+    setSelectAreaFromTo,
+    setSelectAreaByTo,
+    setAreaFrom,
+    setAreaFromByTo,
+  } = useMap();
+
+  const fetchProfile = async () => {
+    try {
+      const profile = await axios.get("/user");
+      setProfile(profile);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    setAreaFrom();
+    setSelectAreaFromTo();
+    setSelectArea();
+    setSelectAreaTo();
+    setSubAreaTo();
+    setSelectAreaFromTo();
+    setSelectAreaByTo();
+    setAreaFromByTo();
+    setDrop();
+    setPickup();
+    fetchProfile();
+  }, []);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { logout } = useAuth();
 
   const handleLogOut = () => {
     logout();
   };
+
   return (
     <div className="flex flex-col m-auto items-center justify-center bg-Primary-main h-screen w-screen gap-2">
-      <div className="flex flex-col fixed bottom-[54%] items-center ">
+      {/* <div className="flex flex-col fixed bottom-[54%] items-center ">
         <div className="flex gap-4 items-center">
           <img
             src={navniLogo}
@@ -68,9 +86,7 @@ export default function HomePageForUser() {
                 <span className="material-symbols-outlined text-MonoColor-50 font-thin text-[18px]">
                   mail
                 </span>
-                <p className="text-[14px] text-MonoColor-50">
-                  asdfh@gmail.com
-                </p>
+                <p className="text-[14px] text-MonoColor-50">asdfh@gmail.com</p>
               </div>
               <span
                 className="material-symbols-outlined text-MonoColor-50 font-thin text-[16px] pt-2 cursor-pointer"
@@ -86,19 +102,13 @@ export default function HomePageForUser() {
             <div className="flex flex-col justify-center items-center gap-2 pt-[20%]">
               <div className="flex relative">
                 <div className="w-[60px] h-[16px] rounded-full bg-MonoColor-300 absolute bottom-[-6px] left-[-8px]"></div>
-                <img
-                  src={wallet}
-                  alt="wallet"
-                  className="w-[48px] z-10"
-                />
+                <img src={wallet} alt="wallet" className="w-[48px] z-10" />
               </div>
               <div className="flex gap-4 items-center">
                 <p className="text-MonoColor-700 text-[26px] font-semibold">
                   100
                 </p>
-                <p className="text-MonoColor-700 text-[26px] font-normal">
-                  NP
-                </p>
+                <p className="text-MonoColor-700 text-[26px] font-normal">NP</p>
               </div>
             </div>
             <div className="flex items-center justify-center">
@@ -111,9 +121,13 @@ export default function HomePageForUser() {
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="fixed top-[42%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen rounded-[40px_40px_0px_0px] mt-[60px]">
+      </div> */}
+      <UserProfile
+        setIsOpen={setIsOpen}
+        handleLogOut={handleLogOut}
+        profile={profile}
+      />
+      {/* <div className="fixed top-[42%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen rounded-[40px_40px_0px_0px] mt-[60px]">
         <div className="flex items-center justify-center pt-4">
           <button className="flex  items-center bg-Primary-dark w-[320px] h-[88px] rounded-3xl gap-10 pl-6 active:bg-Primary-main">
             <Link to="/taxi" className="flex items-center gap-10">
@@ -158,7 +172,8 @@ export default function HomePageForUser() {
             </p>
           </div>
         </div>
-      </div>
+      </div> */}
+      <UserReservations />
       <ModalEditProfile open={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
