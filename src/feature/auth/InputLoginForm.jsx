@@ -3,7 +3,7 @@ export default function InputLoginForm({
   onChange,
   value,
   type = "text",
-  hasError,
+  error,
 }) {
   return (
     <div className=" flex gap-4">
@@ -13,7 +13,7 @@ export default function InputLoginForm({
         onChange={onChange}
         value={value}
         type={type}
-        hasError={hasError}
+        error={error}
       />
     </div>
   );
