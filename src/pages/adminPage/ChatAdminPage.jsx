@@ -6,7 +6,7 @@ export default function ChatAdminPage() {
     return (
         <div className='flex flex-col w-screen h-screen'>
             <HeaderAdminPage />
-            <div className='flex py-[2%] justify-center min-h-[72%] z-10 '>
+            <div className='flex pt-10 justify-center flex-1 pb-[160px]'>
                 <div className='grid grid-cols-3 w-[1200px] gap-4 '>
                     <div className='flex relative bg-Primary-light rounded-3xl h-full overflow-auto'>
                         <div className='flex sticky top-0 left-0 right-0 flex-col gap-2 z-10 w-full h-[140px] justify-center items-center bg-Primary-light '>

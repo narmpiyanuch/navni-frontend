@@ -1,6 +1,6 @@
 import pin from '../../assets/purplePin.png'
 
-export default function LocationPin({ setIsOpenOn, isOpenOn }) {
+export default function LocationPin({ setIsLocationModal, setIsOpenEditLocation, setIsOpenOn, isOpenOn }) {
     return (
         <div className='flex justify-between py-4  w-full px-10'>
             <div className='flex gap-4 items-center'>
@@ -8,7 +8,12 @@ export default function LocationPin({ setIsOpenOn, isOpenOn }) {
                 <p className='text-Primary-dark text-[18px] '>Location</p>
             </div>
             <div className='flex gap-4'>
-                <button className='py-2 px-4 bg-yellow-500 rounded-md'>
+                <button
+                    onClick={() => {
+                        setIsOpenEditLocation(true)
+                        setIsLocationModal(false)
+                    }}
+                    className='py-2 px-4 bg-yellow-500 rounded-md'>
                     <p className='text-[16px] text-MonoColor-50'>Edit</p>
                 </button>
                 {isOpenOn ? (
