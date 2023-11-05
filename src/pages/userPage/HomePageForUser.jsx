@@ -119,9 +119,11 @@ export default function HomePageForUser() {
             <div className="flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute left-0 border-4  border-Secondary-main">
               <img src={messageChat} alt="tuktuk" className="w-[40px]" />
             </div>
-            <p className="text-MonoColor-50 text-[20px] font-semibold">
-              Live Chat
-            </p>
+            <Link to={"/ChatRoom"}>
+              <p className="text-MonoColor-50 text-[20px] font-semibold">
+                Live Chat
+              </p>
+            </Link>
           </div>
         </div>
       </div>

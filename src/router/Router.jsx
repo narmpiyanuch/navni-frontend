@@ -20,6 +20,7 @@ import InformationPage from "../pages/userPage/InformationPage";
 import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
 import HomeDiver from "../pages/diverPage/HomeDiver";
+import ChatRoom from "../feature/auth/ChatRoom";
 
 const router = createBrowserRouter([
   {
@@ -31,14 +32,14 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/",
+    path: "/register",
     element: (
       <RedirectIfAuthenticated>
         <Outlet />
       </RedirectIfAuthenticated>
     ),
     children: [
-      { path: "register", element: <RegisterPageForUser /> },
+      { path: "registerUser", element: <RegisterPageForUser /> },
       { path: "registerdiver", element: <RegisterDiverPage /> },
     ],
   },
@@ -65,6 +66,7 @@ const router = createBrowserRouter([
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
       { path: "/homediver", element: <HomeDiver /> },
+      { path: "/chatRoom", element: <ChatRoom /> },
     ],
   },
 ]);

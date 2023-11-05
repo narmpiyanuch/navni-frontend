@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { io } from "socket.io-client";
 import {
   addAccessToken,
   getAccessToken,
@@ -29,6 +30,12 @@ export default function AuthContextProvider({ children }) {
       } else {
         setIsLoading(false);
       }
+      const socket = io("http://localhost:8080");
+      console.log(
+        socket.on("firstEvent", (message) => {
+          console.log(message);
+        })
+      );
     }, 1000);
   }, []);
 
