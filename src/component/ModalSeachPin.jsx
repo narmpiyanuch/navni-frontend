@@ -22,23 +22,12 @@ export default function ModalSearchPin({ open, onClose }) {
     setSelectArea,
     setSubAreaTo,
     selectAreaTo,
-    setPickup
+    setPickup,
+    pickup,
+    drop
   } = useMap();
 
-  useEffect(() => {
-    if (selectArea) {
-      axios
-        .post("/map/select-area", { id: selectArea.id })
-        .then((res) => {
-          
-          console.log(res.data.toStation);
-          setSubAreaTo(res.data.toStation);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [selectArea]);
+
 
   // useEffect(() => {
   //   setSelectArea();
@@ -74,20 +63,19 @@ export default function ModalSearchPin({ open, onClose }) {
                     <div
                       placeholder="From"
                       className={`outline-none text-[18px] font-semibold ${
-                        selectArea ? "text-MonoColor-700" : "text-MonoColor-400"
+                        pickup ? "text-MonoColor-700" : "text-MonoColor-400"
                       }  bg-transparent pl-4 `}
                     >
-                      {selectArea ? selectArea.stationName : "From"}
+                      {pickup ? pickup.stationName : "From"}
                     </div>
                     <hr className="border-2 border-Primary-light w-[240px]" />
                     <div
                       placeholder="To"
                       className={`outline-none text-[18px] font-semibold text-MonoColor-400  bg-transparent pl-4`}
                     >
-                      {selectAreaTo
-                        ? selectAreaTo.stationName
-                        : areaFromByTo
-                        ? areaFromByTo.stationName
+                      {drop
+                        ? drop.stationName
+                        
                         : "To"}
                     </div>
                   </div>

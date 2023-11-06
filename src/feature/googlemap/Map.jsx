@@ -9,7 +9,7 @@ export default function Map() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: GOOGLE_KEY,
   });
-  const { subArea, setSubArea } = useMap();
+  const { subArea, setSubArea,setIsOpenPin,isOpenPin ,setAreaPin} = useMap();
   useEffect(() => {
     const getSubArea = axios
       .get("/map/get-subarea")
@@ -51,6 +51,10 @@ export default function Map() {
         subArea.map((area) => {
           return (
             <MarkerF
+              onClick={()=>{
+                setIsOpenPin(!isOpenPin)
+                setAreaPin(area)
+              }}
               key={area.id}
               position={{ lat: +area.latitude, lng: +area.longitude }}
               icon={{
