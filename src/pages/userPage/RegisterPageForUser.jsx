@@ -8,6 +8,7 @@ import { registerSchemaForUser } from "../../validators/Auth-validator";
 import validaterFn from "../../validators/validateFN";
 import { useAuth } from "../../feature/hook/use-auth";
 import { Link } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 export default function RegisterPageForUser() {
   const { register } = useAuth();
@@ -36,6 +37,7 @@ export default function RegisterPageForUser() {
         return setError(validationError);
       }
       register(input);
+
     } catch (error) {
       console.log(error);
     }
@@ -53,7 +55,7 @@ export default function RegisterPageForUser() {
         <form
           className="flex flex-col items-center gap-4 pt-8"
           onSubmit={handleSubmitForm}
-          // onSubmit={() => console.log("test")}
+        // onSubmit={() => console.log("test")}
         >
           <div className="flex flex-col gap-4 items-end">
             <div>
