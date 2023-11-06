@@ -7,16 +7,10 @@ import Map from "../../../feature/googlemap/Map";
 import useMap from "../../../feature/hook/use-map";
 import ModalSearchPinTo from "../../../component/ModalSeachPinTo";
 import { useNavigate } from "react-router-dom";
-import createSweetAlert from "../../../utils/sweetAlert";
+import { createErrorSweetAlert } from "../../../utils/sweetAlert";
 
 export default function TaxiPage() {
-  const {
-    selectArea,
-    drop,
-    pickup,
-    isOpenPin,
-    setIsOpenPin,
-  } = useMap();
+  const { selectArea, drop, pickup, isOpenPin, setIsOpenPin } = useMap();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenTo, setIsOpenTo] = useState(false);
 
@@ -25,11 +19,11 @@ export default function TaxiPage() {
     if (drop && pickup) {
       return navigate("/numberpeople");
     } else if (drop) {
-      return createSweetAlert("Please select From Area");
+      return createErrorSweetAlert("Please select From Area");
     } else if (pickup) {
-      return createSweetAlert("Please select To Area");
+      return createErrorSweetAlert("Please select To Area");
     }
-    return createSweetAlert("Please slecect From and To Area");
+    return createErrorSweetAlert("Please slecect From and To Area");
   };
 
   return (
