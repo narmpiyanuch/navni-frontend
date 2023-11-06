@@ -30,7 +30,7 @@ export default function ModalSearchPin({ open, onClose }) {
       axios
         .post("/map/select-area", { id: selectArea.id })
         .then((res) => {
-          
+
           console.log(res.data.toStation);
           setSubAreaTo(res.data.toStation);
         })
@@ -73,9 +73,8 @@ export default function ModalSearchPin({ open, onClose }) {
                   <div className="flex flex-col items-start justify-center bg-Primary-lightest w-[240px] h-[100px] rounded-3xl gap-2">
                     <div
                       placeholder="From"
-                      className={`outline-none text-[18px] font-semibold ${
-                        selectArea ? "text-MonoColor-700" : "text-MonoColor-400"
-                      }  bg-transparent pl-4 `}
+                      className={`outline-none text-[18px] font-semibold ${selectArea ? "text-MonoColor-700" : "text-MonoColor-400"
+                        }  bg-transparent pl-4 `}
                     >
                       {selectArea ? selectArea.stationName : "From"}
                     </div>
@@ -87,8 +86,8 @@ export default function ModalSearchPin({ open, onClose }) {
                       {selectAreaTo
                         ? selectAreaTo.stationName
                         : areaFromByTo
-                        ? areaFromByTo.stationName
-                        : "To"}
+                          ? areaFromByTo.stationName
+                          : "To"}
                     </div>
                   </div>
                 </div>
@@ -98,61 +97,61 @@ export default function ModalSearchPin({ open, onClose }) {
                   </p>
                   {areaFrom
                     ? areaFrom?.map((el) => (
-                        <div
-                          key={el.id}
-                          className="flex justify-between px-4 py-2 items-center"
+                      <div
+                        key={el.id}
+                        className="flex justify-between px-4 py-2 items-center"
+                      >
+                        <button
+                          onClick={() => {
+                            setSelectArea(el);
+                            setPickup(el)
+                            // setSelectAreaTo()
+                          }}
+                          className="flex items-end gap-2"
                         >
-                          <button
-                            onClick={() => {
-                              setSelectArea(el);
-                              setPickup(el)
-                              // setSelectAreaTo()
-                            }}
-                            className="flex items-end gap-2"
-                          >
-                            <img
-                              src={purplePin}
-                              alt="pin"
-                              className="w-[32px]"
-                            />
-                            <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
-                              {el.stationName}
-                            </p>
-                          </button>
-                          <p className="text-[16px] text-MonoColor-400">
-                            {" "}
-                            {el?.distance}
+                          <img
+                            src={purplePin}
+                            alt="pin"
+                            className="w-[32px]"
+                          />
+                          <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
+                            {el.stationName}
                           </p>
-                        </div>
-                      ))
+                        </button>
+                        <p className="text-[16px] text-MonoColor-400">
+                          {" "}
+                          {el?.distance}
+                        </p>
+                      </div>
+                    ))
                     : subArea?.map((el) => (
-                        <div
-                          key={el.id}
-                          className="flex justify-between px-4 py-2 items-center"
+                      <div
+                        key={el.id}
+                        className="flex justify-between px-4 py-2 items-center"
+                      >
+                        <button
+                          onClick={() => {
+                            setSelectArea(el);
+                            // setSelectAreaTo()
+                            setPickup(el)
+                          }}
+                          className="flex items-end gap-2"
                         >
-                          <button
-                            onClick={() => {
-                              setSelectArea(el);
-                              // setSelectAreaTo()
-                              setPickup(el)
-                            }}
-                            className="flex items-end gap-2"
-                          >
-                            <img
-                              src={purplePin}
-                              alt="pin"
-                              className="w-[32px]"
-                            />
-                            <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
-                              {el.stationName}
-                            </p>
-                          </button>
-                          <p className="text-[16px] text-MonoColor-400">
-                            {" "}
-                            {el?.distance}
+                          <img
+                            src={purplePin}
+                            alt="pin"
+                            className="w-[32px]"
+                          />
+                          <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
+                            {el.stationName}
                           </p>
-                        </div>
-                      ))}
+                        </button>
+                        <p className="text-[16px] text-MonoColor-400">
+                          {" "}
+                          {el?.distance}
+                        </p>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
