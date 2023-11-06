@@ -23,7 +23,7 @@ export default function ChatAdminPage() {
                         <div className='flex sticky gap-2 z-10 w-full h-full justify-center items-end pb-4'>
                             <div className='flex items-center w-[80%] h-[40px] border-4 border-Primary-light rounded-2xl '>
                                 <input type='text' className='outline-none w-full rounded-2xl bg-MonoColor-50 px-4' placeholder='Type a messege here...' />
-                                <botton class="material-symbols-outlined text-Primary-light">send</botton>
+                                <button className="material-symbols-outlined text-Primary-light">send</button>
                             </div>
                         </div>
                     </form>
