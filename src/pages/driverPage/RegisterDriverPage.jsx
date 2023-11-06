@@ -8,11 +8,11 @@ export default function RegisterDriverPage() {
     return (
         <div className="flex flex-col m-auto items-center justify-start  bg-Primary-main h-screen w-screen gap-2">
             <div className=' flex flex-col pt-10 items-start w-full '>
-                <botton className="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4">
+                <button className="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4">
                     <Link to='/login'>
                         navigate_before
                     </Link>
-                </botton>
+                </button>
             </div>
             <div className="flex flex-col items-center pt-4  ">
                 <p className="text-MonoColor-50 font-bold text-[20px] ">Join Us!</p>
