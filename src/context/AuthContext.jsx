@@ -45,7 +45,7 @@ export default function AuthContextProvider({ children }) {
         title: 'Register SuccessFul!',
       })
     } catch (error) {
-      console.log(error);
+      createSweetAlert("register Failed", "'Duplicate ID card, Email or Phone number")
     }
   };
 

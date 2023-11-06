@@ -8,7 +8,7 @@ import { registerSchemaForUser } from "../../validators/Auth-validator";
 import validaterFn from "../../validators/validateFN";
 import { useAuth } from "../../feature/hook/use-auth";
 import { Link } from "react-router-dom";
-import Swal from 'sweetalert2'
+
 
 export default function RegisterPageForUser() {
   const { register } = useAuth();

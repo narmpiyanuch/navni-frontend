@@ -9,6 +9,7 @@ import InputErrorMessage from '../../feature/auth/InputErrorMessage'
 import Swal from 'sweetalert2'
 import validaterFn from "../../validators/validateFN";
 import axios from '../../config/axios'
+import createSweetAlert from "../../utils/sweetAlert";
 // import Loading from '../../component/Loading'
 
 const registerDriverSchema = Joi.object({
@@ -96,15 +97,16 @@ export default function RegisterDriverPage() {
                         title: 'Register Diver SuccessFul!',
                         text: "Please, waiting for approved"
                     })
+                    setLoading(true)
+                    Navigate(`/`)
                 } catch (err) {
-                    console.log(err)
+                    createSweetAlert("register Failed", 'Duplicate ID card, Email or Phone number');
                 }
             }
-            setError({});
             setLoading(true)
-
+            setError({});
             await RegisterDriver(formData)
-            Navigate(`/`)
+
         } catch (err) {
             console.log(err)
         } finally {
