@@ -6,8 +6,14 @@ import axios from "../config/axios";
 import { createAlert } from "../utils/sweetAlert";
 import InputEditForm from "../feature/auth/InputEditForm ";
 import PurpleButton from "../feature/payment/PurpleButton";
+import { useEffect } from "react";
 
-export default function ModalEditProfile({ open, onClose }) {
+export default function ModalEditProfile({
+  open,
+  onClose,
+  profile,
+  setProfile,
+}) {
   const [input, setInput] = useState({
     firstName: "",
     lastName: "",
@@ -15,6 +21,14 @@ export default function ModalEditProfile({ open, onClose }) {
   });
 
   const [error, setError] = useState({});
+
+  useEffect(() => {
+    setInput({
+      firstName: profile?.data[0].firstName,
+      lastName: profile?.data[0].lastName,
+      phoneNumber: profile?.data[0].phoneNumber,
+    });
+  }, [profile]);
 
   const handdleChangInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -28,11 +42,14 @@ export default function ModalEditProfile({ open, onClose }) {
       if (validationError) {
         return setError(validationError);
       }
-      await axios.patch("", input);
-      setInput(null);
+      await axios.patch("/user/updateProfile", input);
       createAlert("Profile updated!");
     } catch (error) {
       console.log(error);
+    } finally {
+      const data = await axios.get("/user");
+      setProfile(data);
+      onClose();
     }
   };
 
@@ -60,7 +77,7 @@ export default function ModalEditProfile({ open, onClose }) {
                     <InputEditForm
                       title="Fist name"
                       name="firstName"
-                      value={input.firstName}
+                      value={input?.firstName}
                       onChange={handdleChangInput}
                       error={error.firstName}
                     />
@@ -70,7 +87,7 @@ export default function ModalEditProfile({ open, onClose }) {
                     <InputEditForm
                       title="Last name"
                       name="lastName"
-                      value={input.lastName}
+                      value={input?.lastName}
                       onChange={handdleChangInput}
                       error={error.lastName}
                     />
@@ -80,7 +97,7 @@ export default function ModalEditProfile({ open, onClose }) {
                     <InputEditForm
                       title="Tel."
                       name="phoneNumber"
-                      value={input.phoneNumber}
+                      value={input?.phoneNumber}
                       onChange={handdleChangInput}
                       error={error.phoneNumber}
                     />
