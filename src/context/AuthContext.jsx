@@ -7,7 +7,7 @@ import {
   removeAccessToken,
 } from "../utils/local-storage";
 import axios from "../config/axios";
-import createSweetAlert from "../utils/sweetAlert";
+import { createErrorSweetAlert } from "../utils/sweetAlert";
 
 export const AuthContext = createContext();
 
@@ -48,7 +48,7 @@ export default function AuthContextProvider({ children }) {
       addAccessToken(res.data.accessToken);
       setAuthUser(res.data.user);
     } catch (error) {
-      createSweetAlert("Login Failed", "Email or Password is incorrect!");
+      createErrorSweetAlert("Login Failed", "Email or Password is incorrect!");
     }
   };
 

@@ -1,7 +1,7 @@
 import ModalSuccess from "./ModalSuccess";
 import { useState } from "react";
 
-export default function ModalCancelTrip({ onClose, open }) {
+export default function ModalCancelTrip({ onClose, open, to }) {
     const [isCancel, setIsCancel] = useState(false);
     return (
         <>
@@ -32,16 +32,17 @@ export default function ModalCancelTrip({ onClose, open }) {
                                         Stay
                                     </button>
                                     <button
-                                        className="text-[16px] text-Error-pressed border-2 border-Error-pressed rounded-lg w-[80px] h-[32px] active:bg-Error-pressed active:text-MonoColor-50"
+                                        className="text-[16px] text-Error-pressed border-2 border-Error-pressed rounded-lg w-[120px] h-[32px] active:bg-Error-pressed active:text-MonoColor-50"
                                         onClick={() => setIsCancel(true)}
                                     >
-                                        Cancel
+                                        Confirm Cancel
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <ModalSuccess
+                        to={to}
                         open={isCancel}
                         onClose={() => setIsCancel(false)}
                     />
