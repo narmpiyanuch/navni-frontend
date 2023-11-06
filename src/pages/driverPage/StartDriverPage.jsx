@@ -1,32 +1,32 @@
 
-import HeaderDiver from '../../feature/diver/HeaderDiver'
-import WaitingOrder from '../../feature/diver/WaitingOrder'
-import OrderForDiver from '../../feature/diver/OrderForDiver'
-import ComingToCustomer from '../../feature/diver/ComingToCustomer'
+import HeaderDriver from '../../feature/driver/HeaderDriver'
+import WaitingOrder from '../../feature/driver/WaitingOrder'
+import OrderForDriver from '../../feature/driver/OrderForDriver'
+import ComingToCustomer from '../../feature/driver/ComingToCustomer'
 import ModalAlreadyPickUp from '../../component/ModalAlreadyPickUp'
 import { useState } from 'react'
-import ToDestination from '../../feature/diver/ToDestination'
+import ToDestination from '../../feature/driver/ToDestination'
 import ModalDropOffFinish from '../../component/ModalDropOffFinish'
 import ModalCancelTrip from '../../component/ModalCancelTrip'
 
 
 
 
-export default function StartDiverPage() {
+export default function StartDriverPage() {
     const [isPickUp, setIsPickUp] = useState(false) //ModalAlreadyPickup
     const [isAccept, setIsAccept] = useState(false) //ComingToCustomer
-    const [isClose, setIsClose] = useState(true) //oderForDiver
+    const [isClose, setIsClose] = useState(true) //oderForDriver
     const [isOpenDestination, setOpenDetination] = useState(false)//ToDestination
     const [isSuccess, setIsSuccess] = useState(false)//modalDropoffFinish
     const [isCancelTrip, setIsCancelTrip] = useState(false)
 
     return (
         <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">
-            <HeaderDiver />
+            <HeaderDriver />
 
             {/* <WaitingOrder /> */}
 
-            {isClose && (<OrderForDiver setIsAccept={setIsAccept} onClose={() => setIsClose(false)} />)}
+            {isClose && (<OrderForDriver setIsAccept={setIsAccept} onClose={() => setIsClose(false)} />)}
 
             <ComingToCustomer setIsPickUp={setIsPickUp} open={isAccept} />
             {/* กล่องข้างบนสามารถวนใช้ได้ */}
@@ -42,7 +42,7 @@ export default function StartDiverPage() {
                 setOpenDetination(false)
                 setIsSuccess(false)
             }} />
-            <ModalCancelTrip to='/homediver' open={isCancelTrip} onClose={() => { setIsCancelTrip(false) }} />
+            <ModalCancelTrip to='/homedriver' open={isCancelTrip} onClose={() => { setIsCancelTrip(false) }} />
         </div>
     )
 }

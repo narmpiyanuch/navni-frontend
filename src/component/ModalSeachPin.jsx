@@ -27,7 +27,20 @@ export default function ModalSearchPin({ open, onClose }) {
     drop
   } = useMap();
 
-
+  useEffect(() => {
+    if (selectArea) {
+      axios
+        .post("/map/select-area", { id: selectArea.id })
+        .then((res) => {
+          
+          console.log(res.data.toStation);
+          setSubAreaTo(res.data.toStation);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [selectArea]);
 
   // useEffect(() => {
   //   setSelectArea();
@@ -63,7 +76,7 @@ export default function ModalSearchPin({ open, onClose }) {
                     <div
                       placeholder="From"
                       className={`outline-none text-[18px] font-semibold ${
-                        pickup ? "text-MonoColor-700" : "text-MonoColor-400"
+                        selectArea ? "text-MonoColor-700" : "text-MonoColor-400"
                       }  bg-transparent pl-4 `}
                     >
                       {pickup ? pickup.stationName : "From"}
@@ -73,9 +86,10 @@ export default function ModalSearchPin({ open, onClose }) {
                       placeholder="To"
                       className={`outline-none text-[18px] font-semibold text-MonoColor-400  bg-transparent pl-4`}
                     >
-                      {drop
-                        ? drop.stationName
-                        
+                      {selectAreaTo
+                        ? selectAreaTo.stationName
+                        : areaFromByTo
+                        ? areaFromByTo.stationName
                         : "To"}
                     </div>
                   </div>
@@ -86,61 +100,61 @@ export default function ModalSearchPin({ open, onClose }) {
                   </p>
                   {areaFrom
                     ? areaFrom?.map((el) => (
-                        <div
-                          key={el.id}
-                          className="flex justify-between px-4 py-2 items-center"
+                      <div
+                        key={el.id}
+                        className="flex justify-between px-4 py-2 items-center"
+                      >
+                        <button
+                          onClick={() => {
+                            setSelectArea(el);
+                            setPickup(el)
+                            // setSelectAreaTo()
+                          }}
+                          className="flex items-end gap-2"
                         >
-                          <button
-                            onClick={() => {
-                              setSelectArea(el);
-                              setPickup(el)
-                              // setSelectAreaTo()
-                            }}
-                            className="flex items-end gap-2"
-                          >
-                            <img
-                              src={purplePin}
-                              alt="pin"
-                              className="w-[32px]"
-                            />
-                            <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
-                              {el.stationName}
-                            </p>
-                          </button>
-                          <p className="text-[16px] text-MonoColor-400">
-                            {" "}
-                            {el?.distance}
+                          <img
+                            src={purplePin}
+                            alt="pin"
+                            className="w-[32px]"
+                          />
+                          <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
+                            {el.stationName}
                           </p>
-                        </div>
-                      ))
+                        </button>
+                        <p className="text-[16px] text-MonoColor-400">
+                          {" "}
+                          {el?.distance}
+                        </p>
+                      </div>
+                    ))
                     : subArea?.map((el) => (
-                        <div
-                          key={el.id}
-                          className="flex justify-between px-4 py-2 items-center"
+                      <div
+                        key={el.id}
+                        className="flex justify-between px-4 py-2 items-center"
+                      >
+                        <button
+                          onClick={() => {
+                            setSelectArea(el);
+                            // setSelectAreaTo()
+                            setPickup(el)
+                          }}
+                          className="flex items-end gap-2"
                         >
-                          <button
-                            onClick={() => {
-                              setSelectArea(el);
-                              // setSelectAreaTo()
-                              setPickup(el)
-                            }}
-                            className="flex items-end gap-2"
-                          >
-                            <img
-                              src={purplePin}
-                              alt="pin"
-                              className="w-[32px]"
-                            />
-                            <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
-                              {el.stationName}
-                            </p>
-                          </button>
-                          <p className="text-[16px] text-MonoColor-400">
-                            {" "}
-                            {el?.distance}
+                          <img
+                            src={purplePin}
+                            alt="pin"
+                            className="w-[32px]"
+                          />
+                          <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
+                            {el.stationName}
                           </p>
-                        </div>
-                      ))}
+                        </button>
+                        <p className="text-[16px] text-MonoColor-400">
+                          {" "}
+                          {el?.distance}
+                        </p>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>

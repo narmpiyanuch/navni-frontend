@@ -1,6 +1,6 @@
 import purplePerson from '../../assets/purplePerson.png'
 
-export default function OrderForDiver({ setIsAccept, onClose }) {
+export default function OrderForDriver({ setIsAccept, onClose }) {
   return (
     <div className="fixed top-[60%] items-center justify-start pt-6 bg-MonoColor-50 h-full rounded-[20px_20px_0px_0px] drop-shadow-[0_35px_35px_rgba(0,0,0,0.25)] w-screen">
       <div className='flex items-center justify-center h-[120px] bg-MonoColor-50 gap-2'>

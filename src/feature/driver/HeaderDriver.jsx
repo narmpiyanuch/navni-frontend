@@ -1,6 +1,6 @@
 import user from '../../assets/user.png'
 
-export default function HeaderDiver() {
+export default function HeaderDriver() {
   return (
     <div className="flex fixed top-0 flex-col items-center justify-start bg-Primary-main w-screen h-[180px] rounded-[0px_0px_40px_40px]">
       <div className="flex fixed gap-4 top-[10%] items-center">
