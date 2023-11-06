@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom/dist";
+import { Link } from "react-router-dom";
 import MoneyButton from "../../../feature/payment/MoneyButton";
 import PurpleButton from "../../../feature/payment/PurpleButton";
 import { useState } from "react";

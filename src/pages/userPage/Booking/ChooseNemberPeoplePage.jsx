@@ -4,17 +4,21 @@ import PurpleButton from '../../../feature/payment/PurpleButton'
 import { useState } from 'react'
 import ModalNotEnoughPayment from '../../../component/ModalNotEnoughPayment'
 import ModalPayment from '../../../component/ModalPayment'
+import useMap from '../../../feature/hook/use-map'
+import { Link } from 'react-router-dom'
 
 export default function ChooseNemberPeoplePage() {
     const [isOpen, setIsOpen] = useState(false);
     const [click, setClick] = useState('')
     const personIconId = [1, 2, 3, 4, 5, 6]
-
+    const {pickup,drop}=useMap()
     console.log(click)
     return (
         <div className='flex flex-col m-auto items-center justify-start  h-screen w-screen gap-2'>
             <div className=' flex flex-col pt-10 items-start w-full '>
+                <Link to='/taxi'>
                 <span className="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4"> navigate_before</span>
+                </Link>
             </div>
             <div className='flex flex-col items-center justify-center h-[140px] w-full  drop-shadow-md gap-2'>
                 <div className='flex justify-center items-center gap-6'>
@@ -26,11 +30,11 @@ export default function ChooseNemberPeoplePage() {
                     <div className='flex flex-col items-start justify-center  w-[240px] h-[100px] rounded-3xl gap-6'>
                         <div className='flex gap-4'>
                             <p className='text-[16px] flex font-semibold text-MonoColor-400 bg-transparent'>From</p>
-                            <p className='text-[16px] flex font-semibold bg-transparent text-MonoColor-700 '>BTS Ari exit 4</p>
+                            <p className='text-[16px] flex font-semibold bg-transparent text-MonoColor-700 '>{pickup?pickup.stationName:null}</p>
                         </div>
                         <div className='flex gap-4'>
                             <p className='text-[16px] flex font-semibold text-MonoColor-400 bg-transparent'>To</p>
-                            <p className='text-[16px] flex font-semibold bg-transparent text-MonoColor-700 '>NaNa coffee Ari</p>
+                            <p className='text-[16px] flex font-semibold bg-transparent text-MonoColor-700 '>{drop?drop.stationName:null}</p>
                         </div>
                     </div>
                 </div>

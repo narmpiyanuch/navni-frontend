@@ -17,9 +17,15 @@ import WaitingTaxiPage from "../pages/userPage/Booking/WaitingTaxiPage";
 import ServiceSuccesPage from "../pages/userPage/Booking/ServiceSuccesPage";
 import ServiceHistory from "../pages/userPage/ServiceHistory";
 import InformationPage from "../pages/userPage/InformationPage";
-import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
+import RegisterDriverPage from "../pages/driverPage/RegisterDriverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
-import HomeDiver from "../pages/diverPage/HomeDiver";
+import HomeDriver from "../pages/driverPage/HomeDriver";
+import StartDriverPage from "../pages/driverPage/StartDriverPage";
+import ServiceHistoryDriver from "../pages/userPage/ServiceHistoryDriver";
+import { Navigate } from "react-router-dom";
+import ChatAdminPage from "../pages/adminPage/ChatAdminPage";
+import AllDriverPage from "../pages/adminPage/AllDriverPage";
+import LocationPage from "../pages/adminPage/LocationPage";
 
 const router = createBrowserRouter([
   {
@@ -31,15 +37,15 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/",
+    path: "/register",
     element: (
       <RedirectIfAuthenticated>
         <Outlet />
       </RedirectIfAuthenticated>
     ),
     children: [
-      { path: "register", element: <RegisterPageForUser /> },
-      { path: "registerdiver", element: <RegisterDiverPage /> },
+      { path: "registerUser", element: <RegisterPageForUser /> },
+      { path: "registerdriver", element: <RegisterDriverPage /> },
     ],
   },
 
@@ -50,7 +56,9 @@ const router = createBrowserRouter([
         <Outlet />
       </RedirectIfNotAuthenticated>
     ),
+
     children: [
+      { path: "/", element: <Navigate replace to="/home" /> },
       { path: "/home", element: <HomePageForUser /> },
       { path: "/topup", element: <TopUpToAmoutPage /> },
       { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
@@ -64,7 +72,13 @@ const router = createBrowserRouter([
       { path: "/serviceend", element: <ServiceSuccesPage /> },
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
-      { path: "/homediver", element: <HomeDiver /> },
+      { path: "/registerdriver", element: <RegisterDriverPage /> },
+      { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
+      { path: "/homedriver", element: <HomeDriver /> },
+      { path: "/startdrive", element: <StartDriverPage /> },
+      { path: "/chatadmin", element: <ChatAdminPage /> },
+      { path: "/alldriver", element: <AllDriverPage /> },
+      { path: "/location", element: <LocationPage /> },
     ],
   },
 ]);

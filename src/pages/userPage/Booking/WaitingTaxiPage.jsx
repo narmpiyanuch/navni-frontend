@@ -57,7 +57,7 @@ export default function WaitingTaxiPage() {
                     </div>
                 </div>
             </div>
-            <ModalCancelTrip open={isCancel} onClose={() => setIsCancel(false)} />
+            <ModalCancelTrip to='/' open={isCancel} onClose={() => setIsCancel(false)} />
         </div>
     )
 }
