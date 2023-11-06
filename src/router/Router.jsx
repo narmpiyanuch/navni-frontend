@@ -17,10 +17,13 @@ import WaitingTaxiPage from "../pages/userPage/Booking/WaitingTaxiPage";
 import ServiceSuccesPage from "../pages/userPage/Booking/ServiceSuccesPage";
 import ServiceHistory from "../pages/userPage/ServiceHistory";
 import InformationPage from "../pages/userPage/InformationPage";
-import RegisterDiverPage from "../pages/diverPage/RegisterDiverPage";
+import RegisterDriverPage from "../pages/driverPage/RegisterDriverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
-import HomeDiver from "../pages/diverPage/HomeDiver";
-import ChatRoom from "../feature/auth/ChatRoom";
+import HomeDriver from "../pages/driverPage/HomeDriver";
+import StartDriverPage from "../pages/driverPage/StartDriverPage";
+import ServiceHistoryDriver from "../pages/userPage/ServiceHistoryDriver";
+import { Navigate } from "react-router-dom";
+import ChatAdminPage from "../pages/adminPage/ChatAdminPage";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +43,7 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: "registerUser", element: <RegisterPageForUser /> },
-      { path: "registerdiver", element: <RegisterDiverPage /> },
+      { path: "registerdriver", element: <RegisterDriverPage /> },
     ],
   },
 
@@ -51,8 +54,13 @@ const router = createBrowserRouter([
         <Outlet />
       </RedirectIfNotAuthenticated>
     ),
+
     children: [
-      { path: "/home", element: <HomePageForUser /> },
+      { path: "/", element: <Navigate replace to="/home" /> },
+      {
+        path: "/home",
+        element: <HomePageForUser />,
+      },
       { path: "/topup", element: <TopUpToAmoutPage /> },
       { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
       { path: "/qrcode", element: <QRcodePaymentPage /> },
@@ -65,8 +73,11 @@ const router = createBrowserRouter([
       { path: "/serviceend", element: <ServiceSuccesPage /> },
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
-      { path: "/homediver", element: <HomeDiver /> },
-      { path: "/chatRoom", element: <ChatRoom /> },
+      { path: "/registerdriver", element: <RegisterDriverPage /> },
+      { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
+      { path: "/homedriver", element: <HomeDriver /> },
+      { path: "/startdrive", element: <StartDriverPage /> },
+      { path: "/chatadmin", element: <ChatAdminPage /> },
     ],
   },
 ]);

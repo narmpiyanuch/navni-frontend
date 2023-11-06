@@ -12,7 +12,7 @@ const labelRegister = [
     { id: 9, title: 'Password confirm' },
 ]
 
-export default function InputRegisterDiverAll() {
+export default function InputRegisterDriverAll() {
     return (<>
         <div className="flex flex-col gap-4 items-end pr-2">
             {labelRegister.map(el => <InputRegisterForm key={el.id} title={el.title} />)}

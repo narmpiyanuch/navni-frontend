@@ -8,11 +8,37 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../feature/hook/use-auth";
 import ModalEditProfile from "../../component/ModalEditProfile";
 import { useState } from "react";
+import useMap from "../../feature/hook/use-map";
+import { useEffect } from "react";
 
 export default function HomePageForUser() {
-  const [isOpen, setIsOpen] = useState(false);
-  const { logout } = useAuth();
-  console.log("first");
+    
+    const {
+        
+        setSelectArea,
+        setSelectAreaTo,
+        setSubAreaTo,
+        setDrop,
+        setPickup,
+        setSelectAreaFromTo,
+        setSelectAreaByTo,
+        setAreaFrom,setAreaFromByTo
+      } = useMap();
+      useEffect(() => {
+        setAreaFrom()
+        setSelectAreaFromTo()
+        setSelectArea();
+        setSelectAreaTo();
+        setSubAreaTo();
+        setSelectAreaFromTo();
+        setSelectAreaByTo();
+        setAreaFromByTo()
+        setDrop()
+        setPickup()
+      }, []);
+    const [isOpen, setIsOpen] = useState(false);
+    const { logout } = useAuth();
+
   const handleLogOut = () => {
     logout();
   };
@@ -42,7 +68,9 @@ export default function HomePageForUser() {
                 <span className="material-symbols-outlined text-MonoColor-50 font-thin text-[18px]">
                   mail
                 </span>
-                <p className="text-[14px] text-MonoColor-50">asdfh@gmail.com</p>
+                <p className="text-[14px] text-MonoColor-50">
+                  asdfh@gmail.com
+                </p>
               </div>
               <span
                 className="material-symbols-outlined text-MonoColor-50 font-thin text-[16px] pt-2 cursor-pointer"
@@ -58,18 +86,24 @@ export default function HomePageForUser() {
             <div className="flex flex-col justify-center items-center gap-2 pt-[20%]">
               <div className="flex relative">
                 <div className="w-[60px] h-[16px] rounded-full bg-MonoColor-300 absolute bottom-[-6px] left-[-8px]"></div>
-                <img src={wallet} alt="wallet" className="w-[48px] z-10" />
+                <img
+                  src={wallet}
+                  alt="wallet"
+                  className="w-[48px] z-10"
+                />
               </div>
               <div className="flex gap-4 items-center">
                 <p className="text-MonoColor-700 text-[26px] font-semibold">
                   100
                 </p>
-                <p className="text-MonoColor-700 text-[26px] font-normal">NP</p>
+                <p className="text-MonoColor-700 text-[26px] font-normal">
+                  NP
+                </p>
               </div>
             </div>
             <div className="flex items-center justify-center">
               <div className="w-[200px] h-[60px] absolute bg-Secondary-lightest bottom-0 "></div>
-              <Link to="/mywallet">
+              <Link to="/mywallet" className="flex justify-center items-center">
                 <button className="w-[28px] h-[28px] rounded-full absolute bg-MonoColor-50 bottom-[16px] text-center text-Primary-dark font-semibold text-[20px] active:bg-Primary-main">
                   +
                 </button>

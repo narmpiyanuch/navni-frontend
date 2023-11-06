@@ -5,7 +5,7 @@ export default function Loading({ isLoading }) {
         isLoading ? "opacity-30" : "opacity-0"
       }`}
     >
-      <span className="loading loading-dots loading-lg"></span>;
+      <span className="loading loading-dots loading-lg"></span>
     </div>
   );
 }
