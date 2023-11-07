@@ -71,7 +71,6 @@ export default function LoginForm() {
                 onSuccess={(credentialResponse) => {
                     const userData = jwtDecode(credentialResponse.credential);
                     login(userData);
-                    console.log(userData);
                 }}
                 onError={onError}
             />
