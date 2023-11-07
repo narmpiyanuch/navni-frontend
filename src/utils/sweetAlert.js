@@ -8,8 +8,10 @@ export const createErrorSweetAlert = (title, text) => {
   });
 };
 
-export const createAlert = (text) => {
+export const createAlert = (title, text) => {
   return Swal.fire({
+    icon: 'success',
+    title: title,
     text: text,
   });
 };

@@ -11,11 +11,10 @@ export default function InputRegisterForm({
       <span className="text-Primary-main text-[18px] font-normal">{title}</span>
       <input
         className={`w-[200px] px-2 border-2 outline-none rounded-2xl
-                ${
-                  error
-                    ? ` border-Error-main `
-                    : `border-Primary-main  bg-MonoColor-50  active:border-2 active:border-Primary-darker`
-                }
+                ${error
+            ? ` border-Error-main `
+            : `border-Primary-main  bg-MonoColor-50  active:border-2 active:border-Primary-darker`
+          }
                 `}
         value={value}
         name={name}
