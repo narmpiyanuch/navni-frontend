@@ -7,27 +7,24 @@ import Map from "../../../feature/googlemap/Map";
 import useMap from "../../../feature/hook/use-map";
 import ModalSearchPinTo from "../../../component/ModalSeachPinTo";
 import { useNavigate } from "react-router-dom";
-
+import { createErrorSweetAlert } from "../../../utils/sweetAlert";
 
 export default function TaxiPage() {
-  const {
-    areaFromByTo,
-    selectArea,
-    drop,
-    pickup,
-    selectAreaFromTo,
-  } = useMap();
+  const { selectArea, drop, pickup, isOpenPin, setIsOpenPin } = useMap();
   const [isOpen, setIsOpen] = useState(false);
-  const [isOpenPin, setIsOpenPin] = useState(false);
   const [isOpenTo, setIsOpenTo] = useState(false);
-  const [isOpenPinTo, setIsOpenPinTo] = useState(false);
+
   const navigate = useNavigate();
-  const handleChooseTrip = ()=>{
-    if(drop&&pickup){
-      return navigate('/numberpeople')
+  const handleChooseTrip = () => {
+    if (drop && pickup) {
+      return navigate("/numberpeople");
+    } else if (drop) {
+      return createErrorSweetAlert("Please select From Area");
+    } else if (pickup) {
+      return createErrorSweetAlert("Please select To Area");
     }
-    return alert("Choose Form and To")
-  }
+    return createErrorSweetAlert("Please slecect From and To Area");
+  };
 
   return (
     <div className=" flex flex-col m-auto items-center justify-center bg-MonoColor-50 h-screen w-screen gap-2">
@@ -63,32 +60,27 @@ export default function TaxiPage() {
                 selectArea ? "text-MonoColor-700" : "text-MonoColor-400"
               }  bg-transparent pl-4 `}
             >
-              {selectArea ? selectArea.stationName : "From"}
+              {pickup ? pickup.stationName : "From"}
             </button>
             <hr className="border-2 border-Primary-light w-[240px]" />
             <button
               onClick={() => setIsOpenTo(true)}
               className={`text-[18px] flex w-full font-semibold ${
-                selectAreaFromTo
-                  ? "text-MonoColor-700"
-                  : areaFromByTo
-                  ? "text-MonoColor-700"
-                  : "text-MonoColor-400"
+                drop ? "text-MonoColor-700" : "text-MonoColor-400"
               }  bg-transparent pl-4`}
             >
-              {selectAreaFromTo
-                ? selectAreaFromTo.stationName
-                : areaFromByTo
-                ? areaFromByTo.stationName
-                : "To"}
+              {drop ? drop.stationName : "To"}
             </button>
           </div>
         </div>
         <div className="flex justify-end p-4">
           {/* <Link to={'/numberpeople'}> */}
-          <PurpleButton onClick={()=>{
-            handleChooseTrip()
-          }} title="Choose trip" />
+          <PurpleButton
+            onClick={() => {
+              handleChooseTrip();
+            }}
+            title="Choose trip"
+          />
           {/* </Link> */}
         </div>
         <ModalSearchPin open={isOpen} onClose={() => setIsOpen(false)} />

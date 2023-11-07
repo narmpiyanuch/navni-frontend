@@ -22,7 +22,9 @@ export default function ModalSearchPin({ open, onClose }) {
     setSelectArea,
     setSubAreaTo,
     selectAreaTo,
-    setPickup
+    setPickup,
+    pickup,
+    drop
   } = useMap();
 
   useEffect(() => {
@@ -77,7 +79,7 @@ export default function ModalSearchPin({ open, onClose }) {
                         selectArea ? "text-MonoColor-700" : "text-MonoColor-400"
                       }  bg-transparent pl-4 `}
                     >
-                      {selectArea ? selectArea.stationName : "From"}
+                      {pickup ? pickup.stationName : "From"}
                     </div>
                     <hr className="border-2 border-Primary-light w-[240px]" />
                     <div
@@ -98,61 +100,61 @@ export default function ModalSearchPin({ open, onClose }) {
                   </p>
                   {areaFrom
                     ? areaFrom?.map((el) => (
-                        <div
-                          key={el.id}
-                          className="flex justify-between px-4 py-2 items-center"
+                      <div
+                        key={el.id}
+                        className="flex justify-between px-4 py-2 items-center"
+                      >
+                        <button
+                          onClick={() => {
+                            setSelectArea(el);
+                            setPickup(el)
+                            // setSelectAreaTo()
+                          }}
+                          className="flex items-end gap-2"
                         >
-                          <button
-                            onClick={() => {
-                              setSelectArea(el);
-                              setPickup(el)
-                              // setSelectAreaTo()
-                            }}
-                            className="flex items-end gap-2"
-                          >
-                            <img
-                              src={purplePin}
-                              alt="pin"
-                              className="w-[32px]"
-                            />
-                            <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
-                              {el.stationName}
-                            </p>
-                          </button>
-                          <p className="text-[16px] text-MonoColor-400">
-                            {" "}
-                            {el?.distance}
+                          <img
+                            src={purplePin}
+                            alt="pin"
+                            className="w-[32px]"
+                          />
+                          <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
+                            {el.stationName}
                           </p>
-                        </div>
-                      ))
+                        </button>
+                        <p className="text-[16px] text-MonoColor-400">
+                          {" "}
+                          {el?.distance}
+                        </p>
+                      </div>
+                    ))
                     : subArea?.map((el) => (
-                        <div
-                          key={el.id}
-                          className="flex justify-between px-4 py-2 items-center"
+                      <div
+                        key={el.id}
+                        className="flex justify-between px-4 py-2 items-center"
+                      >
+                        <button
+                          onClick={() => {
+                            setSelectArea(el);
+                            // setSelectAreaTo()
+                            setPickup(el)
+                          }}
+                          className="flex items-end gap-2"
                         >
-                          <button
-                            onClick={() => {
-                              setSelectArea(el);
-                              // setSelectAreaTo()
-                              setPickup(el)
-                            }}
-                            className="flex items-end gap-2"
-                          >
-                            <img
-                              src={purplePin}
-                              alt="pin"
-                              className="w-[32px]"
-                            />
-                            <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
-                              {el.stationName}
-                            </p>
-                          </button>
-                          <p className="text-[16px] text-MonoColor-400">
-                            {" "}
-                            {el?.distance}
+                          <img
+                            src={purplePin}
+                            alt="pin"
+                            className="w-[32px]"
+                          />
+                          <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
+                            {el.stationName}
                           </p>
-                        </div>
-                      ))}
+                        </button>
+                        <p className="text-[16px] text-MonoColor-400">
+                          {" "}
+                          {el?.distance}
+                        </p>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
