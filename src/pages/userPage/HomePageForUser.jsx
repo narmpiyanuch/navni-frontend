@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useEffect } from "react";
+
 import { useAuth } from "../../feature/hook/use-auth";
 import ModalEditProfile from "../../component/ModalEditProfile";
 import useMap from "../../feature/hook/use-map";
 import UserProfile from "./HomePage/UserProfile";
 import UserReservations from "./HomePage/UserReservations";
 import axios from "../../config/axios";
+import socket from "../../config/socket";
 
 export default function HomePageForUser() {
     const [profile, setProfile] = useState();
