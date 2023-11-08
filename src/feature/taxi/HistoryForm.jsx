@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 
 export default function HistoryForm({ services }) {
   return (
-    <>
+    <div>
       {services?.map((item) => (
         <>
           {item.status === "DONE" ? (
@@ -98,6 +98,6 @@ export default function HistoryForm({ services }) {
           )}
         </>
       ))}
-    </>
+    </div>
   );
 }
