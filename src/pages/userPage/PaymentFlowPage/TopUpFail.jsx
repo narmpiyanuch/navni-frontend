@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import purpleLogoNB from '../../../assets/purpleLogoNonbackground.png'
 import PurpleButton from '../../../feature/payment/PurpleButton'
 
@@ -13,10 +14,12 @@ export default function TopUpFail() {
                 <img src={purpleLogoNB} alt='logo' className='w-[180px]' />
 
                 <div className='pt-8'>
-                    <PurpleButton title='Back to Home' />
+                    <Link to='/home' >
+                        <PurpleButton title='Back to Home' />
+                    </Link>
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
