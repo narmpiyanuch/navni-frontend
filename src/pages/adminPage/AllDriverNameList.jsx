@@ -14,8 +14,6 @@ export default function AllDriverNameList() {
                             <ButtonAllDriverAmin key={el} />
                     ))}
                 </div>
-
-
             </div>
         </>
     )
