@@ -21,7 +21,7 @@ import RegisterDriverPage from "../pages/driverPage/RegisterDriverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
 import HomeDriver from "../pages/driverPage/HomeDriver";
 import StartDriverPage from "../pages/driverPage/StartDriverPage";
-import ServiceHistoryDriver from "../pages/userPage/ServiceHistoryDriver";
+import ServiceHistoryDriver from "../pages/driverPage/ServiceHistoryDriver";
 import { Navigate } from "react-router-dom";
 import ChatAdminPage from "../pages/adminPage/ChatAdminPage";
 import AllDriverPage from "../pages/adminPage/AllDriverPage";
