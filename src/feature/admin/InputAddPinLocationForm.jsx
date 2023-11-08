@@ -2,11 +2,12 @@ import PurpleButton from '../payment/PurpleButton'
 
 
 export default function InputAddPinLocationForm({
+    name=null,
     title,
     onChange,
     value,
     type = "text",
-    hasError,
+    error,
 }) {
     return (
         <>
@@ -17,7 +18,8 @@ export default function InputAddPinLocationForm({
                     onChange={onChange}
                     value={value}
                     type={type}
-                    hasError={hasError}
+                    error={error}
+                    name={name}
                 />
             </div>
         </>

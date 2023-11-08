@@ -15,19 +15,64 @@ export default function MapContextProvider({ children }) {
   const [areaFrom, setAreaFrom] = useState();
   const [areaFromByTo, setAreaFromByTo] = useState();
 
-  const [pickup,setPickup] = useState()
-  const [drop,setDrop] = useState()
+  const [pickup, setPickup] = useState();
+  const [drop, setDrop] = useState();
 
   const [isOpenPin, setIsOpenPin] = useState(false);
-  const [areaPin,setAreaPin]=useState()
+  const [areaPin, setAreaPin] = useState();
 
-const [price,setPrice]= useState()
+  const [price, setPrice] = useState();
+
+  const [addPin, setAddPin] = useState();
+
+  const [isMark,setIsMark]=useState(false)
+
+  const [editLocation, setEditLocation] = useState();
+  const [onChangeEditLocation, setOnchangeEditLocation] = useState({
+    stationName: "",
+    latitude: "",
+    longtitude: "",
+    areaName: "",
+  });
+
+  const [onChangeAddLocation, setOnChangeAddLocation] = useState({
+    stationName: "",
+    latitude: "",
+    longitude: "",
+    areaName: "",
+  });
+
+ const handleOnChangeAddLocation = (event)=>{
+  setOnChangeAddLocation({...onChangeAddLocation,[event.target.name]:event.target.value})
+ }
+
+const addPinLocation = (input)=>{
+  axios.post('/map/add/sub',input).then((res)=>{
+    console.log(res.data)
+  }).catch((error)=>{
+    console.log(error)
+  })
+}
+
+
+const getSubArea = ()=>{
+  axios
+      .get("/map/get-subarea")
+      .then((res) => {
+        console.log(res.data.subAreaStation)
+        setSubArea(res.data.subAreaStation);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+}
+
+
   useEffect(() => {
     if (selectArea) {
       axios
         .post("/map/select-area", { id: selectArea.id })
         .then((res) => {
-          
           console.log(res.data.toStation);
           setSubAreaTo(res.data.toStation);
         })
@@ -49,7 +94,7 @@ const [price,setPrice]= useState()
           console.log(error);
         });
     }
-    if (areaFromByTo!==undefined) {
+    if (areaFromByTo !== undefined) {
       axios
         .post("/map/select-area", { id: areaFromByTo.id })
         .then((res) => {
@@ -62,28 +107,31 @@ const [price,setPrice]= useState()
     }
   }, [selectAreaTo, areaFromByTo]);
 
-  useEffect(()=>{
-if(drop&&pickup){
-// console.log(pickup)
-  const price = axios.post('/map/calculate',{
-    destination:drop,origin:pickup
-  }).then((res)=>{
-    console.log(res.data.price)
-    setPrice(res.data.price)
-  }).catch((error)=>{
-    console.log(error)
-  })
-}
-  },[drop,pickup])
-
+  useEffect(() => {
+    if (drop && pickup) {
+      // console.log(pickup)
+      const price = axios
+        .post("/map/calculate", {
+          destination: drop,
+          origin: pickup,
+        })
+        .then((res) => {
+          console.log(res.data.price);
+          setPrice(res.data.price);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [drop, pickup]);
 
   return (
     <MapContext.Provider
       value={{
-        areaFrom
-        ,setAreaFrom
-        ,areaFromByTo
-        ,setAreaFromByTo,
+        areaFrom,
+        setAreaFrom,
+        areaFromByTo,
+        setAreaFromByTo,
         selectAreaByTo,
         setSelectAreaByTo,
         selectAreaFromTo,
@@ -103,7 +151,20 @@ if(drop&&pickup){
         setIsOpenPin,
         isOpenPin,
         setAreaPin,
-        areaPin
+        areaPin,
+        setEditLocation,
+        editLocation,
+        onChangeEditLocation,
+        setOnchangeEditLocation,
+        setAddPin,
+        addPin,
+        setOnChangeAddLocation,
+        onChangeAddLocation,
+        handleOnChangeAddLocation,
+        addPinLocation,
+        setIsMark,
+        isMark,
+        getSubArea
       }}
     >
       {children}

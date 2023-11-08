@@ -1,6 +1,9 @@
 import LocationPin from "../feature/admin/LocationPin"
+import useMap from "../feature/hook/use-map"
 
 export default function ModalLocationList({ setIsLocationModal, setIsOpenEditLocation, open, isOpenOn, setIsOpenOn, }) {
+const {subArea}=useMap()
+console.log(subArea)
     return (
         <>
             {open && (
@@ -10,7 +13,13 @@ export default function ModalLocationList({ setIsLocationModal, setIsOpenEditLoc
                         <span className="material-symbols-outlined text-MonoColor-50">search</span>
                     </div>
                     <div className='flex flex-col w-full h-full '>
+                        {subArea ?
+                        subArea.map((data,index)=>(
+                            <LocationPin key={index+1} dataLocation={data} setIsLocationModal={setIsLocationModal} isOpenOn={isOpenOn} setIsOpenOn={setIsOpenOn} setIsOpenEditLocation={setIsOpenEditLocation} />    
+                        ))
+                        :
                         <LocationPin setIsLocationModal={setIsLocationModal} isOpenOn={isOpenOn} setIsOpenOn={setIsOpenOn} setIsOpenEditLocation={setIsOpenEditLocation} />
+                        }
                     </div>
                 </div>)}
         </>
