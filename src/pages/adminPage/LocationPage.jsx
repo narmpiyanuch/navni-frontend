@@ -1,13 +1,14 @@
 import HeaderAdminPage from '../../feature/admin/HeaderAdminPage'
 import FooterAdminPage from '../../feature/admin/FooterAdminPage'
 import { useState } from 'react'
-import SubHeaderBottom from '../../feature/admin/subHeaderBottom'
+import SubHeaderBottom from '../../feature/admin/SubHeaderBottom'
 import ModalLocationList from '../../component/ModalLocationList'
 import ModalAddLocation from '../../component/ModalAddLocation'
 import ModalEditPinLocation from '../../component/ModalEditPinLocation'
 import MapAdmin from '../../feature/googlemap/MapAdmin'
 import useMap from '../../feature/hook/use-map'
 import { useEffect } from 'react'
+import ModalAddArea from '../../component/ModalAddArea '
 
 export default function LocationPage() {
     const [isOpenLocation, setIsOpenLocation] = useState(true)
@@ -27,6 +28,8 @@ export default function LocationPage() {
         }
     },[isOpenAddLocation])
    
+    const [isOpenAddArea, setIsOpenAddArea] = useState(false)
+
     return (
         <div className='flex flex-col w-screen h-screen'>
             <HeaderAdminPage />
@@ -36,7 +39,10 @@ export default function LocationPage() {
                 isOpenAddLocation={isOpenAddLocation}
                 setIsOpenAddLocation={setIsOpenAddLocation}
                 setIsLocationModal={setIsLocationModal}
-                setIsOpenEditLocation={setIsOpenEditLocation} />
+                setIsOpenEditLocation={setIsOpenEditLocation}
+                setIsOpenAddArea={setIsOpenAddArea}
+                isOpenAddArea={isOpenAddArea}
+            />
             <div className='flex mx-auto w-screen flex-1 justify-center items-center pt-10 pb-[160px]' >
                 <div className='grid grid-cols-2 h-full w-[1200px] gap-4'>
                     <div className='bg-red-300 h-[100%] overflow-hidden rounded-3xl drop-shadow-2xl'>
@@ -56,6 +62,9 @@ export default function LocationPage() {
                         open={isOpanEditLocation}
                         setIsLocationModal={setIsLocationModal}
                         setIsOpenEditLocation={setIsOpenEditLocation}
+                    />
+                    <ModalAddArea
+                        open={isOpenAddArea}
                     />
                 </div>
             </div>

@@ -44,7 +44,7 @@ export default function TopUpToAmoutPage() {
                     Please choose amount
                 </p>
                 <div className=" flex w-[280px] h-[60px] bg-Primary-lightest justify-start items-center rounded-2xl">
-                    <p className="pl-8 font-medium text-[16px] text-MonoColor-400">
+                    <p className="pl-8 font-medium text-[20px] text-MonoColor-500">
                         {navPoint} NP
                     </p>
                 </div>
