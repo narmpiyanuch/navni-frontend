@@ -25,32 +25,10 @@ export default function ModalSearchPinTo({ open, onClose }) {
     selectAreaTo,
     setDrop,
     setSelectAreaFromTo,
+    drop
   } = useMap();
 
-  useEffect(() => {
-    if (selectAreaTo) {
-      axios
-        .post("/map/select-area", { id: selectAreaTo.id })
-        .then((res) => {
-          console.log(res.data.toStation);
-          setAreaFrom(res.data.toStation);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-    if (areaFromByTo!==undefined) {
-      axios
-        .post("/map/select-area", { id: areaFromByTo.id })
-        .then((res) => {
-          console.log(res.data.toStation);
-          setAreaFrom(res.data.toStation);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [selectAreaTo, areaFromByTo]);
+ 
 
   return (
     <>
@@ -93,11 +71,9 @@ export default function ModalSearchPinTo({ open, onClose }) {
                           : "text-MonoColor-400"
                       }  `}
                     >
-                      {selectAreaTo
-                        ? selectAreaTo.stationName
-                        : areaFromByTo
-                        ? areaFromByTo.stationName
+                       {drop?drop.stationName
                         : "To"}
+                     
                     </div>
                   </div>
                 </div>

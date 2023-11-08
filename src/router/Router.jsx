@@ -59,10 +59,7 @@ const router = createBrowserRouter([
 
     children: [
       { path: "/", element: <Navigate replace to="/home" /> },
-      {
-        path: "/home",
-        element: <HomePageForUser />,
-      },
+      { path: "/home", element: <HomePageForUser /> },
       { path: "/topup", element: <TopUpToAmoutPage /> },
       { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
       { path: "/qrcode", element: <QRcodePaymentPage /> },

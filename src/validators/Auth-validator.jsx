@@ -20,3 +20,9 @@ export const registerSchemaForUser = Joi.object({
     lastName: Joi.string().trim().required(),
     phoneNumber: Joi.string().pattern(/^[0-9]{10}$/),
 }).options({ allowUnknown: true });
+
+export const editProfileUser = Joi.object({
+    firstName: Joi.string().trim(),
+    lastName: Joi.string().trim(),
+    phoneNumber: Joi.string().pattern(/^[0-9]{10}$/),
+});

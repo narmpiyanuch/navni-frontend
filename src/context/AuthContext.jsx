@@ -1,15 +1,14 @@
 import { createContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { io } from "socket.io-client";
+// import { io } from "socket.io-client";
 import {
   addAccessToken,
   getAccessToken,
   removeAccessToken,
 } from "../utils/local-storage";
 import axios from "../config/axios";
-import createSweetAlert from "../utils/sweetAlert";
-
+import { createErrorSweetAlert } from "../utils/sweetAlert";
 
 export const AuthContext = createContext();
 
@@ -24,7 +23,6 @@ export default function AuthContextProvider({ children }) {
           .get("/auth/me")
           .then((res) => {
             setAuthUser(res.data.user);
-            
           })
           .finally(() => {
             setIsLoading(false);
@@ -32,12 +30,6 @@ export default function AuthContextProvider({ children }) {
       } else {
         setIsLoading(false);
       }
-      const socket = io("http://localhost:8080");
-      console.log(
-        socket.on("firstEvent", (message) => {
-          console.log(message);
-        })
-      );
     }, 1000);
   }, []);
 
@@ -57,10 +49,9 @@ export default function AuthContextProvider({ children }) {
       addAccessToken(res.data.accessToken);
       setAuthUser(res.data.user);
     } catch (error) {
-      createSweetAlert("Login Failed", "Email or Password is incorrect!");
+      createErrorSweetAlert("Login Failed", "Email or Password is incorrect!");
     }
   };
-
   const logout = async () => {
     try {
       removeAccessToken();
@@ -78,6 +69,7 @@ export default function AuthContextProvider({ children }) {
         authUser,
         logout,
         register,
+        setIsLoading,
       }}
     >
       {children}
