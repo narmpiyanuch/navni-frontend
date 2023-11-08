@@ -9,6 +9,7 @@ import {
 import axios from "../config/axios";
 import { createErrorSweetAlert } from "../utils/sweetAlert";
 
+
 export const AuthContext = createContext();
 
 export default function AuthContextProvider({ children }) {
@@ -22,6 +23,7 @@ export default function AuthContextProvider({ children }) {
                     .get("/auth/me")
                     .then((res) => {
                         setAuthUser(res.data.user);
+
                     })
                     .finally(() => {
                         setIsLoading(false);
