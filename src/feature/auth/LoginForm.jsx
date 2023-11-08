@@ -67,13 +67,15 @@ export default function LoginForm() {
             </div>
             <ButtonInputForm title="Log In" type={"submit"} />
             <p className="text-MonoColor-50 text-[12px] py-2">OR</p>
-            <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                    const userData = jwtDecode(credentialResponse.credential);
-                    login(userData);
-                }}
-                onError={onError}
-            />
+            <div className="flex items-center justify-center mx-auto max-sm:pl-14 ">
+                <GoogleLogin
+                    onSuccess={(credentialResponse) => {
+                        const userData = jwtDecode(credentialResponse.credential);
+                        login(userData);
+                    }}
+                    onError={onError}
+                />
+            </div>
         </form>
     );
 }
