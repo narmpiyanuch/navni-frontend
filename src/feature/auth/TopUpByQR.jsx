@@ -4,7 +4,7 @@ export default function TopUpByQR({ history }) {
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col justify-center">
-        {history?.allTransaction.map((item, index) => {
+        {history?.allTransaction?.map((item, index) => {
           return (
             <div key={index + 1} className="flex">
               <div className="flex flex-row text-[14px] items-center gap-20 border-t-2">
