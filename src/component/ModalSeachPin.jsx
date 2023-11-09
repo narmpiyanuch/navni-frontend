@@ -42,7 +42,7 @@ export default function ModalSearchPin({ open, onClose }) {
     }
   }, [selectArea]);
 
-  const openArea = subArea?.filter((area)=>area.status===true)
+  const openArea = subArea?.filter((area)=>area.status===true&&area.workArea.status===true)
   // useEffect(() => {
   //   setSelectArea();
   //   setSubAreaTo();

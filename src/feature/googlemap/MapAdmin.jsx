@@ -29,7 +29,7 @@ export default function MapAdmin({ isOpenAddLocation, isOpenAddArea }) {
   } = useMap();
   useEffect(() => {
     if (!isOpenAddLocation) {
-      console.log("first");
+     
       setAddPin();
       getSubArea();
       setIsMark(false);
@@ -41,7 +41,9 @@ export default function MapAdmin({ isOpenAddLocation, isOpenAddArea }) {
     getWorkArea();
   }, []);
 
-  const OpenArea = subArea?.filter((area)=>(area.status===true))
+  const openArea = subArea?.filter((area)=>(area.status===true))
+console.log(openArea)
+  const openCircle = getCircle?.area?.filter((data)=>(data.status===true))
 
   if (!isLoaded) {
     return <div>Loading....</div>;
@@ -72,21 +74,26 @@ export default function MapAdmin({ isOpenAddLocation, isOpenAddArea }) {
         }
       }}
     >
-      {OpenArea &&
-        OpenArea.map((area) => {
-          return (
-            <Marker
-              onClick={() => {}}
-              key={area.id}
-              position={{ lat: +area.latitude, lng: +area.longitude }}
-              icon={{
-                url: navNiPin,
-                scaledSize: new window.google.maps.Size(40, 40),
-                origin: new window.google.maps.Point(0, 0),
-                anchor: new window.google.maps.Point(15, 15),
-              }}
-            />
-          );
+      {openArea &&
+        openArea.map((area) => {
+          if(area.workArea.status===true){
+            return (
+              <Marker
+                onClick={() => {}}
+                key={area.id}
+                position={{ lat: +area.latitude, lng: +area.longitude }}
+                icon={{
+                  url: navNiPin,
+                  scaledSize: new window.google.maps.Size(40, 40),
+                  origin: new window.google.maps.Point(0, 0),
+                  anchor: new window.google.maps.Point(15, 15),
+                }}
+              />
+
+            )
+          }
+            return ""
+        
         })}
 
       {isOpenAddLocation && isMark && (
@@ -118,8 +125,8 @@ export default function MapAdmin({ isOpenAddLocation, isOpenAddArea }) {
           }}
         />
       )}
-      {getCircle &&
-        getCircle.area.map((area) => {
+      {openCircle &&
+        openCircle.map((area) => {
           return (
             <Circle
               radius={+area.radius}

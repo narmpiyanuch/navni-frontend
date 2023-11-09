@@ -1,7 +1,7 @@
 import InputAddPinLocationForm from "../feature/admin/InputAddPinLocationForm";
 import useMap from "../feature/hook/use-map";
 import PurpleButton from "../feature/payment/PurpleButton";
-import { createErrorSweetAlert } from "../utils/sweetAlert";
+import { createAlert, createErrorSweetAlert } from "../utils/sweetAlert";
 import axios from "../config/axios";
 
 export default function ModalAddLocation({
@@ -92,6 +92,7 @@ export default function ModalAddLocation({
                     .post("/map/add/sub", onChangeAddLocation)
                     .then((res) => {
                       console.log(res.data);
+                      createAlert("Create Complete")
                       getSubArea();
                       setOnChangeAddLocation({
                         stationName: "",

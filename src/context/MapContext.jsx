@@ -58,7 +58,6 @@ export default function MapContextProvider({ children }) {
   const getWorkArea = () => {
     axios.get("/map/get-area").then((res) => {
       setGetCircle(res.data);
-      console.log(res.data);
     });
   };
 
@@ -121,7 +120,7 @@ export default function MapContextProvider({ children }) {
     axios
       .get("/map/get-subarea")
       .then((res) => {
-        console.log(res.data.subAreaStation);
+       
         setSubArea(res.data.subAreaStation);
       })
       .catch((error) => {
