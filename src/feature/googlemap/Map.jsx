@@ -22,6 +22,8 @@ export default function Map() {
       });
   }, []);
 
+  const openArea = subArea?.filter((area)=>area.status===true)
+  console.log(openArea)
   if (!isLoaded) {
     return <div>Loading....</div>;
   }
@@ -47,8 +49,8 @@ export default function Map() {
           anchor: new window.google.maps.Point(15, 15),
         }}
       /> */}
-      {subArea &&
-        subArea.map((area) => {
+      {openArea &&
+        openArea.map((area) => {
           return (
             <MarkerF
               onClick={()=>{
