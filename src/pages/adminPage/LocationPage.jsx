@@ -5,6 +5,9 @@ import SubHeaderBottom from '../../feature/admin/SubHeaderBottom'
 import ModalLocationList from '../../component/ModalLocationList'
 import ModalAddLocation from '../../component/ModalAddLocation'
 import ModalEditPinLocation from '../../component/ModalEditPinLocation'
+import MapAdmin from '../../feature/googlemap/MapAdmin'
+import useMap from '../../feature/hook/use-map'
+import { useEffect } from 'react'
 import ModalAddArea from '../../component/ModalAddArea '
 
 export default function LocationPage() {
@@ -13,7 +16,30 @@ export default function LocationPage() {
     const [isOpenAddLocation, setIsOpenAddLocation] = useState(false)
     const [isOpenOn, setIsOpenOn] = useState(true)
     const [isOpanEditLocation, setIsOpenEditLocation] = useState(false)
+    const{setOnChangeAddLocation,setOnChangeAddArea} =useMap()
     const [isOpenAddArea, setIsOpenAddArea] = useState(false)
+    useEffect(()=>{
+        if(!isOpenAddLocation){
+            setOnChangeAddLocation({
+                stationName: "",
+                latitude: "",
+                longitude: "",
+                areaName: "",
+                workAreaId:""
+              })
+        }
+    },[isOpenAddLocation])
+
+    useEffect(()=>{
+        if(!isOpenAddArea){
+            setOnChangeAddArea({
+                area_name:"",
+                latitude:"",
+                longitude:"",
+                radius:"500"
+              })
+        }
+    },[isOpenAddArea])
 
     return (
         <div className='flex flex-col w-screen h-screen'>
@@ -31,6 +57,7 @@ export default function LocationPage() {
             <div className='flex mx-auto w-screen flex-1 justify-center items-center pt-10 pb-[160px]' >
                 <div className='grid grid-cols-2 h-full w-[1200px] gap-4'>
                     <div className='bg-red-300 h-[100%] overflow-hidden rounded-3xl drop-shadow-2xl'>
+                <MapAdmin isOpenAddLocation={isOpenAddLocation} isOpenAddArea={isOpenAddArea}/>
                     </div>
                     <ModalLocationList
                         open={isLocationModal}
@@ -41,6 +68,9 @@ export default function LocationPage() {
                     />
                     <ModalAddLocation
                         open={isOpenAddLocation}
+                        setIsLocationModal={setIsLocationModal}
+                        setIsOpenAddLocation={setIsOpenAddLocation}
+
                     />
                     <ModalEditPinLocation
                         open={isOpanEditLocation}
@@ -49,6 +79,8 @@ export default function LocationPage() {
                     />
                     <ModalAddArea
                         open={isOpenAddArea}
+                        setIsLocationModal={setIsLocationModal}
+                        setIsOpenAddArea={setIsOpenAddArea}
                     />
                 </div>
             </div>
