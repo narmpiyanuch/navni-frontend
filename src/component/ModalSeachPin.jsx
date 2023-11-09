@@ -42,6 +42,7 @@ export default function ModalSearchPin({ open, onClose }) {
     }
   }, [selectArea]);
 
+  const openArea = subArea?.filter((area)=>area.status===true)
   // useEffect(() => {
   //   setSelectArea();
   //   setSubAreaTo();
@@ -127,7 +128,7 @@ export default function ModalSearchPin({ open, onClose }) {
                         </p>
                       </div>
                     ))
-                    : subArea?.map((el) => (
+                    :openArea && openArea?.map((el) => (
                       <div
                         key={el.id}
                         className="flex justify-between px-4 py-2 items-center"

@@ -1,15 +1,22 @@
 import InputAddPinLocationForm from "../feature/admin/InputAddPinLocationForm";
 import useMap from "../feature/hook/use-map";
 import PurpleButton from "../feature/payment/PurpleButton";
+import { createErrorSweetAlert } from "../utils/sweetAlert";
+import axios from "../config/axios";
 
-export default function ModalAddLocation({ open }) {
+export default function ModalAddLocation({
+  open,
+  setIsLocationModal,
+  setIsOpenAddLocation,
+}) {
   const {
     onChangeAddLocation,
     setOnChangeAddLocation,
     handleOnChangeAddLocation,
     addPinLocation,
     setAddPin,
-    setIsMark
+    setIsMark,
+    getSubArea,
   } = useMap();
 
   return (
@@ -31,6 +38,7 @@ export default function ModalAddLocation({ open }) {
                 onChange={(event) => {
                   handleOnChangeAddLocation(event);
                 }}
+                disabled={'disabled'}
                 name={"latitude"}
                 title="Latitude"
               />
@@ -41,6 +49,7 @@ export default function ModalAddLocation({ open }) {
                 }}
                 name={"longitude"}
                 title="Longitude"
+                disabled={'disabled'}
               />
               <InputAddPinLocationForm
                 value={onChangeAddLocation.areaName}
@@ -49,19 +58,21 @@ export default function ModalAddLocation({ open }) {
                 }}
                 name={"areaName"}
                 title="Area"
+                disabled={'disabled'}
               />
             </div>
             <div className="flex  gap-5">
               <PurpleButton
                 onClick={(event) => {
                   event.preventDefault();
-                  setAddPin()
-                  setIsMark(false)
+                  setAddPin();
+                  setIsMark(false);
                   setOnChangeAddLocation({
                     stationName: "",
                     latitude: "",
                     longitude: "",
                     areaName: "",
+                    workAreaId: "",
                   });
                 }}
                 title="Reset"
@@ -69,7 +80,31 @@ export default function ModalAddLocation({ open }) {
               <PurpleButton
                 onClick={(event) => {
                   event.preventDefault();
-                  addPinLocation(onChangeAddLocation);
+                  if(onChangeAddLocation.stationName===""){
+                   return createErrorSweetAlert('Name','Please fill in Name')
+                  }
+                  if(onChangeAddLocation.latitude===""&&onChangeAddLocation.longitude===""&&onChangeAddLocation.areaName===""){
+                    return createErrorSweetAlert('Please select location in Map')
+                  }
+                  axios
+                    .post("/map/add/sub", onChangeAddLocation)
+                    .then((res) => {
+                      console.log(res.data);
+                      getSubArea();
+                      setOnChangeAddLocation({
+                        stationName: "",
+                        latitude: "",
+                        longitude: "",
+                        areaName: "",
+                        workAreaId: "",
+                      });
+                      setIsLocationModal(true);
+                      setIsOpenAddLocation(false);
+                    })
+                    .catch((error) => {
+                      
+                      console.log(error);
+                    });
                 }}
                 title="Confirm"
               />

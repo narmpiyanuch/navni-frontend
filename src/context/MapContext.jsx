@@ -2,6 +2,7 @@ import { useState } from "react";
 import { createContext } from "react";
 import { useEffect } from "react";
 import axios from "../config/axios";
+import { flushSync } from "react-dom";
 export const MapContext = createContext();
 
 export default function MapContextProvider({ children }) {
@@ -25,13 +26,13 @@ export default function MapContextProvider({ children }) {
 
   const [addPin, setAddPin] = useState();
 
-  const [isMark,setIsMark]=useState(false)
+  const [isMark, setIsMark] = useState(false);
 
   const [editLocation, setEditLocation] = useState();
   const [onChangeEditLocation, setOnchangeEditLocation] = useState({
     stationName: "",
     latitude: "",
-    longtitude: "",
+    longitude: "",
     areaName: "",
   });
 
@@ -40,34 +41,103 @@ export default function MapContextProvider({ children }) {
     latitude: "",
     longitude: "",
     areaName: "",
+    workAreaId: "",
   });
 
- const handleOnChangeAddLocation = (event)=>{
-  setOnChangeAddLocation({...onChangeAddLocation,[event.target.name]:event.target.value})
- }
+  const [onChangeAddArea, setOnChangeAddArea] = useState({
+    area_name: "",
+    latitude: "",
+    longitude: "",
+    radius: "500",
+  });
 
-const addPinLocation = (input)=>{
-  axios.post('/map/add/sub',input).then((res)=>{
-    console.log(res.data)
-  }).catch((error)=>{
-    console.log(error)
-  })
-}
+  const [isCircle, openIsCircle] = useState(false);
 
+  const [getCircle, setGetCircle] = useState();
 
-const getSubArea = ()=>{
-  axios
+  const getWorkArea = () => {
+    axios.get("/map/get-area").then((res) => {
+      setGetCircle(res.data);
+      console.log(res.data);
+    });
+  };
+
+  const handleOnChangeAddArea = (event) => {
+    setOnChangeAddArea({
+      ...onChangeAddArea,
+      [event.target.name]: event.target.value,
+    });
+    console.log(onChangeAddArea);
+  };
+
+  const handleOnChangeAddLocation = (event) => {
+    setOnChangeAddLocation({
+      ...onChangeAddLocation,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleOnChangeEditLocation = (event) => {
+    setOnchangeEditLocation({
+      ...onChangeEditLocation,
+      [event.target.name]: event.target.value,
+    });
+
+  };
+
+  const addWorkArea = async (input) => {
+    axios
+      .post("/map/add", input)
+      .then((res) => {
+        
+        getWorkArea()
+        console.log(res.data)
+      })
+      .catch((error) => {
+      console.log(error)
+      });
+  };
+
+  const addPinLocation = (input) => {
+    axios
+      .post("/map/add/sub", input)
+      .then((res) => {
+        console.log(res.data);
+        getSubArea();
+        setOnChangeAddLocation({
+          stationName: "",
+          latitude: "",
+          longitude: "",
+          areaName: "",
+          workAreaId: "",
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const getSubArea = () => {
+    axios
       .get("/map/get-subarea")
       .then((res) => {
-        console.log(res.data.subAreaStation)
+        console.log(res.data.subAreaStation);
         setSubArea(res.data.subAreaStation);
       })
       .catch((error) => {
         console.log(error);
       });
-}
+  };
 
-
+  const editStationName = async (input) => {
+    axios.post("/map/edit-station-name", input).then((res) => {
+      
+      getSubArea()      
+    
+    }).catch((error)=>{
+      console.log(error)
+    });
+  };
   useEffect(() => {
     if (selectArea) {
       axios
@@ -164,7 +234,18 @@ const getSubArea = ()=>{
         addPinLocation,
         setIsMark,
         isMark,
-        getSubArea
+        getSubArea,
+        handleOnChangeAddArea,
+        onChangeAddArea,
+        setOnChangeAddArea,
+        isCircle,
+        openIsCircle,
+        addWorkArea,
+        setGetCircle,
+        getCircle,
+        getWorkArea,
+        handleOnChangeEditLocation,
+        editStationName
       }}
     >
       {children}
