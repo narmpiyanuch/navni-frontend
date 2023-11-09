@@ -2,7 +2,7 @@ import InputAddPinLocationForm from "../feature/admin/InputAddPinLocationForm";
 import useMap from "../feature/hook/use-map";
 import PurpleButton from "../feature/payment/PurpleButton";
 import axios from "../config/axios";
-import { createErrorSweetAlert } from "../utils/sweetAlert";
+import { createAlert, createErrorSweetAlert } from "../utils/sweetAlert";
 
 export default function ModalAddArea({
   open,
@@ -87,6 +87,7 @@ export default function ModalAddArea({
                     .post("/map/add", onChangeAddArea)
                     .then((res) => {
                       getWorkArea();
+                      createAlert("Create Complete")
                       console.log(res.data);
                       setOnChangeAddArea({
                         area_name: "",

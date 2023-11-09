@@ -1,4 +1,4 @@
-import { useLoadScript, GoogleMap, MarkerF } from "@react-google-maps/api";
+import { useLoadScript, GoogleMap, Marker } from "@react-google-maps/api";
 import { GOOGLE_KEY } from "../../config/env";
 import { useEffect } from "react";
 import axios from "../../config/axios";
@@ -22,7 +22,7 @@ export default function Map() {
       });
   }, []);
 
-  const openArea = subArea?.filter((area)=>area.status===true)
+  const openArea = subArea?.filter((area)=>area.status===true&&area.workArea.status===true)
   console.log(openArea)
   if (!isLoaded) {
     return <div>Loading....</div>;
@@ -51,8 +51,10 @@ export default function Map() {
       /> */}
       {openArea &&
         openArea.map((area) => {
+  
+
           return (
-            <MarkerF
+            <Marker
               onClick={()=>{
                 setIsOpenPin(!isOpenPin)
                 setAreaPin(area)

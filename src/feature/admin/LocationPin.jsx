@@ -1,17 +1,15 @@
 import axios from "../../config/axios";
 import pin from "../../assets/purplePin.png";
 import useMap from "../hook/use-map";
-
+import Swal from "sweetalert2";
 export default function LocationPin({
   setIsLocationModal,
   setIsOpenEditLocation,
   setIsOpenOn,
   isOpenOn,
   dataLocation,
-  
 }) {
-    
-  const { setEditLocation, setOnchangeEditLocation,getSubArea } = useMap();
+  const { setEditLocation, setOnchangeEditLocation, getSubArea } = useMap();
   return (
     //     subArea &&
     //     subArea.map((data) => (
@@ -57,6 +55,35 @@ export default function LocationPin({
       </div>
       <div className="flex gap-4">
         <button
+          onClick={(event) => {
+            event.preventDefault();
+            Swal.fire({
+              title: "Do you want to save the changes?",
+              showDenyButton: true,
+              confirmButtonText: "Yes",
+              denyButtonText: "No",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                axios
+                  .post("/map/deletesubarea", { id: dataLocation.id })
+                  .then((res) => {
+                    console.log(res.data);
+                    getSubArea();
+                  })
+                  .catch((error) => {
+                    console.log(error);
+                  });
+                Swal.fire("Delete Complete!", "", "success");
+              } else if (result.isDenied) {
+                Swal.fire("Cancel Delete", "", "info");
+              }
+            });
+          }}
+          className="py-2 px-4 bg-red-500 rounded-md"
+        >
+          <p className="text-[16px] text-MonoColor-50">Delete</p>
+        </button>
+        <button
           onClick={() => {
             setIsOpenEditLocation(true);
             setIsLocationModal(false);
@@ -74,7 +101,7 @@ export default function LocationPin({
                 .post("/map/status", dataLocation)
                 .then((res) => {
                   console.log(res.data);
-                  getSubArea()
+                  getSubArea();
                 })
                 .catch((error) => {
                   console.log(error);
@@ -87,17 +114,16 @@ export default function LocationPin({
         ) : (
           <button
             onClick={(event) => {
-                event.preventDefault();
-                axios
-                  .post("/map/status", dataLocation)
-                  .then((res) => {
-                    console.log(res.data);
-                    getSubArea()
-                  })
-                  .catch((error) => {
-                    console.log(error);
-                  });
-
+              event.preventDefault();
+              axios
+                .post("/map/status", dataLocation)
+                .then((res) => {
+                  console.log(res.data);
+                  getSubArea();
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
             }}
             className="py-2 px-4 bg-Error-pressed rounded-md"
           >
