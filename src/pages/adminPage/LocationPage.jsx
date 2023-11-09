@@ -16,33 +16,33 @@ export default function LocationPage() {
     const [isOpenAddLocation, setIsOpenAddLocation] = useState(false)
     const [isOpenOn, setIsOpenOn] = useState(true)
     const [isOpanEditLocation, setIsOpenEditLocation] = useState(false)
-    const{setOnChangeAddLocation,setOnChangeAddArea} =useMap()
+    const { setOnChangeAddLocation, setOnChangeAddArea } = useMap()
     const [isOpenAddArea, setIsOpenAddArea] = useState(false)
-    useEffect(()=>{
-        if(!isOpenAddLocation){
+    useEffect(() => {
+        if (!isOpenAddLocation) {
             setOnChangeAddLocation({
                 stationName: "",
                 latitude: "",
                 longitude: "",
                 areaName: "",
-                workAreaId:""
-              })
+                workAreaId: ""
+            })
         }
-    },[isOpenAddLocation])
+    }, [isOpenAddLocation])
 
-    useEffect(()=>{
-        if(!isOpenAddArea){
+    useEffect(() => {
+        if (!isOpenAddArea) {
             setOnChangeAddArea({
-                area_name:"",
-                latitude:"",
-                longitude:"",
-                radius:"500"
-              })
+                area_name: "",
+                latitude: "",
+                longitude: "",
+                radius: "500"
+            })
         }
-    },[isOpenAddArea])
+    }, [isOpenAddArea])
 
     return (
-        <div className='flex flex-col w-screen h-screen'>
+        <div className='flex relative flex-col w-screen h-screen'>
             <HeaderAdminPage />
             <SubHeaderBottom
                 setIsOpenLocation={setIsOpenLocation}
@@ -54,10 +54,10 @@ export default function LocationPage() {
                 setIsOpenAddArea={setIsOpenAddArea}
                 isOpenAddArea={isOpenAddArea}
             />
-            <div className='flex mx-auto w-screen flex-1 justify-center items-center pt-10 pb-[160px]' >
+            <div className='flex mx-auto w-screen h-[68vh] justify-center items-center pt-10 ' >
                 <div className='grid grid-cols-2 h-full w-[1200px] gap-4'>
                     <div className='bg-red-300 h-[100%] overflow-hidden rounded-3xl drop-shadow-2xl'>
-                <MapAdmin isOpenAddLocation={isOpenAddLocation} isOpenAddArea={isOpenAddArea}/>
+                        <MapAdmin isOpenAddLocation={isOpenAddLocation} isOpenAddArea={isOpenAddArea} />
                     </div>
                     <ModalLocationList
                         open={isLocationModal}
@@ -65,25 +65,34 @@ export default function LocationPage() {
                         setIsOpenOn={setIsOpenOn}
                         setIsOpenEditLocation={setIsOpenEditLocation}
                         setIsLocationModal={setIsLocationModal}
+                        setIsOpenLocation={setIsOpenLocation}
                     />
                     <ModalAddLocation
                         open={isOpenAddLocation}
                         setIsLocationModal={setIsLocationModal}
                         setIsOpenAddLocation={setIsOpenAddLocation}
-
+                        setIsOpenLocation={setIsOpenLocation}
                     />
                     <ModalEditPinLocation
                         open={isOpanEditLocation}
                         setIsLocationModal={setIsLocationModal}
                         setIsOpenEditLocation={setIsOpenEditLocation}
+                        setIsOpenLocation={setIsOpenLocation}
                     />
                     <ModalAddArea
                         open={isOpenAddArea}
                         setIsLocationModal={setIsLocationModal}
                         setIsOpenAddArea={setIsOpenAddArea}
+                        setIsOpenLocation={setIsOpenLocation}
                     />
+                    {/* <div className=' bg-MonoColor-100 '>
+                        x
+                    </div> */}
                 </div>
             </div>
+            {/* <div className=''>
+                x
+            </div> */}
             <FooterAdminPage />
         </div >
     )

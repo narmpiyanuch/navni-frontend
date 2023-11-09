@@ -8,6 +8,7 @@ export default function ModalAddLocation({
   open,
   setIsLocationModal,
   setIsOpenAddLocation,
+  setIsOpenLocation
 }) {
   const {
     onChangeAddLocation,
@@ -23,7 +24,8 @@ export default function ModalAddLocation({
     <>
       {open && (
         <div className="flex justify-center items-center">
-          <form className="flex flex-col gap-8  top-0 left-0 right-0 w-full rounded-3xl h-[320px] justify-center items-center bg-Primary-lightest ">
+          <form className="flex flex-col gap-8  top-0 left-0 right-0 w-full rounded-3xl h-[360px] justify-center items-center bg-Primary-lightest ">
+            <p className=" text-[20px] font-semibold text-Primary-darker">Choose pin in area</p>
             <div className="flex flex-col items-end gap-4 ">
               <InputAddPinLocationForm
                 value={onChangeAddLocation.stationName}
@@ -80,10 +82,10 @@ export default function ModalAddLocation({
               <PurpleButton
                 onClick={(event) => {
                   event.preventDefault();
-                  if(onChangeAddLocation.stationName===""){
-                   return createErrorSweetAlert('Name','Please fill in Name')
+                  if (onChangeAddLocation.stationName === "") {
+                    return createErrorSweetAlert('Name', 'Please fill in Name')
                   }
-                  if(onChangeAddLocation.latitude===""&&onChangeAddLocation.longitude===""&&onChangeAddLocation.areaName===""){
+                  if (onChangeAddLocation.latitude === "" && onChangeAddLocation.longitude === "" && onChangeAddLocation.areaName === "") {
                     return createErrorSweetAlert('Please select location in Map')
                   }
                   axios
@@ -100,9 +102,10 @@ export default function ModalAddLocation({
                       });
                       setIsLocationModal(true);
                       setIsOpenAddLocation(false);
+                      setIsOpenLocation(true)
                     })
                     .catch((error) => {
-                      
+
                       console.log(error);
                     });
                 }}
