@@ -14,9 +14,9 @@ const menu = [
 
 export default function FooterAdminPage() {
     const { pathname } = useLocation()
-    
+
     return (
-        <footer className='flex fixed gap-10 justify-center w-full items-end bottom-10 flex-0'>
+        <footer className='flex absolute gap-10 justify-center w-full items-end bottom-10 flex-0'>
             {menu.map(el => (
                 <MenuBotton key={el.id} to={el.to} icon={el.icon} title={el.title} active={pathname == el.to} />))}
         </footer>

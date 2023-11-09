@@ -8,18 +8,21 @@ export default function ModalAddArea({
   open,
   setIsLocationModal,
   setIsOpenAddArea,
+  setIsOpenLocation
+
 }) {
   const {
     onChangeAddArea,
     handleOnChangeAddArea,
     setOnChangeAddArea,
-    addWorkArea,getWorkArea
+    addWorkArea, getWorkArea
   } = useMap();
   return (
     <>
       {open && (
         <div className="flex justify-center items-center">
-          <form className="flex flex-col gap-8  top-0 left-0 right-0 w-full rounded-3xl h-[320px] justify-center items-center bg-Primary-lightest ">
+          <form className="flex flex-col gap-8  top-0 left-0 right-0 w-full rounded-3xl h-[360px] justify-center items-center bg-Primary-lightest ">
+            <p className=" text-[20px] font-semibold text-Primary-darker">Choose area in map</p>
             <div className="flex flex-col items-end gap-4 ">
               <InputAddPinLocationForm
                 value={onChangeAddArea.area_name}
@@ -72,11 +75,11 @@ export default function ModalAddArea({
               <PurpleButton
                 onClick={(event) => {
                   event.preventDefault();
-                  if(onChangeAddArea.area_name===""){
-                    return createErrorSweetAlert("Name","Please fill in Name")
+                  if (onChangeAddArea.area_name === "") {
+                    return createErrorSweetAlert("Name", "Please fill in Name")
                   }
 
-                  if(onChangeAddArea.latitude===""&&onChangeAddArea.longitude===""){
+                  if (onChangeAddArea.latitude === "" && onChangeAddArea.longitude === "") {
                     return createErrorSweetAlert("Please select Area in Map")
                   }
 
@@ -93,12 +96,13 @@ export default function ModalAddArea({
                       });
                       setIsOpenAddArea(false);
                       setIsLocationModal(true);
+                      setIsOpenLocation(true)
                     })
                     .catch((error) => {
                       console.log(error);
                     });
 
-                 
+
                 }}
                 title="Confirm"
               />

@@ -5,6 +5,7 @@ import PurpleButton from "../feature/payment/PurpleButton";
 import Loading from "../utils/Loading";
 
 export default function ModalEditPinLocation({
+  setIsOpenLocation,
   setIsLocationModal,
   setIsOpenEditLocation,
   open,
@@ -17,7 +18,7 @@ export default function ModalEditPinLocation({
     editStationName,
   } = useMap();
 
- const{isLoading,setIsLoading}= useAuth()
+  const { isLoading, setIsLoading } = useAuth()
 
   if (isLoading) {
     return <Loading isLoading={isLoading} />;
@@ -84,14 +85,14 @@ export default function ModalEditPinLocation({
             <PurpleButton
               onClick={(event) => {
                 event.preventDefault();
-                
-                
-                
+
+
+
                 editStationName(onChangeEditLocation)
                 setIsLocationModal(true);
                 setIsOpenEditLocation(false);
                 setEditLocation();
-                
+                setIsOpenLocation(true)
               }}
               title="Confirm edit"
             />
