@@ -10,7 +10,7 @@ export default function ModalLocationList({
   setIsOpenOn,
   setIsOpenLocation
 }) {
-  const { subArea ,getCircle} = useMap();
+  const { subArea, getCircle } = useMap();
   console.log(getCircle)
 
   return (
@@ -27,12 +27,12 @@ export default function ModalLocationList({
               search
             </span>
           </div>
-          <div className="flex flex-col w-full h-[50vh] overflow-auto">
+          <div className="flex flex-col w-full h-[40vh] overflow-auto">
             {
-getCircle&& getCircle.area.map((workarea)=>(
-  <Dropdown key={workarea.id} workarea={workarea} setIsOpenLocation={setIsOpenLocation} setIsLocationModal={setIsLocationModal} setIsOpenEditLocation={setIsOpenEditLocation} isOpenOn={isOpenOn} setIsOpenOn={setIsOpenOn} subArea={subArea} />
+              getCircle && getCircle.area.map((workarea) => (
+                <Dropdown key={workarea.id} workarea={workarea} setIsOpenLocation={setIsOpenLocation} setIsLocationModal={setIsLocationModal} setIsOpenEditLocation={setIsOpenEditLocation} isOpenOn={isOpenOn} setIsOpenOn={setIsOpenOn} subArea={subArea} />
 
-))
+              ))
             }
           </div>
         </div>
