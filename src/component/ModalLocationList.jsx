@@ -20,7 +20,7 @@ export default function ModalLocationList({
           <div className="flex sticky top-0 left-0 right-0 gap-2 w-full rounded-3xl h-[120px] justify-center items-center bg-Primary-lightest ">
             <input
               type="text"
-              className="bg-MonoColor-50 rounded-3xl w-[320px] h-[36px]  outline-non p-4"
+              className="bg-MonoColor-50 rounded-3xl w-[320px] h-[36pxoutline-non p-4"
               placeholder="search"
             />
             <span className="material-symbols-outlined text-MonoColor-50">
