@@ -53,7 +53,7 @@ export default function TopUpToAmoutPage() {
                 <MoneyButton setNavPoint={setNavPoint} setPrice={setPrice} navPoint={navPoint} />
             </div>
             <div className="pt-10">
-                <PurpleButton title="Next" />
+                <PurpleButton type="submit" title="Next" />
             </div>
         </form>
     );
