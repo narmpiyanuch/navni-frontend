@@ -38,7 +38,7 @@ export default function ModalLocationList({
               value={isSearch.search}
               name="search"
               type="text"
-              className="bg-MonoColor-50 rounded-3xl w-[320px] h-[36px]  outline-non p-4"
+              className="bg-MonoColor-50 rounded-3xl w-[320px] h-[36pxoutline-non p-4"
               placeholder="search"
             />
             <span className="material-symbols-outlined text-MonoColor-50">
@@ -48,30 +48,30 @@ export default function ModalLocationList({
           <div className="flex flex-col w-full h-[50vh] overflow-auto">
             {isSearch.search.length !== 0
               ? searchStation &&
-                searchStation.map((data, index) => (
-                  <LocationPin
-                    key={index}
-                    dataLocation={data}
-                    setIsLocationModal={setIsLocationModal}
-                    isOpenOn={isOpenOn}
-                    setIsOpenOn={setIsOpenOn}
-                    setIsOpenEditLocation={setIsOpenEditLocation}
-                    setIsOpenLocation={setIsOpenLocation}
-                  />
-                ))
+              searchStation.map((data, index) => (
+                <LocationPin
+                  key={index}
+                  dataLocation={data}
+                  setIsLocationModal={setIsLocationModal}
+                  isOpenOn={isOpenOn}
+                  setIsOpenOn={setIsOpenOn}
+                  setIsOpenEditLocation={setIsOpenEditLocation}
+                  setIsOpenLocation={setIsOpenLocation}
+                />
+              ))
               : getCircle &&
-                getCircle.area.map((workarea) => (
-                  <Dropdown
-                    key={workarea.id}
-                    workarea={workarea}
-                    setIsOpenLocation={setIsOpenLocation}
-                    setIsLocationModal={setIsLocationModal}
-                    setIsOpenEditLocation={setIsOpenEditLocation}
-                    isOpenOn={isOpenOn}
-                    setIsOpenOn={setIsOpenOn}
-                    subArea={subArea}
-                  />
-                ))}
+              getCircle.area.map((workarea) => (
+                <Dropdown
+                  key={workarea.id}
+                  workarea={workarea}
+                  setIsOpenLocation={setIsOpenLocation}
+                  setIsLocationModal={setIsLocationModal}
+                  setIsOpenEditLocation={setIsOpenEditLocation}
+                  isOpenOn={isOpenOn}
+                  setIsOpenOn={setIsOpenOn}
+                  subArea={subArea}
+                />
+              ))}
           </div>
         </div>
       )}

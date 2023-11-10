@@ -27,8 +27,8 @@ export default function ModalSearchPinTo({ open, onClose }) {
     setSelectAreaFromTo,
     drop
   } = useMap();
-  const openArea = subArea?.filter((area)=>area.status===true&&area.workArea.status===true)
- 
+  const openArea = subArea?.filter((area) => area.status === true && area.workArea.status === true)
+
 
   return (
     <>
@@ -65,15 +65,14 @@ export default function ModalSearchPinTo({ open, onClose }) {
                     <hr className="border-2 border-Primary-light w-[240px]" />
                     <div
                       placeholder="To"
-                      className={`outline-none text-[18px] w-full overflow-hidden text-ellipsis whitespace-nowrap  font-semibold bg-transparent pl-4  ${
-                        selectAreaTo || areaFromByTo
+                      className={`outline-none text-[18px] w-full overflow-hidden text-ellipsis whitespace-nowrap  font-semibold bg-transparent pl-4  ${selectAreaTo || areaFromByTo
                           ? "text-MonoColor-700"
                           : "text-MonoColor-400"
-                      }  `}
+                        }  `}
                     >
-                       {drop?drop.stationName
+                      {drop ? drop.stationName
                         : "To"}
-                     
+
                     </div>
                   </div>
                 </div>
@@ -93,7 +92,7 @@ export default function ModalSearchPinTo({ open, onClose }) {
                             setSelectAreaFromTo(el);
                             setAreaFromByTo();
                             setDrop(el)
-                            
+
                           }}
                           className="flex items-end gap-2"
                         >
@@ -111,32 +110,32 @@ export default function ModalSearchPinTo({ open, onClose }) {
                   {subAreaTo
                     ? null
                     : openArea?.map((el) => (
-                        <div
-                          key={el.id}
-                          className="flex justify-between px-4 py-2 items-center"
+                      <div
+                        key={el.id}
+                        className="flex justify-between px-4 py-2 items-center"
+                      >
+                        <button
+                          onClick={() => {
+                            setAreaFromByTo(el);
+                            setDrop(el)
+                          }}
+                          className="flex items-end gap-2"
                         >
-                          <button
-                            onClick={() => {
-                              setAreaFromByTo(el);
-                              setDrop(el)
-                            }}
-                            className="flex items-end gap-2"
-                          >
-                            <img
-                              src={purplePin}
-                              alt="pin"
-                              className="w-[32px]"
-                            />
-                            <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
-                              {el.stationName}
-                            </p>
-                          </button>
-                          <p className="text-[16px] text-MonoColor-400">
-                            {" "}
-                            {el?.distance}
+                          <img
+                            src={purplePin}
+                            alt="pin"
+                            className="w-[32px]"
+                          />
+                          <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
+                            {el.stationName}
                           </p>
-                        </div>
-                      ))}
+                        </button>
+                        <p className="text-[16px] text-MonoColor-400">
+                          {" "}
+                          {el?.distance}
+                        </p>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
