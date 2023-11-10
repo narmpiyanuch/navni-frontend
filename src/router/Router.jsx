@@ -26,6 +26,7 @@ import { Navigate } from "react-router-dom";
 import ChatAdminPage from "../pages/adminPage/ChatAdminPage";
 import AllDriverPage from "../pages/adminPage/AllDriverPage";
 import LocationPage from "../pages/adminPage/LocationPage";
+import AllDriverPendingPage from "../pages/adminPage/AllDriverPendingPage";
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,7 @@ const router = createBrowserRouter([
       { path: "/chatadmin", element: <ChatAdminPage /> },
       { path: "/alldriver", element: <AllDriverPage /> },
       { path: "/location", element: <LocationPage /> },
+      { path: "/alldriverpendingpage", element: <AllDriverPendingPage /> },
     ],
   },
 ]);
