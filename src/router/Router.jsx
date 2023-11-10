@@ -27,6 +27,7 @@ import ChatAdminPage from "../pages/adminPage/ChatAdminPage";
 import AllDriverPage from "../pages/adminPage/AllDriverPage";
 import LocationPage from "../pages/adminPage/LocationPage";
 import ChatRoom from "../feature/auth/ChatRoom";
+import AllDriverPendingPage from "../pages/adminPage/AllDriverPendingPage";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,7 @@ const router = createBrowserRouter([
       { path: "/alldriver", element: <AllDriverPage /> },
       { path: "/location", element: <LocationPage /> },
       { path: "/chatroom", element: <ChatRoom /> },
+      { path: "/alldriverpendingpage", element: <AllDriverPendingPage /> },
     ],
   },
 ]);

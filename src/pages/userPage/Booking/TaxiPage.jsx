@@ -46,8 +46,8 @@ export default function TaxiPage() {
       <div className="fixed top-[60%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen  mt-8">
         <div className="flex items-center justify-center h-[140px] bg-MonoColor-50 drop-shadow-md  gap-2">
           <button
-            onClick={() => setIsOpenPin(true)}
-            className="flex flex-col relative pr-8"
+            onClick={() => {}}
+            className="flex flex-col relative pr-8 cursor-default"
           >
             <div className="absolute outline-none top-[-32px] left-[10px] w-[20px] h-[20px] border-4 border-Primary-dark bg-MonoColor-50 rounded-full z-10"></div>
             <hr className="absolute border-2 border-Primary-dark w-[40px] rotate-90" />
@@ -56,7 +56,7 @@ export default function TaxiPage() {
           <div className="flex flex-col items-start justify-center bg-Primary-lightest w-[240px] h-[100px] rounded-3xl gap-2">
             <button
               onClick={() => setIsOpen(true)}
-              className={`text-[18px] flex w-full font-semibold ${
+              className={`  text-[18px] flex flex-col overflow-hidden text-ellipsis whitespace-nowrap  w-full font-semibold ${
                 selectArea ? "text-MonoColor-700" : "text-MonoColor-400"
               }  bg-transparent pl-4 `}
             >
@@ -65,9 +65,9 @@ export default function TaxiPage() {
             <hr className="border-2 border-Primary-light w-[240px]" />
             <button
               onClick={() => setIsOpenTo(true)}
-              className={`text-[18px] flex w-full font-semibold ${
+              className={`text-[18px] flex  font-semibold overflow-hidden text-ellipsis whitespace-nowrap  w-full  ${
                 drop ? "text-MonoColor-700" : "text-MonoColor-400"
-              }  bg-transparent pl-4`}
+              }  bg-transparent pl-4 `}
             >
               {drop ? drop.stationName : "To"}
             </button>

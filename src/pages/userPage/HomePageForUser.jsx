@@ -3,8 +3,8 @@ import { useEffect } from "react";
 import { useAuth } from "../../feature/hook/use-auth";
 import ModalEditProfile from "../../component/ModalEditProfile";
 import useMap from "../../feature/hook/use-map";
-import UserProfile from "./HomePage/UserProfile";
-import UserReservations from "./HomePage/UserReservations";
+import UserProfile from "./HomePageComponent/UserProfile";
+import UserReservations from "./HomePageComponent/UserReservations";
 import axios from "../../config/axios";
 
 export default function HomePageForUser() {
@@ -42,7 +42,7 @@ export default function HomePageForUser() {
     setAreaFromByTo();
     setDrop();
     setPickup();
-    // fetchProfile();
+    fetchProfile();
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);
