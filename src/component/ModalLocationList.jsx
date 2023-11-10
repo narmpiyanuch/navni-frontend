@@ -27,7 +27,7 @@ export default function ModalLocationList({
               search
             </span>
           </div>
-          <div className="flex flex-col w-full h-[40vh] overflow-auto">
+          <div className="flex flex-col w-full max-h-[48vh] overflow-auto">
             {
               getCircle && getCircle.area.map((workarea) => (
                 <Dropdown key={workarea.id} workarea={workarea} setIsOpenLocation={setIsOpenLocation} setIsLocationModal={setIsLocationModal} setIsOpenEditLocation={setIsOpenEditLocation} isOpenOn={isOpenOn} setIsOpenOn={setIsOpenOn} subArea={subArea} />
