@@ -7,7 +7,7 @@ export default function HeaderDriver() {
     <div className="flex fixed top-0 flex-col items-center justify-start bg-Primary-main w-screen h-[180px] rounded-[0px_0px_40px_40px]">
       <div className=" flex flex-col pt-10 items-start w-full ">
         <span className="material-symbols-outlined text-Primary-dark  font-bold text-[32px] active:text-MonoColor-300 pl-4">
-          <Link to="/mywallet">navigate_before</Link>
+          <Link to="/homedriver">navigate_before</Link>
         </span>
       </div>
       <div className="flex fixed gap-4 top-[10%] items-center">
