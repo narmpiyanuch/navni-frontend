@@ -42,7 +42,7 @@ export default function HomePageForUser() {
     setAreaFromByTo();
     setDrop();
     setPickup();
-    fetchProfile();
+    // fetchProfile();
   }, []);
 
   const [isOpen, setIsOpen] = useState(false);

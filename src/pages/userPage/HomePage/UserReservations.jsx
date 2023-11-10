@@ -3,8 +3,14 @@ import tuktuk from "../../../assets/tuktuk.png";
 import calendar from "../../../assets/calendar.png";
 import information from "../../../assets/support.png";
 import messageChat from "../../../assets/chat.png";
+import socket from "../../../config/socket";
+// import { useAuth } from "../../../feature/hook/use-auth";
 
 export default function UserReservations() {
+  // const { authUser } = useAuth();
+  const join = () => {
+    // socket.emit("join_room");
+  };
   return (
     <div className="fixed top-[42%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen rounded-[40px_40px_0px_0px] mt-[60px]">
       <div className="flex items-center justify-center pt-4">
@@ -46,9 +52,11 @@ export default function UserReservations() {
           <div className="flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute left-0 border-4  border-Secondary-main">
             <img src={messageChat} alt="tuktuk" className="w-[40px]" />
           </div>
-          <p className="text-MonoColor-50 text-[20px] font-semibold">
-            Live Chat
-          </p>
+          <Link to="/chatroom" onClick={join}>
+            <p className="text-MonoColor-50 text-[20px] font-semibold">
+              Live Chat
+            </p>
+          </Link>
         </div>
       </div>
     </div>
