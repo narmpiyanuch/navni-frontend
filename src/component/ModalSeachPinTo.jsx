@@ -27,7 +27,7 @@ export default function ModalSearchPinTo({ open, onClose }) {
     setSelectAreaFromTo,
     drop
   } = useMap();
-
+  const openArea = subArea?.filter((area)=>area.status===true&&area.workArea.status===true)
  
 
   return (
@@ -110,7 +110,7 @@ export default function ModalSearchPinTo({ open, onClose }) {
                     ))}
                   {subAreaTo
                     ? null
-                    : subArea?.map((el) => (
+                    : openArea?.map((el) => (
                         <div
                           key={el.id}
                           className="flex justify-between px-4 py-2 items-center"
