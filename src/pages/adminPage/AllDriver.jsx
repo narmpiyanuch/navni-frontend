@@ -3,22 +3,22 @@ import ButtonAllDriverAmin from "../../feature/auth/ButtonAllDriverAmin";
 import axios from "../../config/axios";
 
 
-export default function AllDriver({ firstName, lastName, idcard, gender, tel, email, platenumber,id,getAllDriver,status,image }) { 
-  
- const [isActive, setIsActive] = useState(null);
- 
- 
- const [input,setInput] =useState({
-    id,
-    status
- })
+export default function AllDriver({ firstName, lastName, idcard, gender, tel, email, platenumber, id, getAllDriver, status, image }) {
 
-    const handdleChangeStatus = async(e) =>{
+    const [isActive, setIsActive] = useState(null);
+
+
+    const [input, setInput] = useState({
+        id,
+        status
+    })
+
+    const handdleChangeStatus = async (e) => {
         try {
             e.preventDefault()
-            await axios.post("/admin/change-status",input)
+            await axios.post("/admin/change-status", input)
             getAllDriver()
-            
+
         } catch (error) {
             console.log(error)
         }
@@ -28,10 +28,10 @@ export default function AllDriver({ firstName, lastName, idcard, gender, tel, em
 
     return (
         <div  >
-        <br />
-            <div className="flex py-10 gap-4 w-[600px] border border-Primary-dark rounded-3xl justify-center items-center relative" >
+            <br />
+            <div className="flex py-10 gap-4 w- border px-10 border-Primary-dark rounded-3xl justify-center items-center relative" >
 
-                    {image?<img src={image} className="aspect-square rounded-full object-cover w-[100px]" />:<img src="./src/assets/user2.png" className="w-20 h-20" />}
+                {image ? <img src={image} className="aspect-square rounded-full object-cover w-[100px]" /> : <img src="./src/assets/user2.png" className="w-20 h-20" />}
 
                 <div className="flex flex-col-2 gap-6 pb-2">
                     <div>
@@ -75,9 +75,9 @@ export default function AllDriver({ firstName, lastName, idcard, gender, tel, em
                 </div>
 
                 <form className="absolute bottom-4 right-10"
-                onSubmit={handdleChangeStatus}
+                    onSubmit={handdleChangeStatus}
                 >
-                    <ButtonAllDriverAmin isActive={isActive} setIsActive={setIsActive} status={status} setInput={setInput} setStatusTrue={()=>setInput.status(true) }setStatusFalse={()=>setInput.status(false)}/>
+                    <ButtonAllDriverAmin isActive={isActive} setIsActive={setIsActive} status={status} setInput={setInput} setStatusTrue={() => setInput.status(true)} setStatusFalse={() => setInput.status(false)} />
                 </form>
 
             </div>
