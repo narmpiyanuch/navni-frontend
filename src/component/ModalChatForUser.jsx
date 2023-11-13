@@ -95,7 +95,7 @@ export default function ModalChatForUser({ open, onClose }) {
                     <div className="relative flex justify-center items-end min-h-full ">
                         <div className="relative flex-shrink items-center justify-start min-h-[20vh] max-h-[64vh] w-[88%] rounded-t-3xl  bg-MonoColor-200  rounded-[20px_20px_0px_0px] overflow-auto transit ">
                             <div className="flex sticky top-0 left-0 right-0 bg-Secondary-dark h-[60px] justify-between px-4 items-center gap-4 rounded-t-3xl">
-                                <p className="text-[14px] text-MonoColor-50 ">
+                                <p className="text-[16px] font-semiblod text-MonoColor-50 ">
                                     Live chat
                                 </p>
                                 <span
