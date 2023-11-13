@@ -112,22 +112,27 @@ export default function ChatAdminPage() {
                 ))}
               </div>
               <form
-                className="flex items-center w-full h-[40px] border-4 border-Primary-light rounded-2xl "
+                className="flex w-full px-4"
                 onSubmit={handleSubmitForm}
+
               >
-                <input
-                  type="text"
-                  value={currentMessage}
-                  className="outline-none w-full rounded-2xl bg-MonoColor-50 px-4"
-                  placeholder="Type a message here..."
-                  onChange={(e) => setCurrentMessage(e.target.value)}
-                />
-                <button
-                  type="submit"
-                  className="material-symbols-outlined text-Primary-light"
+                <div
+                  className="flex items-center w-full h-[40px] border-4 border-Primary-light p-2 rounded-2xl "
                 >
-                  send
-                </button>
+                  <input
+                    type="text"
+                    value={currentMessage}
+                    className="outline-none w-full rounded-2xl bg-MonoColor-50 px-4"
+                    placeholder="Type a message here..."
+                    onChange={(e) => setCurrentMessage(e.target.value)}
+                  />
+                  <button
+                    type="submit"
+                    className="material-symbols-outlined text-Primary-light"
+                  >
+                    send
+                  </button>
+                </div>
               </form>
             </div>
           </div>
