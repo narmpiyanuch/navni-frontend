@@ -7,6 +7,7 @@ import MapContextProvider from "./context/MapContext.jsx";
 import WalletContextProvider from "./context/walletContext.jsx";
 import BookingContextProvider from "./context/BookingContext.jsx";
 import AdminContextProvider from "./context/AdminContext.jsx";
+import DriverContextProvider from "./context/DriverContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
@@ -14,11 +15,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <AuthContextProvider>
       <MapContextProvider>
         <AdminContextProvider>
-          <WalletContextProvider>
-            <BookingContextProvider>
-              <App />
-            </BookingContextProvider>
-          </WalletContextProvider>
+          <DriverContextProvider>
+            <WalletContextProvider>
+              <BookingContextProvider>
+                <App />
+              </BookingContextProvider>
+            </WalletContextProvider>
+          </DriverContextProvider>
         </AdminContextProvider>
       </MapContextProvider>
     </AuthContextProvider>
