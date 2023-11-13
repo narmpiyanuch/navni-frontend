@@ -42,6 +42,7 @@ export default function ModalSearchPin({ open, onClose }) {
     }
   }, [selectArea]);
 
+  const openArea = subArea?.filter((area)=>area.status===true&&area.workArea.status===true)
   // useEffect(() => {
   //   setSelectArea();
   //   setSubAreaTo();
@@ -75,7 +76,7 @@ export default function ModalSearchPin({ open, onClose }) {
                   <div className="flex flex-col items-start justify-center bg-Primary-lightest w-[240px] h-[100px] rounded-3xl gap-2">
                     <div
                       placeholder="From"
-                      className={`outline-none text-[18px] font-semibold ${
+                      className={`outline-none text-[18px] overflow-hidden text-ellipsis whitespace-nowrap w-full font-semibold ${
                         selectArea ? "text-MonoColor-700" : "text-MonoColor-400"
                       }  bg-transparent pl-4 `}
                     >
@@ -84,7 +85,7 @@ export default function ModalSearchPin({ open, onClose }) {
                     <hr className="border-2 border-Primary-light w-[240px]" />
                     <div
                       placeholder="To"
-                      className={`outline-none text-[18px] font-semibold text-MonoColor-400  bg-transparent pl-4`}
+                      className={`outline-none text-[18px] overflow-hidden text-ellipsis whitespace-nowrap w-full font-semibold text-MonoColor-400  bg-transparent pl-4`}
                     >
                       {selectAreaTo
                         ? selectAreaTo.stationName
@@ -127,7 +128,7 @@ export default function ModalSearchPin({ open, onClose }) {
                         </p>
                       </div>
                     ))
-                    : subArea?.map((el) => (
+                    :openArea && openArea?.map((el) => (
                       <div
                         key={el.id}
                         className="flex justify-between px-4 py-2 items-center"

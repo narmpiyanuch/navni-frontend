@@ -4,10 +4,10 @@ import { useEffect } from "react";
 import { useAuth } from "../../feature/hook/use-auth";
 import ModalEditProfile from "../../component/ModalEditProfile";
 import useMap from "../../feature/hook/use-map";
-import UserProfile from "./HomePage/UserProfile";
-import UserReservations from "./HomePage/UserReservations";
+import UserProfile from "./HomePageComponent/UserProfile";
+import UserReservations from "./HomePageComponent/UserReservations";
 import axios from "../../config/axios";
-import socket from "../../config/socket";
+// import socket from "../../config/socket";
 
 export default function HomePageForUser() {
     const [profile, setProfile] = useState();
@@ -66,7 +66,6 @@ export default function HomePageForUser() {
             <ModalEditProfile
                 open={isOpen}
                 onClose={() => setIsOpen(false)}
-                setIsOpen={setIsOpen}
                 profile={profile}
                 setProfile={setProfile}
             />

@@ -16,6 +16,8 @@ export default function MyWalletPage() {
     }
   };
 
+  console.log(history)
+
   useEffect(() => {
     fetchHistory();
   }, []);
@@ -40,7 +42,7 @@ export default function MyWalletPage() {
 
         <Link to="/topup">
           <WalletButton key={history?.id}>
-            {history ? `${history?.amount} NP` : ` 0 NP`}
+            {history ? `${history.amount} NP` : ` 0 NP`}
           </WalletButton>
         </Link>
 

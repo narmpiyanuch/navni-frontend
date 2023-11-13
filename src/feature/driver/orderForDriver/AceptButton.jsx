@@ -30,7 +30,12 @@ export default function AceptButton({ setIsAccept, onClose, setIsOpen }) {
             <p className="text-[20px] font-semibold">
                 <Countdown date={Date.now() + 45000} renderer={renderer} />
             </p>
-            <p className="text-[16px] font-medium">Accept</p>
+            <div className="flex justify-center items-center">
+                <span className="material-symbols-outlined">man</span>
+                <p className="text-[18px] w- font-semibold text-MonoColor-50">
+                    x 1
+                </p>
+            </div>
         </button>
     );
 }

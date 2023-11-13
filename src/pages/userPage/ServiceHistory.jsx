@@ -22,7 +22,7 @@ export default function ServiceHistory() {
 
     return (
         <div>
-            <div className=" flex flex-col items-center justify-start gap-2 h-screen">
+            <div className=" flex flex-col items-center justify-start h-screen w-screen gap-2">
                 <div className="flex flex-col w-full sticky top-0 left-0 right-0 bg-MonoColor-100">
                     <div className=" flex flex-col pt-10 items-start w-full">
                         <Link to="/home">
@@ -31,14 +31,16 @@ export default function ServiceHistory() {
                             </span>
                         </Link>
                     </div>
-                    <div className="flex items-center justify-center">
+                    <div className="flex items-center justify-center pb-4 border-b-2 border-MonoColor-300">
                         <p className="text-Primary-dark text-[24px] font-normal">
                             History
                         </p>
                     </div>
                 </div>
-                <hr className="border border-MonoColor-300 w-full mt-4" />
-                <HistoryForm key={services?.id} services={services} />
+                {/* <hr className="border border-MonoColor-300 w-full" /> */}
+                <div className="overflow-auto">
+                    <HistoryForm key={services?.id} services={services} />
+                </div>
             </div>
         </div>
     );
