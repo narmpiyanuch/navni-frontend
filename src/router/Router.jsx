@@ -28,61 +28,64 @@ import AllDriverPage from "../pages/adminPage/AllDriverPage";
 import LocationPage from "../pages/adminPage/LocationPage";
 
 const router = createBrowserRouter([
-  {
-    path: "login",
-    element: (
-      <RedirectIfAuthenticated>
-        <LoginPage />
-      </RedirectIfAuthenticated>
-    ),
-  },
-  {
-    path: "/register",
-    element: (
-      <RedirectIfAuthenticated>
-        <Outlet />
-      </RedirectIfAuthenticated>
-    ),
-    children: [
-      { path: "registerUser", element: <RegisterPageForUser /> },
-      { path: "registerdriver", element: <RegisterDriverPage /> },
-    ],
-  },
+    {
+        path: "login",
+        element: (
+            <RedirectIfAuthenticated>
+                <LoginPage />
+            </RedirectIfAuthenticated>
+        ),
+    },
+    {
+        path: "/register",
+        element: (
+            <RedirectIfAuthenticated>
+                <Outlet />
+            </RedirectIfAuthenticated>
+        ),
+        children: [
+            { path: "registerUser", element: <RegisterPageForUser /> },
+            { path: "registerdriver", element: <RegisterDriverPage /> },
+        ],
+    },
 
-  {
-    path: "/",
-    element: (
-      <RedirectIfNotAuthenticated>
-        <Outlet />
-      </RedirectIfNotAuthenticated>
-    ),
+    {
+        path: "/",
+        element: (
+            <RedirectIfNotAuthenticated>
+                <Outlet />
+            </RedirectIfNotAuthenticated>
+        ),
 
-    children: [
-      { path: "/", element: <Navigate replace to="/home" /> },
-      { path: "/home", element: <HomePageForUser /> },
-      { path: "/topup", element: <TopUpToAmoutPage /> },
-      { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
-      { path: "/qrcode", element: <QRcodePaymentPage /> },
-      { path: "/mywallet", element: <MyWalletPage /> },
-      { path: "/successtopup", element: <TopUpSuccess /> },
-      { path: "/failtopup", element: <TopUpFail /> },
-      { path: "/taxi", element: <TaxiPage /> },
-      { path: "/numberpeople", element: <ChooseNemberPeoplePage /> },
-      { path: "/waitingtaxi", element: <WaitingTaxiPage /> },
-      { path: "/serviceend", element: <ServiceSuccesPage /> },
-      { path: "/servicehistory", element: <ServiceHistory /> },
-      { path: "/information", element: <InformationPage /> },
-      { path: "/registerdriver", element: <RegisterDriverPage /> },
-      { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
-      { path: "/homedriver", element: <HomeDriver /> },
-      { path: "/startdrive", element: <StartDriverPage /> },
-      { path: "/chatadmin", element: <ChatAdminPage /> },
-      { path: "/alldriver", element: <AllDriverPage /> },
-      { path: "/location", element: <LocationPage /> },
-    ],
-  },
+        children: [
+            { path: "/", element: <Navigate replace to="/home" /> },
+            { path: "/home", element: <HomePageForUser /> },
+            { path: "/topup", element: <TopUpToAmoutPage /> },
+            { path: "/topupmywallet", element: <TopUpToMyWalletPage /> },
+            { path: "/qrcode", element: <QRcodePaymentPage /> },
+            { path: "/mywallet", element: <MyWalletPage /> },
+            { path: "/successtopup", element: <TopUpSuccess /> },
+            { path: "/failtopup", element: <TopUpFail /> },
+            { path: "/taxi", element: <TaxiPage /> },
+            { path: "/numberpeople", element: <ChooseNemberPeoplePage /> },
+            { path: "/waitingtaxi", element: <WaitingTaxiPage /> },
+            { path: "/serviceend", element: <ServiceSuccesPage /> },
+            { path: "/servicehistory", element: <ServiceHistory /> },
+            { path: "/information", element: <InformationPage /> },
+            { path: "/registerdriver", element: <RegisterDriverPage /> },
+            { path: "/homedriver", element: <HomeDriver /> },
+            {
+                path: "/servicehistorydriver",
+                element: <ServiceHistoryDriver />,
+            },
+            { path: "/startdrive", element: <StartDriverPage /> },
+            { path: "/chatadmin", element: <ChatAdminPage /> },
+            { path: "/alldriver", element: <AllDriverPage /> },
+            { path: "/location", element: <LocationPage /> },
+        ],
+    },
 ]);
 
 export default function Router() {
-  return <RouterProvider router={router} />;
+    return <RouterProvider router={router} />;
 }

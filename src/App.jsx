@@ -5,10 +5,14 @@ import socket from "./config/socket";
 import { useEffect } from "react";
 
 function App() {
-    const { isLoading } = useAuth();
+    const { isLoading, authUser } = useAuth();
     useEffect(() => {
-        socket.connect();
-    }, []);
+        if (authUser) {
+            socket.auth = { user: authUser };
+            socket.connect();
+            socket.emit("join_driverRoom");
+        }
+    }, [authUser]);
 
     if (isLoading) {
         return <Loading isLoading={isLoading} />;

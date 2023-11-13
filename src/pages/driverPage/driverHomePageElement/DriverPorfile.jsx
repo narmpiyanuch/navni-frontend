@@ -1,12 +1,14 @@
-import user from "../../assets/user.png";
-import LogoNavigate from "../../component/LogoNavigate";
+import user from "../../../assets/user.png";
+import { useAuth } from "../../../feature/hook/use-auth";
 
-export default function HeaderDriver() {
+export default function DriverPorfile() {
+    const { logout } = useAuth();
+
+    const handleLogOut = () => {
+        logout();
+    };
     return (
         <div className="flex fixed top-0 flex-col items-center justify-start bg-Primary-main w-screen h-[180px] rounded-[0px_0px_40px_40px]">
-            <div className="pt-2">
-                <LogoNavigate to="/homedriver" />
-            </div>
             <div className="flex fixed gap-4 top-[10%] items-center">
                 <img
                     src={user}
@@ -28,6 +30,12 @@ export default function HeaderDriver() {
                                 asdfh@gmail.com
                             </p>
                         </div>
+                        <span
+                            className="material-symbols-outlined text-MonoColor-50 font-thin text-[16px] pt-2"
+                            onClick={handleLogOut}
+                        >
+                            logout
+                        </span>
                     </div>
                 </div>
             </div>

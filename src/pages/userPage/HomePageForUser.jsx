@@ -66,6 +66,7 @@ export default function HomePageForUser() {
             <ModalEditProfile
                 open={isOpen}
                 onClose={() => setIsOpen(false)}
+                setIsOpen={setIsOpen}
                 profile={profile}
                 setProfile={setProfile}
             />
