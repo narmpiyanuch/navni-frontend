@@ -54,7 +54,7 @@ export default function LocationPage() {
                 setIsOpenAddArea={setIsOpenAddArea}
                 isOpenAddArea={isOpenAddArea}
             />
-            <div className='flex mx-auto w-screen h-[68vh] justify-center items-center pt-10 ' >
+            <div className='flex flex-col mx-auto w-screen justify-center items-center pt-10 flex-1 pb-[160px]'>
                 <div className='grid grid-cols-2 h-full w-[1200px] gap-4'>
                     <div className='bg-red-300 h-[100%] overflow-hidden rounded-3xl drop-shadow-2xl'>
                         <MapAdmin isOpenAddLocation={isOpenAddLocation} isOpenAddArea={isOpenAddArea} />
@@ -85,14 +85,9 @@ export default function LocationPage() {
                         setIsOpenAddArea={setIsOpenAddArea}
                         setIsOpenLocation={setIsOpenLocation}
                     />
-                    {/* <div className=' bg-MonoColor-100 '>
-                        x
-                    </div> */}
+
                 </div>
             </div>
-            {/* <div className=''>
-                x
-            </div> */}
             <FooterAdminPage />
         </div >
     )

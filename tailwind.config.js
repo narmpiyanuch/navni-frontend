@@ -24,6 +24,7 @@ export default {
           pressed: "#9D060F",
         },
         OtherColor: {
+          darkYellow: '#f7b801',
           yellow: "#FDC503",
           darkGreen: "#4BA080",
           lightGreen: "#41CD98",
