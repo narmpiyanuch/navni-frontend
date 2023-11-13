@@ -89,6 +89,7 @@ export default function ChatAdminPage() {
                   <>
                     {message.sender.id === authUser.id ? (
                       <div className="flex flex-col items-end">
+
                         <div
                           key={message.id}
                           className={`rounded-xl rounded-tr-sm p-3 shadow-md mb-3 bg-Primary-darker text-MonoColor-50 max-w-[48%] overflow-wrap whitespace-normal `}
