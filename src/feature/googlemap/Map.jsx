@@ -23,7 +23,6 @@ export default function Map() {
   }, []);
 
   const openArea = subArea?.filter((area)=>area.status===true&&area.workArea.status===true)
-  console.log(openArea)
   if (!isLoaded) {
     return <div>Loading....</div>;
   }

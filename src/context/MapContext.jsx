@@ -179,14 +179,14 @@ export default function MapContextProvider({ children }) {
   useEffect(() => {
     if (drop && pickup) {
       // console.log(pickup)
-      const price = axios
+       axios
         .post("/map/calculate", {
           destination: drop,
           origin: pickup,
         })
         .then((res) => {
           console.log(res.data.price);
-          setPrice(res.data.price);
+          setPrice(res.data);
         })
         .catch((error) => {
           console.log(error);
@@ -244,7 +244,8 @@ export default function MapContextProvider({ children }) {
         getCircle,
         getWorkArea,
         handleOnChangeEditLocation,
-        editStationName
+        editStationName,
+        price
       }}
     >
       {children}
