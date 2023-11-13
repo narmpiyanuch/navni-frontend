@@ -21,11 +21,12 @@ import RegisterDriverPage from "../pages/driverPage/RegisterDriverPage";
 import MyWalletPage from "../pages/userPage/MyWalletPage";
 import HomeDriver from "../pages/driverPage/HomeDriver";
 import StartDriverPage from "../pages/driverPage/StartDriverPage";
-import ServiceHistoryDriver from "../pages/driverPage/ServiceHistoryDriver";
+// import ServiceHistoryDriver from "../pages/userPage/ServiceHistoryDriver";
 import { Navigate } from "react-router-dom";
 import ChatAdminPage from "../pages/adminPage/ChatAdminPage";
 import AllDriverPage from "../pages/adminPage/AllDriverPage";
 import LocationPage from "../pages/adminPage/LocationPage";
+import ChatRoom from "../feature/auth/ChatRoom";
 import AllDriverPendingPage from "../pages/adminPage/AllDriverPendingPage";
 
 const router = createBrowserRouter([
@@ -74,12 +75,13 @@ const router = createBrowserRouter([
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
       { path: "/registerdriver", element: <RegisterDriverPage /> },
-      { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
+      // { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
       { path: "/homedriver", element: <HomeDriver /> },
       { path: "/startdrive", element: <StartDriverPage /> },
       { path: "/chatadmin", element: <ChatAdminPage /> },
       { path: "/alldriver", element: <AllDriverPage /> },
       { path: "/location", element: <LocationPage /> },
+      { path: "/chatroom", element: <ChatRoom /> },
       { path: "/alldriverpendingpage", element: <AllDriverPendingPage /> },
     ],
   },
