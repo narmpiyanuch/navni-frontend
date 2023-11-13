@@ -11,7 +11,7 @@ export default function UserChatBox({ user, onClick }) {
     >
       <div className="flex items-center justify-center gap-4">
         <img src={purplePerson} alt="personIcon" className="w-[28px]" />
-        <p className="text-[16px] text-Primary-darker pt-2">{`${user.memberInformation[0].firstName} ${user.memberInformation[0].lastName}`}</p>
+        <p className="text-[16px] text-Primary-darker pt-2">{`${user.memberInformation[0]?.firstName} ${user.memberInformation[0]?.lastName}`}</p>
       </div>
       <div className="bg-OtherColor-lightGreen rounded-full w-4 h-4 mt-2"></div>
     </button>
