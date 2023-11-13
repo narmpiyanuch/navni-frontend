@@ -8,6 +8,7 @@ import { useState } from 'react'
 import ToDestination from '../../feature/driver/ToDestination'
 import ModalDropOffFinish from '../../component/ModalDropOffFinish'
 import ModalCancelTrip from '../../component/ModalCancelTrip'
+import Map from '../../feature/googlemap/Map'
 
 
 
@@ -22,13 +23,15 @@ export default function StartDriverPage() {
 
     return (
         <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">
+            <Map/>
             <HeaderDriver />
-
             {/* <WaitingOrder /> */}
 
             {isClose && (<OrderForDriver setIsAccept={setIsAccept} onClose={() => setIsClose(false)} />)}
+            
 
             <ComingToCustomer setIsPickUp={setIsPickUp} open={isAccept} />
+            
             {/* กล่องข้างบนสามารถวนใช้ได้ */}
 
             <ModalAlreadyPickUp open={isPickUp} onCloseAll={() => {

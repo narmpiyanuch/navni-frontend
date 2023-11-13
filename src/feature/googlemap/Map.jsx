@@ -37,6 +37,8 @@ export default function Map() {
         scrollwheel: true,
         mapTypeControl: false,
         fullscreenControl: false,
+        streetViewControl: false,
+        clickableIcons: false,
       }}
     >
       {/* <MarkerF
