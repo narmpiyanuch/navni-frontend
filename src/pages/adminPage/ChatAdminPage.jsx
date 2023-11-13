@@ -80,7 +80,7 @@ export default function ChatAdminPage() {
           </div>
           <div className="col-span-2 relative h-[64vh] bg-MonoColor-50 border-4 border-Primary-dark rounded-3xl">
             <div className="flex flex-col sticky gap-2 z-10 w-full h-full justify-center items-end pb-4">
-              <div className="chat-messages bg-gradient-to-tr from-purple-400 to-white p-4 rounded-t-3xl shadow-md h-[98%] w-full overflow-auto">
+              <div className="chat-messages bg-gradient-to-t from-Primary-light to-white p-4 rounded-t-3xl shadow-md h-full w-full overflow-auto">
                 {messageList.map((message) => (
                   <>
                     {message.sender.id === authUser.id ? (
@@ -114,7 +114,6 @@ export default function ChatAdminPage() {
               <form
                 className="flex w-full px-4"
                 onSubmit={handleSubmitForm}
-
               >
                 <div
                   className="flex items-center w-full h-[40px] border-4 border-Primary-light p-2 rounded-2xl "
