@@ -4,9 +4,12 @@ import calendar from "../../../assets/calendar.png";
 import information from "../../../assets/support.png";
 import messageChat from "../../../assets/chat.png";
 import socket from "../../../config/socket";
+import { useState } from "react";
+import ModalChatForUser from "../../../component/ModalChatForUser";
 // import { useAuth } from "../../../feature/hook/use-auth";
 
 export default function UserReservations() {
+  const [isOpenChat, setIsOpenChat] = useState(false)
   // const { authUser } = useAuth();
   const join = () => {
     // socket.emit("join_room");
@@ -48,17 +51,20 @@ export default function UserReservations() {
         </button>
       </div>
       <div className="flex gap-10 items-center justify-center mt-8">
-        <div className="flex flex-col justify-center items-center relative w-[320px] h-[40px] rounded-3xl bg-Secondary-main active:bg-Secondary-dark">
+        <button
+          onClick={() => setIsOpenChat(true)}
+          className="flex flex-col justify-center items-center relative w-[320px] h-[40px] rounded-3xl bg-Secondary-main active:bg-Secondary-dark">
           <div className="flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute left-0 border-4  border-Secondary-main">
             <img src={messageChat} alt="tuktuk" className="w-[40px]" />
           </div>
-          <Link to="/chatroom" onClick={join}>
-            <p className="text-MonoColor-50 text-[20px] font-semibold">
-              Live Chat
-            </p>
-          </Link>
-        </div>
+          {/* <button onClick={join}> */}
+          <p className="text-MonoColor-50 text-[20px] font-semibold">
+            Live Chat
+          </p>
+          {/* </button> */}
+        </button>
       </div>
+      <ModalChatForUser open={isOpenChat} onClose={() => setIsOpenChat(false)} />
     </div>
   );
 }
