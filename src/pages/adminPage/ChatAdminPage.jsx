@@ -12,6 +12,9 @@ export default function ChatAdminPage() {
   const [currentMessage, setCurrentMessage] = useState("");
   const [currentChatUserId, setCurrentChatUserId] = useState(null);
   const [messageList, setMessageList] = useState([]);
+  const [selectedRole, setSelectedRole] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const { authUser } = useAuth();
   const { getAllUsers } = useAdmin();
@@ -29,6 +32,10 @@ export default function ChatAdminPage() {
 
     return () => socket.off("new_message", handleReceiveMessage);
   }, [currentChatUserId]);
+
+  useEffect(() => {
+    setMessageList([]);
+  }, [selectedRole]);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -49,6 +56,55 @@ export default function ChatAdminPage() {
     setMessageList((list) => [...list, data]);
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
+  };
+
+  const handleRoleSelection = (role) => {
+    setSelectedRole(role);
+    closeDropdown();
+  };
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  console.log(getAllUsers);
+  console.log(selectedRole);
+  const filterUsersByRoleAndSearch = () => {
+    //     if (selectedRole === null) {
+    //       return [];
+    //     }
+    //     return getAllUsers.filter((user) => user.role === selectedRole);
+    let filteredUsers = getAllUsers;
+
+    if (selectedRole !== null) {
+      filteredUsers = filteredUsers.filter(
+        (user) => user.role === selectedRole
+      );
+    }
+
+    if (searchQuery.trim() !== "") {
+      const searchLowerCase = searchQuery.toLowerCase();
+      filteredUsers = filteredUsers.filter((user) => {
+        if (
+          user.memberInformation[0]?.firstName &&
+          user.memberInformation[0]?.lastName
+        ) {
+          const fullName = `${user.memberInformation[0]?.firstName}${user.memberInformation[0]?.lastName}`;
+          return fullName.toLowerCase().includes(searchLowerCase);
+        }
+        return user.email;
+      });
+    }
+
+    return filteredUsers;
+  };
+
   return (
     <div className="flex flex-col w-screen h-screen">
       <HeaderAdminPage />
@@ -59,17 +115,67 @@ export default function ChatAdminPage() {
               <input
                 type="text"
                 className="bg-MonoColor-50 rounded-3xl w-[280px] h-[36px] outline-non p-2"
-                placeholder="search"
+                placeholder="search by name..."
+                value={searchQuery}
+                onChange={handleSearch}
               />
-              <select
-                type="text"
-                className="bg-MonoColor-50 rounded-3xl w-[280px] h-[36px] outline-none p-2"
-              >
-                <option className="text-MonoColor-400">Choose a room</option>
-              </select>
+              <div className="relative">
+                <select
+                  type="text"
+                  className="bg-MonoColor-50 rounded-3xl w-[280px] h-[36px] outline-none p-2"
+                  value={selectedRole || ""}
+                  onChange={(e) => handleRoleSelection(e.target.value || null)}
+                >
+                  <option value="" className="text-purple-400">
+                    {selectedRole ? `Room: ${selectedRole}` : "Choose a room"}
+                  </option>
+                </select>
+                <button
+                  onClick={toggleDropdown}
+                  className="absolute top-0 right-0 bg-MonoColor-50 rounded-3xl w-[36px] h-[36px] outline-none p-2 cursor-pointer"
+                >
+                  {/* {selectedRole ? (
+                    <span className="text-MonoColor-400">
+                      {selectedRole.charAt(0).toUpperCase() +
+                        selectedRole.slice(1)}
+                    </span>
+                  ) : (
+                    <span className="text-MonoColor-400">▼</span>
+                  )} */}
+                  {isDropdownOpen ? (
+                    <span className="text-MonoColor-400">▲</span>
+                  ) : (
+                    <span className="text-MonoColor-400">▼</span>
+                  )}
+                </button>
+                {isDropdownOpen && (
+                  <div className="absolute top-full left-0 right-0 bg-MonoColor-50 rounded-xl p-2">
+                    <div
+                      onClick={() => handleRoleSelection("USER")}
+                      className="cursor-pointer py-2 text-purple-500"
+                    >
+                      User :
+                    </div>
+                    <hr className="w-full" />
+                    <div
+                      onClick={() => handleRoleSelection("DRIVER")}
+                      className="cursor-pointer py-2 text-purple-500"
+                    >
+                      Driver :
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
             <div className="flex flex-col gap-4 absolute top-36 px-10 w-full items-center z-0">
-              {getAllUsers.map((user) => (
+              {/* {getAllUsers.map((user) => (
+                <UserChatBox
+                  key={user.id}
+                  user={user}
+                  onClick={(userId) => setCurrentChatUserId(userId)}
+                />
+              ))} */}
+              {filterUsersByRoleAndSearch().map((user) => (
                 <UserChatBox
                   key={user.id}
                   user={user}

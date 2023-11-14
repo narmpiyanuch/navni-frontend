@@ -52,7 +52,7 @@ export default function ChatRoom() {
   };
 
   useEffect(() => {
-    socket.emit("join_room");
+    // socket.emit("join_room");
 
     socket.on("room_id", (data) => {
       setChatroom(data.id);
