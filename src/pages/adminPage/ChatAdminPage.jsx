@@ -7,15 +7,34 @@ import { useEffect } from "react";
 import axios from "../../config/axios";
 import { useAuth } from "../../feature/hook/use-auth";
 import { useAdmin } from "../../feature/hook/use-admin";
+import { useCallback } from "react";
+import { useRef } from "react";
 
 export default function ChatAdminPage() {
   const [currentMessage, setCurrentMessage] = useState("");
   const [currentChatUserId, setCurrentChatUserId] = useState(null);
   const [messageList, setMessageList] = useState([]);
+  const scroll = useRef(null);
 
 
   const { authUser } = useAuth();
   const { getAllUsers } = useAdmin();
+
+  // useEffect(() => {
+  //   console.log("useEffect is running");
+  //   scroll.current.scrollIntoView({ behavior: "smooth" });
+  // }, [messageList]);
+
+  useEffect(() => {
+    if (scroll.current) {
+      scroll.current.scrollIntoView({ behavior: "smooth" });
+    }
+
+    return () => {
+      // Cleanup code (if needed)
+    };
+  }, [messageList]);
+
 
   useEffect(() => {
     if (currentChatUserId !== null) {
@@ -26,10 +45,13 @@ export default function ChatAdminPage() {
   }, [currentChatUserId]);
 
   useEffect(() => {
-    socket.on("new_message", handleReceiveMessage);
+    socket.on("new_message", handleReceiveMessage
+
+    );
 
     return () => socket.off("new_message", handleReceiveMessage);
   }, [currentChatUserId]);
+
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
@@ -77,6 +99,7 @@ export default function ChatAdminPage() {
                     key={user.id}
                     user={user}
                     onClick={(userId) => setCurrentChatUserId(userId)}
+
                   />
                 ))}
               </div>
@@ -84,21 +107,21 @@ export default function ChatAdminPage() {
           </div>
           <div className="col-span-2 relative h-[64vh] bg-MonoColor-50 border-4 border-Primary-dark rounded-3xl">
             <div className="flex flex-col sticky gap-2 z-10 w-full h-full justify-center items-end pb-4">
-              <div className="chat-messages bg-gradient-to-t from-Primary-light to-white p-4 rounded-t-3xl shadow-md h-full w-full overflow-auto">
+              <div
+                className="chat-messages bg-gradient-to-t from-Primary-light to-white p-4 rounded-t-3xl shadow-md h-full w-full overflow-auto">
                 {messageList.map((message) => (
-                  <>
+                  <div ref={scroll}>
                     {message.sender.id === authUser.id ? (
                       <div className="flex flex-col items-end">
-
                         <div
                           key={message.id}
                           className={`rounded-xl rounded-tr-sm p-3 shadow-md mb-3 bg-Primary-darker text-MonoColor-50 max-w-[48%] overflow-wrap whitespace-normal `}
                         >
                           <p className="break-words">{message.message}</p>
                         </div>
+
                       </div>
                     ) : (
-
                       <div className="flex items-start">
                         <div
                           key={message.id}
@@ -107,7 +130,7 @@ export default function ChatAdminPage() {
                         </div>
                       </div>
                     )}
-                  </>
+                  </div>
                   //   <div
                   //     key={message.id}
                   //     className={`message flex p-4 rounded-md shadow-md mb-3 bg-white text-purple-500 w-1/2 ${

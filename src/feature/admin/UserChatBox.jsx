@@ -1,6 +1,6 @@
 import purplePerson from "../../assets/purplePerson.png";
 
-export default function UserChatBox({ user, onClick }) {
+export default function UserChatBox({ user, onClick, }) {
   console.log(user);
   return (
     <button
@@ -13,7 +13,7 @@ export default function UserChatBox({ user, onClick }) {
         <img src={purplePerson} alt="personIcon" className="w-[28px]" />
         <p className="text-[16px] text-Primary-darker pt-2">{`${user.memberInformation[0]?.firstName} ${user.memberInformation[0]?.lastName}`}</p>
       </div>
-      <div className="bg-OtherColor-lightGreen rounded-full w-4 h-4 mt-2"></div>
+      <div className='bg-OtherColor-lightGreen rounded-full w-4 h-4 mt-2'></div>
     </button>
   );
 }
