@@ -105,6 +105,7 @@ export default function RegisterDriverPage() {
       value: `${input.password}`,
       name: "password",
       error: error.password || null,
+      type: "password",
     },
     {
       id: 8,
@@ -112,6 +113,7 @@ export default function RegisterDriverPage() {
       value: `${input.confirmPassword}`,
       name: "confirmPassword",
       error: error.confirmPassword || null,
+      type: "password",
     },
   ];
 
@@ -231,6 +233,7 @@ export default function RegisterDriverPage() {
                       name={el.name}
                       onChange={handdleChangInput}
                       error={el.error}
+                      type={el?.type}
                     />
                     {el.error && <InputErrorMessage message={el.error} />}
                   </div>

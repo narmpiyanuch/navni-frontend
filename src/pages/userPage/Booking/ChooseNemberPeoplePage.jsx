@@ -6,13 +6,32 @@ import ModalNotEnoughPayment from '../../../component/ModalNotEnoughPayment'
 import ModalPayment from '../../../component/ModalPayment'
 import useMap from '../../../feature/hook/use-map'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import useWallet from '../../../feature/hook/use-wallet'
+import {useNavigate } from 'react-router-dom'
 
 export default function ChooseNemberPeoplePage() {
+    const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
+    const [totalPrice,setTotalPrice]=useState();
     const [click, setClick] = useState('')
     const personIconId = [1, 2, 3, 4, 5, 6]
-    const {pickup,drop}=useMap()
-    console.log(click)
+    const {pickup,drop,price}=useMap()
+    const {getWallet,wallet} =useWallet()
+    if(pickup===undefined||drop===undefined){
+        navigate("/taxi")
+    }
+    useEffect(()=>{
+        if(click){
+            setTotalPrice({price:price.price*click})
+        }
+
+    },[click])
+
+    useEffect(()=>{
+        getWallet()
+    },[])
+
     return (
         <div className='flex flex-col m-auto items-center justify-start  h-screen w-screen gap-2'>
             <div className=' flex flex-col pt-10 items-start w-full '>
@@ -68,8 +87,11 @@ export default function ChooseNemberPeoplePage() {
             <div className='pt-4'>
                 <PurpleButton title='Payment' onClick={() => setIsOpen(true)} />
             </div>
-            {/* <ModalNotEnoughPayment open={isOpen} onClose={() => setIsOpen(false)} /> */}
-            <ModalPayment open={isOpen} onClose={() => setIsOpen(false)} />
+            {(wallet && wallet.wallet)> (totalPrice && totalPrice.price)?
+            <ModalPayment click={click} totalPrice={totalPrice} open={isOpen} onClose={() => setIsOpen(false)} />:
+            
+            <ModalNotEnoughPayment totalPrice={totalPrice} wallet={wallet} open={isOpen} onClose={() => setIsOpen(false)} />
+        }
 
         </div >
     )

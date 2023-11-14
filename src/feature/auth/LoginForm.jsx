@@ -67,7 +67,7 @@ export default function LoginForm() {
             </div>
             <ButtonInputForm title="Log In" type={"submit"} />
             <p className="text-MonoColor-50 text-[12px] py-2">OR</p>
-            <div className="flex items-center justify-center mx-auto max-sm:pl-14 ">
+            <div className="flex items-center justify-center mx-auto  ">
                 <GoogleLogin
                     onSuccess={(credentialResponse) => {
                         const userData = jwtDecode(credentialResponse.credential);
