@@ -146,8 +146,8 @@ export default function RegisterDriverPage() {
           console.log(res);
           setLoading(true);
           createAlert(
-            "Register Diver SuccessFul!",
-            "Please, waiting for approved"
+            "Register Driver Successful!",
+            "Please, wait for the approval"
           );
           Navigate(`/login`);
         } catch (err) {
