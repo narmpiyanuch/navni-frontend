@@ -104,7 +104,7 @@ export default function ChatAdminPage() {
       <HeaderAdminPage />
       <div className="flex pt-10 justify-center pb-[160px]">
         <div className="grid grid-cols-3 w-[1200px] gap-4 ">
-          <div className="flex flex-col relative bg-Primary-light rounded-3xl h-full">
+          <div className="flex flex-col relative bg-Primary-light rounded-3xl h-full overflow-auto">
             <div className="flex sticky rounded-3xl top-0 left-0 right-0 flex-col gap-2 z-10 w-full h-[140px] justify-center items-center bg-Primary-light ">
               <input
                 type="text"
@@ -153,7 +153,7 @@ export default function ChatAdminPage() {
                 )}
               </div>
             </div>
-            <div className="flex flex-col gap-4 absolute top-36 px-10 w-full items-center z-0">
+            <div className="flex flex-col gap-4 absolute top-36 px-10 w-full items-center z-0 overflow-auto">
               {filterUsersByRoleAndSearch().map((user) => (
                 <UserChatBox
                   key={user.id}
