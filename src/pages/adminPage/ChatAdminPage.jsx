@@ -20,19 +20,11 @@ export default function ChatAdminPage() {
   const { authUser } = useAuth();
   const { getAllUsers } = useAdmin();
 
-  // useEffect(() => {
-  //   console.log("useEffect is running");
-  //   scroll.current.scrollIntoView({ behavior: "smooth" });
-  // }, [messageList]);
 
   useEffect(() => {
     if (scroll.current) {
       scroll.current.scrollIntoView({ behavior: "smooth" });
     }
-
-    return () => {
-      // Cleanup code (if needed)
-    };
   }, [messageList]);
 
 
