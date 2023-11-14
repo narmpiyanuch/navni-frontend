@@ -56,6 +56,7 @@ export default function ChatRoom() {
 
     socket.on("room_id", (data) => {
       setChatroom(data.id);
+      console.log(chatroom);
     });
 
     socket.on("join_room", () => {

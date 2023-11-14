@@ -40,14 +40,12 @@ export default function ChatAdminPage() {
   const handleSubmitForm = (e) => {
     e.preventDefault();
     const newMessage = {
-      //   id: messageList.length + 1,
       userId: currentChatUserId,
       senderId: authUser.id,
       message: currentMessage,
       sendDate: new Date(),
     };
     socket.emit("send_message", newMessage);
-    // setMessageList((prevMessages) => [...prevMessages, newMessage]);
     setCurrentMessage("");
   };
 
@@ -76,10 +74,6 @@ export default function ChatAdminPage() {
   console.log(getAllUsers);
   console.log(selectedRole);
   const filterUsersByRoleAndSearch = () => {
-    //     if (selectedRole === null) {
-    //       return [];
-    //     }
-    //     return getAllUsers.filter((user) => user.role === selectedRole);
     let filteredUsers = getAllUsers;
 
     if (selectedRole !== null) {
@@ -134,14 +128,6 @@ export default function ChatAdminPage() {
                   onClick={toggleDropdown}
                   className="absolute top-0 right-0 bg-MonoColor-50 rounded-3xl w-[36px] h-[36px] outline-none p-2 cursor-pointer"
                 >
-                  {/* {selectedRole ? (
-                    <span className="text-MonoColor-400">
-                      {selectedRole.charAt(0).toUpperCase() +
-                        selectedRole.slice(1)}
-                    </span>
-                  ) : (
-                    <span className="text-MonoColor-400">▼</span>
-                  )} */}
                   {isDropdownOpen ? (
                     <span className="text-MonoColor-400">▲</span>
                   ) : (
