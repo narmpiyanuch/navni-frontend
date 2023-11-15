@@ -1,15 +1,15 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import logoBGpurple from "../../../assets/logoBGpurple.jpg";
 import ModalCancelTrip from "../../../component/ModalCancelTrip";
 import { useState } from "react";
 import Map from "../../../feature/googlemap/Map";
-import useMap from "../../../feature/hook/use-map";
+// import useMap from "../../../feature/hook/use-map";
 import useBooking from "../../../feature/hook/use-booking";
 
 export default function WaitingTaxiPage() {
     const [isOpen, setIsOpen] = useState(false);
     const [isCancel, setIsCancel] = useState(false);
-    const { pickup, drop } = useMap();
+    // const { pickup, drop } = useMap();
 
     const { bookingWait } = useBooking();
 
