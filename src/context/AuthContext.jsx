@@ -69,7 +69,7 @@ export default function AuthContextProvider({ children }) {
         authUser,
         logout,
         register,
-        setIsLoading,
+        setIsLoading
       }}
     >
       {children}

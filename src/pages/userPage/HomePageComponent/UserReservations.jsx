@@ -7,16 +7,22 @@ import socket from "../../../config/socket";
 import { useState } from "react";
 import ModalChatForUser from "../../../component/ModalChatForUser";
 import { useEffect } from "react";
+import { useAuth } from "../../../feature/hook/use-auth";
 
 export default function UserReservations() {
   const [isOpenChat, setIsOpenChat] = useState(false);
   const [unreadMessages, setUnreadMessages] = useState(false);
 
+  const { authUser } = useAuth();
+
   useEffect(() => {
     socket.on("notification", (data) => {
       console.log(data);
-      setUnreadMessages(true);
-      console.log(unreadMessages);
+      console.log(authUser.id);
+      if (authUser.id !== data) {
+        setUnreadMessages(true);
+        console.log(unreadMessages);
+      }
     });
     return () => {
       socket.off("notification");
