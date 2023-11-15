@@ -1,7 +1,6 @@
 import purplePerson from "../../assets/purplePerson.png";
 
-export default function UserChatBox({ user, onClick, }) {
-  console.log(user);
+export default function UserChatBox({ user, onClick }) {
   const fullName =
     user.role === "USER"
       ? user.memberInformation[0]
@@ -19,7 +18,7 @@ export default function UserChatBox({ user, onClick, }) {
         <img src={purplePerson} alt="personIcon" className="w-[28px]" />
         <p className="text-[16px] text-Primary-darker pt-2">{fullName}</p>
       </div>
-      <div className='bg-OtherColor-lightGreen rounded-full w-4 h-4 mt-2'></div>
+      <div className="bg-OtherColor-lightGreen rounded-full w-4 h-4 mt-2"></div>
     </button>
   );
 }
