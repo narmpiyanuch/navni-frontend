@@ -2,13 +2,11 @@ import { useNavigate } from "react-router-dom";
 import logoBGpurple from "../../../assets/logoBGpurple.jpg";
 import ModalCancelTrip from "../../../component/ModalCancelTrip";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import Map from "../../../feature/googlemap/Map";
 import useMap from "../../../feature/hook/use-map";
 import useBooking from "../../../feature/hook/use-booking";
 
 export default function WaitingTaxiPage() {
-    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const [isCancel, setIsCancel] = useState(false);
     const { pickup, drop } = useMap();
@@ -20,9 +18,6 @@ export default function WaitingTaxiPage() {
             <div className="relative h-full  w-full  bg-Primary-light">
                 <div className="flex absolute top-0 left-0 p-5">
                     <img
-                        onClick={() => {
-                            navigate("/home");
-                        }}
                         src={logoBGpurple}
                         alt="logo"
                         className="z-40 rounded-full w-[80px] border-4 border-MonoColor-50 active:border-Primary-main hover:cursor-pointer"

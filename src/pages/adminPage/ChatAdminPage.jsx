@@ -76,6 +76,10 @@ export default function ChatAdminPage() {
     const filterUsersByRoleAndSearch = () => {
         let filteredUsers = getAllUsers;
 
+        if (selectedRole === null) {
+            return filteredUsers;
+        }
+
         if (selectedRole !== null) {
             filteredUsers = filteredUsers.filter(
                 (user) => user.role === selectedRole
