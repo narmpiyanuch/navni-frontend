@@ -23,15 +23,15 @@ export default function StartDriverPage() {
 
     return (
         <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">
-            <Map/>
+            <Map />
             <HeaderDriver />
             {/* <WaitingOrder /> */}
 
             {isClose && (<OrderForDriver setIsAccept={setIsAccept} onClose={() => setIsClose(false)} />)}
-            
+
 
             <ComingToCustomer setIsPickUp={setIsPickUp} open={isAccept} />
-            
+
             {/* กล่องข้างบนสามารถวนใช้ได้ */}
 
             <ModalAlreadyPickUp open={isPickUp} onCloseAll={() => {
@@ -45,7 +45,7 @@ export default function StartDriverPage() {
                 setOpenDetination(false)
                 setIsSuccess(false)
             }} />
-            <ModalCancelTrip to='/homedriver' open={isCancelTrip} onClose={() => { setIsCancelTrip(false) }} />
+
         </div>
     )
 }
