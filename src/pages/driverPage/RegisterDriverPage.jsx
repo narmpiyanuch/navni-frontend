@@ -1,4 +1,3 @@
-import Joi from "joi";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import user from "../../assets/user.png";
@@ -10,38 +9,7 @@ import validaterFn from "../../validators/validateFN";
 import axios from "../../config/axios";
 import { createErrorSweetAlert, createAlert } from "../../utils/sweetAlert";
 import Loading from "../../utils/Loading";
-
-const registerDriverSchema = Joi.object({
-    email: Joi.string().email({ tlds: false }).required(),
-    password: Joi.string()
-        .pattern(/^[a-zA-Z0-9]{8,30}$/)
-        .trim()
-        .required()
-        .messages({
-            "string.pattern.base":
-                "Password must be between 8 and 30 characters and contain only letters and numbers.",
-        }),
-    confirmPassword: Joi.string()
-        .valid(Joi.ref("password"))
-        .trim()
-        .required()
-        .strip(),
-    firstName: Joi.string().trim().required(),
-    lastName: Joi.string().trim().required(),
-    phoneNumber: Joi.string()
-        .pattern(/^[0-9]{10}$/)
-        .messages({
-            "string.pattern.base":
-                "Mobile number must be exactly 10 digits long and contain only numbers.",
-        }),
-    idCard: Joi.string()
-        .pattern(/^[0-9]{13}$/)
-        .messages({
-            "string.pattern.base":
-                '"IdCard" consists of 13 numeric digits to pass the validation',
-        }),
-    gender: Joi.string().required(),
-}).options({ allowUnknown: true });
+import registerDriverSchema from "../../validators/RegisterDriverSchema";
 
 export default function RegisterDriverPage() {
     const [file, setFile] = useState(null);
@@ -105,6 +73,7 @@ export default function RegisterDriverPage() {
             value: `${input.password}`,
             name: "password",
             error: error.password || null,
+            type: "password",
         },
         {
             id: 8,
@@ -112,6 +81,7 @@ export default function RegisterDriverPage() {
             value: `${input.confirmPassword}`,
             name: "confirmPassword",
             error: error.confirmPassword || null,
+            type: "password",
         },
     ];
 
@@ -138,15 +108,11 @@ export default function RegisterDriverPage() {
 
             const RegisterDriver = async (registerDriver) => {
                 try {
-                    const res = await axios.post(
-                        "/driver/register",
-                        registerDriver
-                    );
-                    console.log(res);
+                    await axios.post("/driver/register", registerDriver);
                     setLoading(true);
                     createAlert(
-                        "Register Diver SuccessFul!",
-                        "Please, waiting for approved"
+                        "Register Driver Successful!",
+                        "Please, wait for the approval"
                     );
                     Navigate(`/login`);
                 } catch (err) {
@@ -234,6 +200,7 @@ export default function RegisterDriverPage() {
                                             name={el.name}
                                             onChange={handdleChangInput}
                                             error={el.error}
+                                            type={el?.type}
                                         />
                                         {el.error && (
                                             <InputErrorMessage

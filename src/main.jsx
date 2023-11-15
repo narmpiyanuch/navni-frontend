@@ -15,13 +15,13 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <AuthContextProvider>
             <MapContextProvider>
                 <AdminContextProvider>
-                    <WalletContextProvider>
-                        <BookingContextProvider>
-                            <DriverContextProvider>
+                    <DriverContextProvider>
+                        <WalletContextProvider>
+                            <BookingContextProvider>
                                 <App />
-                            </DriverContextProvider>
-                        </BookingContextProvider>
-                    </WalletContextProvider>
+                            </BookingContextProvider>
+                        </WalletContextProvider>
+                    </DriverContextProvider>
                 </AdminContextProvider>
             </MapContextProvider>
         </AuthContextProvider>

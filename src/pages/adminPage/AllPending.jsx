@@ -4,20 +4,20 @@ import ButtonAdminApprovel from "../../feature/auth/ButtonAdminApprovel";
 import ButtonAdminReject from '../../feature/auth/ButtonAminReject';
 
 
-export default function AllPending({ firstName, lastName, idcard, gender, tel, email,id ,  getAllPendingDriver, image}) {
+export default function AllPending({ firstName, lastName, idcard, gender, tel, email, id, getAllPendingDriver, image }) {
     const [isOpenAddApprovel, setIsOpenAddApprovel] = useState(false)
 
-    const [input,setInput] = useState({
+    const [input, setInput] = useState({
         id,
-        plateNumber:""
+        plateNumber: ""
     })
 
     return (
         <>
             <br />
-            <div className="flex py-10 gap-4 w-[600px] border border-Primary-dark bg-Primary-lightest rounded-3xl justify-center items-center relative" >
+            <div className="flex py-10 gap-4 px-10 border border-Primary-dark bg-Primary-lightest rounded-3xl justify-center items-center relative" >
 
-                {image?<img src={image} className="aspect-square rounded-full object-cover w-[100px]" />:<img src="./src/assets/user2.png" className="w-20 h-20" />}
+                {image ? <img src={image} className="aspect-square rounded-full object-cover w-[100px]" /> : <img src="./src/assets/user2.png" className="w-20 h-20" />}
 
                 <div className="flex flex-col-2 gap-6 pb-2">
                     <div>
@@ -53,18 +53,18 @@ export default function AllPending({ firstName, lastName, idcard, gender, tel, e
                             <p>{tel}</p>
                         </div>
 
-                       
+
                     </div>
                 </div>
 
                 <div className="flex gap-4 absolute bottom-4 right-10">
-                    <ModalAdminApprovel 
+                    <ModalAdminApprovel
                         isOpenAddApprovel={isOpenAddApprovel}
                         setIsOpenAddApprovel={setIsOpenAddApprovel}
                         input={input}
                         setInput={setInput}
                         id={input.id}
-                        getAllPendingDriver={ getAllPendingDriver}
+                        getAllPendingDriver={getAllPendingDriver}
                     />
                 </div>
 
