@@ -1,5 +1,5 @@
 import HeaderAdminPage from "../../feature/admin/HeaderAdminPage";
-// import FooterAdminPage from "../../feature/admin/FooterAdminPage";
+import FooterAdminPage from "../../feature/admin/FooterAdminPage";
 import UserChatBox from "../../feature/admin/UserChatBox";
 import { useState } from "react";
 import socket from "../../config/socket";
@@ -71,14 +71,10 @@ export default function ChatAdminPage() {
         setSearchQuery(e.target.value);
     };
 
-    // console.log(getAllUsers);
-    // console.log(selectedRole);
+    console.log(getAllUsers);
+    console.log(selectedRole);
     const filterUsersByRoleAndSearch = () => {
         let filteredUsers = getAllUsers;
-
-        if (selectedRole === null) {
-            return filteredUsers;
-        }
 
         if (selectedRole !== null) {
             filteredUsers = filteredUsers.filter(
@@ -243,6 +239,7 @@ export default function ChatAdminPage() {
                     </div>
                 </div>
             </div>
+            <FooterAdminPage />
         </div>
     );
 }

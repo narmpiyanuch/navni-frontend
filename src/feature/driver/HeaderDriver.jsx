@@ -2,10 +2,14 @@ import user from "../../assets/user.png";
 import carSeat from "../../assets/car-seat.png";
 import { Link } from "react-router-dom";
 import useDriver from "../hook/use-driver";
+import { useEffect } from "react";
 
 export default function HeaderDriver() {
-    const { profile } = useDriver();
-    console.log(profile);
+    const { profile, fetchProfile } = useDriver();
+    useEffect(() => {
+        fetchProfile();
+    }, []);
+
     return (
         <div className="flex fixed top-0 flex-col items-center justify-start bg-Primary-main w-screen h-[180px] rounded-[0px_0px_40px_40px]">
             <div className=" flex flex-col pt-10 items-start w-full ">

@@ -5,6 +5,8 @@ export const DriverContext = createContext();
 
 export default function DriverContextProvider({ children }) {
     const [profile, setProfile] = useState();
+    const [bookingComingItem, setBookingComingItem] = useState([]);
+    const [bookingPickedItem, setBookingPickedItem] = useState([]);
 
     const fetchProfile = async () => {
         try {
@@ -39,6 +41,28 @@ export default function DriverContextProvider({ children }) {
         }
     };
 
+    const getAcceptBookingItemForDriver = async () => {
+        try {
+            const { data } = await axios.get(
+                "/driver/get-booking-item-for-driver"
+            );
+            setBookingComingItem(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const getPickedBookingItemForDriver = async () => {
+        try {
+            const { data } = await axios.get(
+                "/driver/get-picked-booking-item-for-driver"
+            );
+            setBookingPickedItem(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <DriverContext.Provider
             value={{
@@ -48,6 +72,10 @@ export default function DriverContextProvider({ children }) {
                 acceptBookingForDriver,
                 pickupUserForDriver,
                 dropOffUserForDriver,
+                getAcceptBookingItemForDriver,
+                bookingComingItem,
+                getPickedBookingItemForDriver,
+                bookingPickedItem,
             }}
         >
             {children}
