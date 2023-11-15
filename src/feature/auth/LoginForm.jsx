@@ -1,72 +1,81 @@
 import { useState } from "react";
-import { useAuth } from "../hook/use-auth";
+import { jwtDecode } from "jwt-decode";
+import { GoogleLogin } from "@react-oauth/google";
 import ButtonInputForm from "./ButtonInputForm";
+
+import { useAuth } from "../hook/use-auth";
 import InputLoginForm from "./InputLoginForm";
-import loginSchema from "../../validators/Auth-validator";
+import { loginSchema } from "../../validators/Auth-validator";
+import InputErrorMessage from "./InputErrorMessage";
+import validaterFn from "../../validators/validateFN";
 
 export default function LoginForm() {
-  const validateLogin = (input) => {
-    const { error } = loginSchema.validate(input, { abortEarly: false });
-    console.dir(error);
-    if (error) {
-      const result = error.details.reduce((acc, el) => {
-        const { message, path } = el;
-        acc[path[0]] = message;
-        return acc;
-      }, {});
-      return result;
-    }
-  };
-
-  const [input, setInput] = useState({
-    email: "",
-    password: "",
-  });
-
-  const [error, setError] = useState({});
-
-  const { login } = useAuth();
-
-  const handleChangeInput = (e) => {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value,
+    const [input, setInput] = useState({
+        email: "",
+        password: "",
     });
-  };
+    const { login } = useAuth();
 
-  const handleSubmitForm = (e) => {
-    e.preventDefault();
-    const validationError = validateLogin(input);
-    if (validationError) {
-      return setError(validationError);
-    }
-    setError({});
-    login(input).catch((error) => {
-      console.log(error);
-    });
-  };
+    const [error, setError] = useState({});
 
-  return (
-    <form
-      className="flex flex-col items-center gap-4 pt-8"
-      onSubmit={handleSubmitForm}
-    >
-      <div className="flex flex-col gap-4 items-end">
-        <InputLoginForm
-          title={"Email"}
-          value={input.email}
-          onChange={handleChangeInput}
-          hasError={error.email}
-        />
-        <InputLoginForm
-          title={"Password"}
-          value={input.password}
-          type="password"
-          onChange={handleChangeInput}
-          hasError={error.password}
-        />
-      </div>
-      <ButtonInputForm title="Log In" />
-    </form>
-  );
+    const onError = (res) => {
+        console.log("failed", res);
+    };
+
+    const handleSubmitForm = (e) => {
+        e.preventDefault();
+        const validationError = validaterFn(loginSchema, input);
+        if (validationError) {
+            return setError(validationError);
+        }
+        setError({});
+        login(input).catch((error) => {
+            console.log(error);
+        });
+    };
+
+    return (
+        <form
+            className="flex flex-col items-center gap-4 pt-8"
+            onSubmit={(event) => {
+                handleSubmitForm(event);
+            }}
+        >
+            <div className="flex flex-col gap-4 items-end">
+                <InputLoginForm
+                    title={"Email"}
+                    value={input.email}
+                    onChange={(e) =>
+                        setInput({ ...input, email: e.target.value })
+                    }
+                    error={error.email}
+                    type="email"
+                />
+                {error.email && <InputErrorMessage message={error.email} />}
+                <InputLoginForm
+                    title={"Password"}
+                    value={input.password}
+                    type="password"
+                    onChange={(e) =>
+                        setInput({ ...input, password: e.target.value })
+                    }
+                    error={error.password}
+                />
+                {error.password && (
+                    <InputErrorMessage message={error.password} />
+                )}
+            </div>
+            <ButtonInputForm title="Log In" type={"submit"} />
+            <p className="text-MonoColor-50 text-[12px] py-2">OR</p>
+            <div className="flex items-center justify-center mx-auto  ">
+                <GoogleLogin
+                    onSuccess={(credentialResponse) => {
+                        const userData = jwtDecode(credentialResponse.credential);
+                        login(userData);
+                    }}
+                    onError={onError}
+                />
+            </div>
+        </form>
+    );
 }
