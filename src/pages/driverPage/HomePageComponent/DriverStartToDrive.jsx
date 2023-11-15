@@ -2,8 +2,11 @@ import { Link } from "react-router-dom";
 import tuktuk from "../../../assets/tuktuk.png";
 import calendar from "../../../assets/calendar.png";
 import messageChat from "../../../assets/chat.png";
+import ModalChatForDriver from "../../../component/ModalChatForDriver";
+import { useState } from "react";
 
 export default function DriverStartToDrive() {
+  const [isOpenChat, setIsOpenChat] = useState(false)
   return (
     <div>
       <div className="flex  flex-col items-center justify-center pt-12 gap-10">
@@ -29,15 +32,17 @@ export default function DriverStartToDrive() {
         </button>
       </div>
       <div className="flex gap-10 items-center justify-center mt-8">
-        <div className="flex flex-col justify-center items-center relative w-[320px] h-[40px] rounded-3xl bg-Secondary-main active:bg-Secondary-dark">
+        <button onClick={() => setIsOpenChat(true)}
+          className="flex flex-col justify-center items-center relative w-[320px] h-[40px] rounded-3xl bg-Secondary-main active:bg-Secondary-dark">
           <div className="flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute left-0 border-4  border-Secondary-main">
             <img src={messageChat} alt="tuktuk" className="w-[40px]" />
           </div>
           <p className="text-MonoColor-50 text-[20px] font-semibold">
             Live Chat
           </p>
-        </div>
+        </button>
       </div>
+      <ModalChatForDriver open={isOpenChat} onClose={() => setIsOpenChat(false)} />
     </div>
   );
 }
