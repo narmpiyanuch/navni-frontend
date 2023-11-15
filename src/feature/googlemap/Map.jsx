@@ -9,12 +9,11 @@ export default function Map() {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: GOOGLE_KEY,
   });
-  const { subArea, setSubArea,setIsOpenPin,isOpenPin ,setAreaPin} = useMap();
+  const { subArea, setSubArea, setIsOpenPin, isOpenPin, setAreaPin } = useMap();
   useEffect(() => {
-    const getSubArea = axios
+    axios
       .get("/map/get-subarea")
       .then((res) => {
-        console.log(res.data.subAreaStation);
         setSubArea(res.data.subAreaStation);
       })
       .catch((error) => {
@@ -22,7 +21,9 @@ export default function Map() {
       });
   }, []);
 
-  const openArea = subArea?.filter((area)=>area.status===true&&area.workArea.status===true)
+  const openArea = subArea?.filter(
+    (area) => area.status === true && area.workArea.status === true
+  );
   if (!isLoaded) {
     return <div>Loading....</div>;
   }
@@ -52,13 +53,11 @@ export default function Map() {
       /> */}
       {openArea &&
         openArea.map((area) => {
-  
-
           return (
             <Marker
-              onClick={()=>{
-                setIsOpenPin(!isOpenPin)
-                setAreaPin(area)
+              onClick={() => {
+                setIsOpenPin(!isOpenPin);
+                setAreaPin(area);
               }}
               key={area.id}
               position={{ lat: +area.latitude, lng: +area.longitude }}

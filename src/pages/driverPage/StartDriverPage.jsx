@@ -13,83 +13,83 @@ import Map from "../../feature/googlemap/Map";
 import useDriver from "../../feature/hook/use-driver";
 
 export default function StartDriverPage() {
-    const [isPickUp, setIsPickUp] = useState(false); //ModalAlreadyPickup
-    const [isAccept, setIsAccept] = useState(true); //ComingToCustomer
-    const [isOpen, setIsOpen] = useState(true); //oderForDriver
-    const [isOpenDestination, setOpenDetination] = useState(false); //ToDestination
-    const [isSuccess, setIsSuccess] = useState(false); //modalDropoffFinish
-    const [isCancelTrip, setIsCancelTrip] = useState(false);
+  const [isPickUp, setIsPickUp] = useState(false); //ModalAlreadyPickup
+  const [isAccept, setIsAccept] = useState(true); //ComingToCustomer
+  const [isOpen, setIsOpen] = useState(true); //oderForDriver
+  const [isOpenDestination, setOpenDetination] = useState(false); //ToDestination
+  const [isSuccess, setIsSuccess] = useState(false); //modalDropoffFinish
+  const [isCancelTrip, setIsCancelTrip] = useState(false);
 
-    const { getBookingItemForDriver, bookingItem } = useBooking();
-    const { bookingComingItem, getAcceptBookingItemForDriver } = useDriver();
+  const { getBookingItemForDriver, bookingItem } = useBooking();
+  const { bookingComingItem, getAcceptBookingItemForDriver } = useDriver();
 
-    useEffect(() => {
-        getBookingItemForDriver();
-        getAcceptBookingItemForDriver();
-    }, []);
+  useEffect(() => {
+    getBookingItemForDriver();
+    getAcceptBookingItemForDriver();
+  }, []);
 
-    // console.log(bookingComingItem);
-    return (
-        <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">
-            <Map />
-            <HeaderDriver />
-            {/* <WaitingOrder /> */}
+  // console.log(bookingComingItem);
+  return (
+    <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">
+      <Map />
+      <HeaderDriver />
+      {/* <WaitingOrder /> */}
 
-            {isOpen && (
-                <OrderForDriver
-                    setIsAccept={setIsAccept}
-                    onClose={() => setIsOpen(false)}
-                    bookingItem={bookingItem}
-                />
-            )}
+      {isOpen && (
+        <OrderForDriver
+          setIsAccept={setIsAccept}
+          onClose={() => setIsOpen(false)}
+          bookingItem={bookingItem}
+        />
+      )}
 
-            <ComingToCustomer
-                setIsPickUp={setIsPickUp}
-                open={isAccept}
-                bookingItem={bookingComingItem}
-            />
+      <ComingToCustomer
+        setIsPickUp={setIsPickUp}
+        open={isAccept}
+        bookingItem={bookingComingItem}
+      />
 
-            {/* กล่องข้างบนสามารถวนใช้ได้ */}
+      {/* กล่องข้างบนสามารถวนใช้ได้ */}
 
-            {isOpenDestination && (
-                <ToDestination
-                    setIsSuccess={setIsSuccess}
-                    setIsCancelTrip={setIsCancelTrip}
-                />
-            )}
+      {isOpenDestination && (
+        <ToDestination
+          setIsSuccess={setIsSuccess}
+          setIsCancelTrip={setIsCancelTrip}
+        />
+      )}
 
-            <ModalAlreadyPickUp
-                open={isPickUp}
-                onCloseAll={() => {
-                    setIsAccept(false);
-                    setIsPickUp(false);
-                    setOpenDetination(true);
-                }}
-            />
+      <ModalAlreadyPickUp
+        open={isPickUp}
+        onCloseAll={() => {
+          setIsAccept(false);
+          setIsPickUp(false);
+          setOpenDetination(true);
+        }}
+      />
 
-            <ModalDropOffFinish
-                open={isSuccess}
-                onClose={() => {
-                    setOpenDetination(false);
-                    setIsSuccess(false);
-                }}
-            />
+      <ModalDropOffFinish
+        open={isSuccess}
+        onClose={() => {
+          setOpenDetination(false);
+          setIsSuccess(false);
+        }}
+      />
 
-            <ModalCancelTrip
-                to="/homedriver"
-                open={isCancelTrip}
-                onClose={() => {
-                    setIsCancelTrip(false);
-                }}
-            />
+      <ModalCancelTrip
+        to="/homedriver"
+        open={isCancelTrip}
+        onClose={() => {
+          setIsCancelTrip(false);
+        }}
+      />
 
-            <ModalDropOffFinish
-                open={isSuccess}
-                onClose={() => {
-                    setOpenDetination(false);
-                    setIsSuccess(false);
-                }}
-            />
-        </div>
-    );
+      <ModalDropOffFinish
+        open={isSuccess}
+        onClose={() => {
+          setOpenDetination(false);
+          setIsSuccess(false);
+        }}
+      />
+    </div>
+  );
 }
