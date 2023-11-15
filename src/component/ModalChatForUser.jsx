@@ -64,7 +64,6 @@ export default function ModalChatForUser({ open, onClose }) {
   };
 
   useEffect(() => {
-    console.log("dddddd");
     socket.emit("join_room");
 
     socket.on("room_id", (data) => {

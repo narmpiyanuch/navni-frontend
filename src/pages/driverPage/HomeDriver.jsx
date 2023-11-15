@@ -5,7 +5,6 @@ import DriverProfile from "./HomePageComponent/DriverProfile";
 import DriverStartToDrive from "./HomePageComponent/DriverStartToDrive";
 import Logo from "./HomePageComponent/Logo";
 import useDriver from "../../feature/hook/use-driver";
-import socket from "../../config/socket";
 
 export default function HomeDriver() {
   const { logout } = useAuth();
