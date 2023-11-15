@@ -5,22 +5,19 @@ import { useAuth } from "../feature/hook/use-auth";
 import axios from "../config/axios";
 import { useRef } from "react";
 
-export default function ModalChatForUser({ open, onClose }) {
+export default function ModalChatForDriver({ open, onClose }) {
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
   const [chatroom, setChatroom] = useState("");
   const [inputText, setInputText] = useState("");
 
+  const { authUser } = useAuth();
   const scroll = useRef();
 
-  const { authUser } = useAuth();
-
   useEffect(() => {
-    console.log(scroll.current);
     if (scroll.current) {
       scroll.current.scrollIntoView({ behavior: "smooth" });
     }
-    console.log(messageList);
   }, [messageList, open]);
 
   useEffect(() => {
@@ -64,7 +61,6 @@ export default function ModalChatForUser({ open, onClose }) {
   };
 
   useEffect(() => {
-    console.log("dddddd");
     socket.emit("join_room");
 
     socket.on("room_id", (data) => {
@@ -97,7 +93,7 @@ export default function ModalChatForUser({ open, onClose }) {
       socket.off("all_chat");
       socket.off("join_room");
     };
-  }, [authUser, chatroom]);
+  }, [authUser]);
 
   console.log(currentMessage);
 
@@ -109,8 +105,8 @@ export default function ModalChatForUser({ open, onClose }) {
           <div className=" fixed inset-0 z-30 ">
             <div className="relative flex justify-center items-end min-h-full ">
               <div className="relative flex-shrink items-center justify-start min-h-[20vh] max-h-[64vh] w-[88%] rounded-t-3xl  bg-MonoColor-200  rounded-[20px_20px_0px_0px] overflow-auto transit ">
-                <div className="flex sticky top-0 left-0 right-0 bg-Secondary-dark h-[60px] justify-between px-4 items-center gap-4 rounded-t-3xl">
-                  <p className="text-[16px] font-semibold text-MonoColor-50 ">
+                <div className="flex sticky top-0 left-0 right-0 bg-Primary-dark h-[60px] justify-between px-4 items-center gap-4 rounded-t-3xl">
+                  <p className="text-[16px] font-semiblod text-MonoColor-50 ">
                     Live chat
                   </p>
                   <span
@@ -127,14 +123,14 @@ export default function ModalChatForUser({ open, onClose }) {
                         <div className="flex flex-col items-end py-2 pr-2">
                           <div
                             key={message.id}
-                            className={`rounded-xl rounded-tr-sm p-2 shadow-md  bg-Secondary-main text-MonoColor-50 max-w-[48%] overflow-wrap whitespace-normal `}
+                            className={`rounded-xl rounded-tr-sm p-2 shadow-md  bg-Primary-main text-MonoColor-50 max-w-[48%] overflow-wrap whitespace-normal `}
                           >
                             <p className="break-words">{message.message}</p>
                           </div>
                         </div>
                       ) : (
                         <div className="flex flex-col items-start py-2 pl-2">
-                          <p className="text-[12px] text-Secondary-darker">
+                          <p className="text-[12px] text-Primary-darker">
                             Admin
                           </p>
                           <div
@@ -149,7 +145,7 @@ export default function ModalChatForUser({ open, onClose }) {
                   ))}
                 </div>
                 <form
-                  className="flex w-full sticky bottom-0 left-0 right-0 bg-Secondary-light p-4 items-center space-x-4 shadow-md"
+                  className="flex w-full sticky bottom-0 left-0 right-0 bg-Primary-light p-4 items-center space-x-4 shadow-md"
                   onSubmit={sendMessage}
                 >
                   <input
@@ -161,7 +157,7 @@ export default function ModalChatForUser({ open, onClose }) {
                   />
                   <button
                     type="submit"
-                    className="material-symbols-outlined text-Secondary-main"
+                    className="material-symbols-outlined text-Primary-main"
                   >
                     Send
                   </button>

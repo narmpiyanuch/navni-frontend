@@ -29,7 +29,6 @@ import ServiceHistoryDriver from "../pages/driverPage/ServiceHistoryDriver";
 import ChatAdminPage from "../pages/adminPage/ChatAdminPage";
 import AllDriverPage from "../pages/adminPage/AllDriverPage";
 import LocationPage from "../pages/adminPage/LocationPage";
-import ChatRoom from "../feature/auth/ChatRoom";
 import AllDriverPendingPage from "../pages/adminPage/AllDriverPendingPage";
 
 const router = createBrowserRouter([
@@ -77,7 +76,6 @@ const router = createBrowserRouter([
       { path: "/serviceend", element: <ServiceSuccesPage /> },
       { path: "/servicehistory", element: <ServiceHistory /> },
       { path: "/information", element: <InformationPage /> },
-      { path: "/chatroom", element: <ChatRoom /> },
     ],
   },
 
