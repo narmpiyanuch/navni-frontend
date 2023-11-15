@@ -1,8 +1,31 @@
+import { useNavigate } from "react-router-dom";
+import useBooking from "../feature/hook/use-booking";
 import ModalSuccess from "./ModalSuccess";
 import { useState } from "react";
+import { createAlert } from "../utils/sweetAlert";
 
-export default function ModalCancelTrip({ onClose, open, to }) {
+export default function ModalCancelTrip({ onClose, open, to, bookingWait }) {
     const [isCancel, setIsCancel] = useState(false);
+
+    const navigate = useNavigate();
+    const { userCancelBooking } = useBooking();
+
+    console.log(bookingWait);
+
+    const handdleUserCancelTrip = async (e) => {
+        try {
+            e.preventDefault();
+
+            await userCancelBooking({
+                id: bookingWait?.booking?.id,
+            });
+            createAlert("Cancel Success");
+            navigate("/home");
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     return (
         <>
             {open && (
@@ -33,7 +56,9 @@ export default function ModalCancelTrip({ onClose, open, to }) {
                                     </button>
                                     <button
                                         className="text-[16px] text-Error-pressed border-2 border-Error-pressed rounded-lg w-[120px] h-[32px] active:bg-Error-pressed active:text-MonoColor-50"
-                                        onClick={() => setIsCancel(true)}
+                                        onClick={(e) =>
+                                            handdleUserCancelTrip(e)
+                                        }
                                     >
                                         Confirm Cancel
                                     </button>

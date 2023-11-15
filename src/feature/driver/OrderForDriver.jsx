@@ -1,29 +1,25 @@
 import OrderCustumerOne from "./OrderCustumerOne";
 
-export default function OrderForDriver({ setIsAccept, onClose, setIsOpen }) {
+export default function OrderForDriver({
+    setIsAccept,
+    onClose,
+    setIsOpen,
+    bookingItem,
+}) {
     return (
         <>
             <div className="flex flex-col gap-2 fixed items-center justify-start bottom-0 w-full max-h-[40vh] overflow-auto">
-                <OrderCustumerOne
-                    setIsAccept={setIsAccept}
-                    onClose={onClose}
-                    setIsOpen={setIsOpen}
-                />
-                <OrderCustumerOne
-                    setIsAccept={setIsAccept}
-                    onClose={onClose}
-                    setIsOpen={setIsOpen}
-                />
-                <OrderCustumerOne
-                    setIsAccept={setIsAccept}
-                    onClose={onClose}
-                    setIsOpen={setIsOpen}
-                />
-                <OrderCustumerOne
-                    setIsAccept={setIsAccept}
-                    onClose={onClose}
-                    setIsOpen={setIsOpen}
-                />
+                {bookingItem.map((el) => {
+                    return (
+                        <OrderCustumerOne
+                            setIsAccept={setIsAccept}
+                            onClose={onClose}
+                            setIsOpen={setIsOpen}
+                            el={el}
+                            key={el.id}
+                        />
+                    );
+                })}
             </div>
         </>
     );

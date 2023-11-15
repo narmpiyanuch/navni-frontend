@@ -9,11 +9,15 @@ import ModalSearchPinTo from "../../../component/ModalSeachPinTo";
 import { useNavigate } from "react-router-dom";
 import { createErrorSweetAlert } from "../../../utils/sweetAlert";
 // import LogoNavigate from "../../../component/LogoNavigate";
+import { useEffect } from "react";
 
 export default function TaxiPage() {
     const { selectArea, drop, pickup, isOpenPin, setIsOpenPin } = useMap();
     const [isOpen, setIsOpen] = useState(false);
     const [isOpenTo, setIsOpenTo] = useState(false);
+    useEffect(() => {
+        setIsOpenPin(false);
+    }, []);
 
     const navigate = useNavigate();
     const handleChooseTrip = () => {

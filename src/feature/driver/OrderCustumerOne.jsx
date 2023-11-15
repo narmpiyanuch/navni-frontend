@@ -1,6 +1,11 @@
 import AceptButton from "./orderForDriver/AceptButton";
 
-export default function OrderCustumerOne({ setIsAccept, onClose, setIsOpen }) {
+export default function OrderCustumerOne({
+    setIsAccept,
+    onClose,
+    setIsOpen,
+    el,
+}) {
     return (
         <div className="flex flex-col items-center justify-center bg-MonoColor-50 w-[360px] h-[100px] rounded-[40px_40px_40px_40px] px-10">
             <div className="flex items-center justify-between w-full bg-MonoColor-50">
@@ -10,7 +15,7 @@ export default function OrderCustumerOne({ setIsAccept, onClose, setIsOpen }) {
                             From
                         </p>
                         <p className="text-[16px] flex font-semibold bg-transparent text-MonoColor-700 ">
-                            BTS Ari exit 4
+                            {el.pickedUpStation.stationName}
                         </p>
                     </div>
                     <div className="flex gap-4">
@@ -18,7 +23,7 @@ export default function OrderCustumerOne({ setIsAccept, onClose, setIsOpen }) {
                             To
                         </p>
                         <p className="text-[16px] flex font-semibold bg-transparent text-MonoColor-700 ">
-                            NaNa coffee Ari
+                            {el.dropDownStation.stationName}
                         </p>
                     </div>
                 </div>
@@ -27,6 +32,7 @@ export default function OrderCustumerOne({ setIsAccept, onClose, setIsOpen }) {
                         setIsAccept={setIsAccept}
                         onClose={onClose}
                         setIsOpen={setIsOpen}
+                        el={el}
                     />
                 </div>
             </div>

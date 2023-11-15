@@ -1,3 +1,5 @@
+import useBooking from "../../feature/hook/use-booking";
+import { useEffect } from "react";
 import HeaderDriver from "../../feature/driver/HeaderDriver";
 // import WaitingOrder from "../../feature/driver/WaitingOrder";
 import OrderForDriver from "../../feature/driver/OrderForDriver";
@@ -7,6 +9,7 @@ import { useState } from "react";
 import ToDestination from "../../feature/driver/ToDestination";
 import ModalDropOffFinish from "../../component/ModalDropOffFinish";
 import ModalCancelTrip from "../../component/ModalCancelTrip";
+import Map from "../../feature/googlemap/Map";
 
 export default function StartDriverPage() {
     const [isPickUp, setIsPickUp] = useState(false); //ModalAlreadyPickup
@@ -16,10 +19,17 @@ export default function StartDriverPage() {
     const [isSuccess, setIsSuccess] = useState(false); //modalDropoffFinish
     const [isCancelTrip, setIsCancelTrip] = useState(false);
 
+    const { getBookingItemForDriver, bookingItem } = useBooking();
+
+    useEffect(() => {
+        getBookingItemForDriver();
+    }, []);
+    console.log(bookingItem);
+
     return (
         <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">
+            <Map />
             <HeaderDriver />
-
             {/* <WaitingOrder /> */}
 
             {isOpen && (
@@ -27,10 +37,16 @@ export default function StartDriverPage() {
                     setIsAccept={setIsAccept}
                     onClose={() => setIsOpen(false)}
                     setIsOpen={setIsOpen}
+                    bookingItem={bookingItem}
                 />
             )}
 
-            <ComingToCustomer setIsPickUp={setIsPickUp} open={isAccept} />
+            <ComingToCustomer
+                setIsPickUp={setIsPickUp}
+                open={isAccept}
+                bookingItem={bookingItem}
+            />
+
             {/* กล่องข้างบนสามารถวนใช้ได้ */}
 
             <ModalAlreadyPickUp

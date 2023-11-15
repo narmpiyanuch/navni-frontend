@@ -1,6 +1,8 @@
+import useMap from "../feature/hook/use-map";
 import PurpleButton from "../feature/payment/PurpleButton";
 import { Link } from "react-router-dom";
 export default function ModalSuccess({ open, to }) {
+    const { pickup, drop } = useMap();
     return (
         <>
             {open && (
@@ -24,7 +26,10 @@ export default function ModalSuccess({ open, to }) {
                                         Trip cancel
                                     </p>
                                 </div>
-                                <div>
+                                <div className="flex flex-col items-center justify-center">
+                                    {/* {pickup && drop ? (
+                                        <PurpleButton title="Back" />
+                                    ) : null} */}
                                     <Link to={to}>
                                         <PurpleButton title="Back to Home" />
                                     </Link>
