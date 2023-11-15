@@ -6,14 +6,28 @@ import messageChat from "../../../assets/chat.png";
 import socket from "../../../config/socket";
 import { useState } from "react";
 import ModalChatForUser from "../../../component/ModalChatForUser";
-// import { useAuth } from "../../../feature/hook/use-auth";
+import { useEffect } from "react";
 
 export default function UserReservations() {
-  const [isOpenChat, setIsOpenChat] = useState(false)
-  // const { authUser } = useAuth();
-  const join = () => {
-    // socket.emit("join_room");
+  const [isOpenChat, setIsOpenChat] = useState(false);
+  const [unreadMessages, setUnreadMessages] = useState(false);
+
+  useEffect(() => {
+    socket.on("notification", (data) => {
+      console.log(data);
+      setUnreadMessages(true);
+      console.log(unreadMessages);
+    });
+    return () => {
+      socket.off("notification");
+    };
+  }, [unreadMessages]);
+
+  const joined = () => {
+    console.log("Joining the chat!");
+    setUnreadMessages(false);
   };
+
   return (
     <div className="fixed top-[42%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen rounded-[40px_40px_0px_0px] mt-[60px]">
       <div className="flex items-center justify-center pt-4">
@@ -52,19 +66,29 @@ export default function UserReservations() {
       </div>
       <div className="flex gap-10 items-center justify-center mt-8">
         <button
-          onClick={() => setIsOpenChat(true)}
-          className="flex flex-col justify-center items-center relative w-[320px] h-[40px] rounded-3xl bg-Secondary-main active:bg-Secondary-dark">
+          onClick={() => {
+            setIsOpenChat(true);
+            joined();
+          }}
+          className="flex flex-col justify-center items-center relative w-[320px] h-[40px] rounded-3xl bg-Secondary-main active:bg-Secondary-dark"
+        >
+          {unreadMessages && (
+            <div className="absolute top-0 right-0 bg-red-500 text-white rounded-full px-2">
+              new!
+            </div>
+          )}
           <div className="flex justify-center items-center w-[64px] h-[64px] bg-MonoColor-50 rounded-full absolute left-0 border-4  border-Secondary-main">
             <img src={messageChat} alt="tuktuk" className="w-[40px]" />
           </div>
-          {/* <button onClick={join}> */}
           <p className="text-MonoColor-50 text-[20px] font-semibold">
             Live Chat
           </p>
-          {/* </button> */}
         </button>
       </div>
-      <ModalChatForUser open={isOpenChat} onClose={() => setIsOpenChat(false)} />
+      <ModalChatForUser
+        open={isOpenChat}
+        onClose={() => setIsOpenChat(false)}
+      />
     </div>
   );
 }

@@ -17,7 +17,13 @@ export default function ChatAdminPage() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const { authUser } = useAuth();
-  const { getAllUsers } = useAdmin();
+  const { getAllUsers, getAllUsersForAdmin } = useAdmin();
+
+  useEffect(() => {
+    if (authUser.role === "ADMIN") {
+      getAllUsersForAdmin();
+    }
+  }, [authUser]);
 
   useEffect(() => {
     if (currentChatUserId !== null) {
@@ -71,8 +77,6 @@ export default function ChatAdminPage() {
     setSearchQuery(e.target.value);
   };
 
-  console.log(getAllUsers);
-  console.log(selectedRole);
   const filterUsersByRoleAndSearch = () => {
     let filteredUsers = getAllUsers;
 

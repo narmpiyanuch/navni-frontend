@@ -1,7 +1,6 @@
 import purplePerson from "../../assets/purplePerson.png";
 
 export default function UserChatBox({ user, onClick }) {
-  console.log(user);
   const fullName =
     user.role === "USER"
       ? user.memberInformation[0]
