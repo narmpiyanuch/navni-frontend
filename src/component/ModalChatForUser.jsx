@@ -16,6 +16,7 @@ export default function ModalChatForUser({ open, onClose }) {
   const { authUser } = useAuth();
 
   useEffect(() => {
+    console.log(scroll.current);
     if (scroll.current) {
       scroll.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -63,6 +64,7 @@ export default function ModalChatForUser({ open, onClose }) {
   };
 
   useEffect(() => {
+    console.log("dddddd");
     socket.emit("join_room");
 
     socket.on("room_id", (data) => {
