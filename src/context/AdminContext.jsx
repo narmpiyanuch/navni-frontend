@@ -28,7 +28,7 @@ export default function AdminContextProvider({ children }) {
     }
   };
   return (
-    <AdminContext.Provider value={{ getAllUsers }}>
+    <AdminContext.Provider value={{ getAllUsers, getAllUsersForAdmin }}>
       {children}
     </AdminContext.Provider>
   );

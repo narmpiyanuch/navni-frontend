@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import axios from "../../config/axios";
 import { useAuth } from "../../feature/hook/use-auth";
 import { useAdmin } from "../../feature/hook/use-admin";
-import { useCallback } from "react";
 import { useRef } from "react";
 
 export default function ChatAdminPage() {
@@ -20,15 +19,19 @@ export default function ChatAdminPage() {
   const scroll = useRef(null);
 
   const { authUser } = useAuth();
-  const { getAllUsers } = useAdmin();
+  const { getAllUsers, getAllUsersForAdmin } = useAdmin();
 
+  useEffect(() => {
+    if (authUser.role === "ADMIN") {
+      getAllUsersForAdmin();
+    }
+  }, [authUser]);
 
   useEffect(() => {
     if (scroll.current) {
       scroll.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messageList]);
-
 
   useEffect(() => {
     if (currentChatUserId !== null) {
@@ -39,9 +42,7 @@ export default function ChatAdminPage() {
   }, [currentChatUserId]);
 
   useEffect(() => {
-    socket.on("new_message", handleReceiveMessage
-
-    );
+    socket.on("new_message", handleReceiveMessage);
 
     return () => socket.off("new_message", handleReceiveMessage);
   }, [currentChatUserId]);
@@ -138,10 +139,7 @@ export default function ChatAdminPage() {
                     {selectedRole ? `Room: ${selectedRole}` : "Choose a room"}
                   </option>
                 </button>
-                <button
-
-                  className="absolute top-0 right-0 bg-MonoColor-50 rounded-3xl w-[36px] h-[36px] outline-none p-2 cursor-pointer"
-                >
+                <button className="absolute top-0 right-0 bg-MonoColor-50 rounded-3xl w-[36px] h-[36px] outline-none p-2 cursor-pointer">
                   {isDropdownOpen ? (
                     <span className="text-MonoColor-400">▲</span>
                   ) : (
@@ -168,21 +166,21 @@ export default function ChatAdminPage() {
               </div>
             </div>
             <div className="flex flex-col gap-4 absolute top-36 px-10 w-full items-center z-0 overflow-auto">
-              {filterUsersByRoleAndSearch().map((user) => (
-                <UserChatBox
-                  key={user.id}
-                  user={user}
-                  onClick={(userId) => setCurrentChatUserId(userId)}
-                />
-              ))}
+              {getAllUsers &&
+                filterUsersByRoleAndSearch().map((user) => (
+                  <UserChatBox
+                    key={user.id}
+                    user={user}
+                    onClick={(userId) => setCurrentChatUserId(userId)}
+                  />
+                ))}
             </div>
           </div>
           <div className="col-span-2 relative h-[64vh] bg-MonoColor-50 border-4 border-Primary-dark rounded-3xl">
             <div className="flex flex-col sticky gap-2 z-10 w-full h-full justify-center items-end pb-4">
-              <div
-                className="chat-messages bg-gradient-to-t from-Primary-light to-white p-4 rounded-t-3xl shadow-md h-full w-full overflow-auto">
-                {messageList.map((message) => (
-                  <div ref={scroll}>
+              <div className="chat-messages bg-gradient-to-t from-Primary-light to-white p-4 rounded-t-3xl shadow-md h-full w-full overflow-auto">
+                {messageList.map((message, index) => (
+                  <div key={index} ref={scroll}>
                     {message.sender.id === authUser.id ? (
                       <div className="flex flex-col items-end">
                         <div
@@ -191,7 +189,6 @@ export default function ChatAdminPage() {
                         >
                           <p className="break-words">{message.message}</p>
                         </div>
-
                       </div>
                     ) : (
                       <div className="flex items-start">
