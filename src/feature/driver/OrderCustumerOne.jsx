@@ -1,5 +1,5 @@
 
-export default function OrderCustumerOne() {
+export default function OrderCustumerOne({ setIsAccept, onClose }) {
     return (
         <div className="flex flex-col items-center justify-center bg-MonoColor-50 w-[360px] h-[100px] rounded-[40px_40px_40px_40px] px-10">
             <div className='flex items-center justify-between w-full bg-MonoColor-50'>
