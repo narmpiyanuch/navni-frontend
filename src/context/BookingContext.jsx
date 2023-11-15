@@ -2,23 +2,28 @@ import { useState } from "react";
 import { createContext } from "react";
 import axios from "../config/axios";
 import { useEffect } from "react";
+import { useAuth } from "../feature/hook/use-auth";
 
 export const BookingContext = createContext();
 export default function BookingContextProvider({ children }) {
-  const [bookingWait, setBookingWait] = useState([]);
+  const [bookingWait, setBookingWait] = useState(null);
 
-  const [bookingItem, setBookingItem] = useState([]);
+  const [bookingItem, setBookingItem] = useState(null);
 
-  const [userItem, setUserItem] = useState([]);
+  const [userItem, setUserItem] = useState(null);
+
+  const { authUser } = useAuth();
 
   useEffect(() => {
-    getBookingItemForUser();
-  }, [bookingWait]);
+    if (authUser?.role === "USER") {
+      getBookingItemForUser();
+    }
+  }, [authUser, bookingWait]);
 
   const getBookingItemForDriver = async () => {
     try {
-      const res = await axios.get("/driver/get-booking-item");
-      return setBookingItem(res.data);
+      const { data } = await axios.get("/driver/get-booking-item");
+      return setBookingItem(data);
     } catch (error) {
       console.log(error);
     }
@@ -41,6 +46,20 @@ export default function BookingContextProvider({ children }) {
     }
   };
 
+  const creatBookingForUser = async (pickup, drop, passenger, price) => {
+    try {
+      const { data } = await axios.post("/booking", {
+        pickedUpStationId: pickup,
+        dropDownStationId: drop,
+        passenger: passenger,
+        price: price,
+      });
+      setBookingWait(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <BookingContext.Provider
       value={{
@@ -50,6 +69,7 @@ export default function BookingContextProvider({ children }) {
         bookingItem,
         userCancelBooking,
         userItem,
+        creatBookingForUser,
       }}
     >
       {children}

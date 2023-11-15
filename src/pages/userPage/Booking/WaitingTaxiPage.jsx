@@ -38,9 +38,9 @@ export default function WaitingTaxiPage() {
                 From
               </p>
               <p className="text-[16px] flex font-semibold bg-transparent text-MonoColor-700 ">
-                {bookingWait[0]
-                  ? bookingWait?.pickup?.stationName
-                  : userItem[0]?.pickedUpStation?.stationName}
+                {bookingWait
+                  ? bookingWait.pickedUpStation?.stationName
+                  : userItem?.[0]?.pickedUpStation?.stationName}
               </p>
             </div>
             <div className="flex gap-4">
@@ -48,9 +48,9 @@ export default function WaitingTaxiPage() {
                 To
               </p>
               <p className="text-[16px] flex font-semibold bg-transparent text-MonoColor-700 ">
-                {bookingWait[0]
-                  ? bookingWait?.drop?.stationName
-                  : userItem[0]?.dropDownStation?.stationName}
+                {bookingWait
+                  ? bookingWait?.dropDownStation?.stationName
+                  : userItem?.[0]?.dropDownStation?.stationName}
               </p>
             </div>
           </div>
@@ -60,10 +60,7 @@ export default function WaitingTaxiPage() {
                 Fare
               </p>
               <p className="text-[16px] flex font-semibold bg-transparent text-Primary-dark ">
-                {bookingWait[0]
-                  ? bookingWait?.booking?.price
-                  : userItem[0]?.price}{" "}
-                NP
+                {bookingWait ? bookingWait?.price : userItem?.[0]?.price} NP
               </p>
             </div>
           </div>
@@ -75,11 +72,11 @@ export default function WaitingTaxiPage() {
                 Car No.
               </p>
               <p className="text-[16px] flex text-center font-semibold bg-transparent text-MonoColor-700 ">
-                {bookingWait[0]
-                  ? userItem[0]?.status
-                  : userItem[0]?.carInformation?.[0]
-                  ? userItem[0]?.carInformation?.[0]?.plateNumber
-                  : userItem[0]?.status}
+                {bookingWait
+                  ? userItem?.[0]?.status
+                  : userItem?.[0]?.carInformation?.[0]
+                  ? userItem?.[0]?.carInformation?.[0]?.plateNumber
+                  : userItem?.[0]?.status}
               </p>
             </div>
             <div className="flex flex-col gap-2 justify-center items-center">

@@ -8,22 +8,16 @@ import { useNavigate } from "react-router-dom";
 import useWallet from "../feature/hook/use-wallet";
 import { createErrorSweetAlert } from "../utils/sweetAlert";
 
-export default function ModalPayment({ open, onClose, totalPrice, click }) {
+export default function ModalPayment({ open, onClose, totalPrice, passenger }) {
+  const { creatBookingForUser } = useBooking();
   const navigate = useNavigate();
   const { pickup, drop } = useMap();
-  const { setBookingWait } = useBooking();
   const { wallet } = useWallet();
 
   const handdleCreateBooking = async (e) => {
     try {
       e.preventDefault();
-      const res = await axios.post("/booking", {
-        pickedUpStationId: pickup.id,
-        dropDownStationId: drop.id,
-        passenger: click,
-        price: totalPrice.price,
-      });
-      setBookingWait(res.data);
+      creatBookingForUser(pickup.id, drop.id, passenger, totalPrice.price);
       navigate("/waitingtaxi");
     } catch (error) {
       createErrorSweetAlert(
