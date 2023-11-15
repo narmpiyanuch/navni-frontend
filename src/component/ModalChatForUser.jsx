@@ -16,11 +16,9 @@ export default function ModalChatForUser({ open, onClose }) {
   const { authUser } = useAuth();
 
   useEffect(() => {
-    console.log(scroll.current);
     if (scroll.current) {
       scroll.current.scrollIntoView({ behavior: "smooth" });
     }
-    console.log(messageList);
   }, [messageList, open]);
 
   useEffect(() => {
@@ -30,7 +28,6 @@ export default function ModalChatForUser({ open, onClose }) {
         .then((response) => {
           setMessageList(response.data);
           setChatroom(response.data.chatroomId);
-          console.log("chatMessages", response.data);
         })
         .catch((error) => {
           console.error("Error fetching messages:", error);
@@ -97,8 +94,6 @@ export default function ModalChatForUser({ open, onClose }) {
       socket.off("join_room");
     };
   }, [authUser, chatroom]);
-
-  console.log(currentMessage);
 
   return (
     <>
