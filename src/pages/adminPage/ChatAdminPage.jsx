@@ -16,8 +16,8 @@ export default function ChatAdminPage() {
   const [selectedRole, setSelectedRole] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const scroll = useRef(null);
 
+  const scroll = useRef(null);
   const { authUser } = useAuth();
   const { getAllUsers, getAllUsersForAdmin } = useAdmin();
 
@@ -60,6 +60,7 @@ export default function ChatAdminPage() {
       sendDate: new Date(),
     };
     socket.emit("send_message", newMessage);
+    // socket.emit("send_notification", newMessage);
     setCurrentMessage("");
   };
 
@@ -85,8 +86,6 @@ export default function ChatAdminPage() {
     setSearchQuery(e.target.value);
   };
 
-  console.log(getAllUsers);
-  console.log(selectedRole);
   const filterUsersByRoleAndSearch = () => {
     let filteredUsers = getAllUsers;
 
@@ -138,13 +137,13 @@ export default function ChatAdminPage() {
                   <option value="" className="text-Primary-dark">
                     {selectedRole ? `Room: ${selectedRole}` : "Choose a room"}
                   </option>
-                </button>
-                <button className="absolute top-0 right-0 bg-MonoColor-50 rounded-3xl w-[36px] h-[36px] outline-none p-2 cursor-pointer">
-                  {isDropdownOpen ? (
-                    <span className="text-MonoColor-400">▲</span>
-                  ) : (
-                    <span className="text-MonoColor-400">▼</span>
-                  )}
+                  <button className="absolute top-0 right-0 bg-MonoColor-50 rounded-3xl w-[36px] h-[36px] outline-none p-2 cursor-pointer">
+                    {isDropdownOpen ? (
+                      <span className="text-MonoColor-400">▲</span>
+                    ) : (
+                      <span className="text-MonoColor-400">▼</span>
+                    )}
+                  </button>
                 </button>
                 {isDropdownOpen && (
                   <div className="absolute mt-2 left-0 right-0 bg-MonoColor-50 rounded-xl p-2">
@@ -166,14 +165,13 @@ export default function ChatAdminPage() {
               </div>
             </div>
             <div className="flex flex-col gap-4 absolute top-36 px-10 w-full items-center z-0 overflow-auto">
-              {getAllUsers &&
-                filterUsersByRoleAndSearch().map((user) => (
-                  <UserChatBox
-                    key={user.id}
-                    user={user}
-                    onClick={(userId) => setCurrentChatUserId(userId)}
-                  />
-                ))}
+              {filterUsersByRoleAndSearch().map((user) => (
+                <UserChatBox
+                  key={user.id}
+                  user={user}
+                  onClick={(userId) => setCurrentChatUserId(userId)}
+                />
+              ))}
             </div>
           </div>
           <div className="col-span-2 relative h-[64vh] bg-MonoColor-50 border-4 border-Primary-dark rounded-3xl">
