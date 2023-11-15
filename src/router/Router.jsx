@@ -89,7 +89,10 @@ const router = createBrowserRouter([
 
     children: [
       { path: "/registerdriver", element: <RegisterDriverPage /> },
-      { path: "/servicehistorydriver", element: <ServiceHistoryDriver /> },
+      {
+        path: "/servicehistorydriver",
+        element: <ServiceHistoryDriver />,
+      },
       { path: "/homedriver", element: <HomeDriver /> },
       { path: "/startdrive", element: <StartDriverPage /> },
     ],
@@ -106,7 +109,10 @@ const router = createBrowserRouter([
       { path: "/chatadmin", element: <ChatAdminPage /> },
       { path: "/alldriver", element: <AllDriverPage /> },
       { path: "/location", element: <LocationPage /> },
-      { path: "/alldriverpendingpage", element: <AllDriverPendingPage /> },
+      {
+        path: "/alldriverpendingpage",
+        element: <AllDriverPendingPage />,
+      },
     ],
   },
 

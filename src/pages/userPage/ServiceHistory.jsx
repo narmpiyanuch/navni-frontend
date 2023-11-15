@@ -9,7 +9,6 @@ export default function ServiceHistory() {
   const fetchService = async () => {
     try {
       const result = await axios.get("/booking/service-history");
-      console.log(result.data.booking);
       setService(result.data.booking);
     } catch (error) {
       console.log(error);

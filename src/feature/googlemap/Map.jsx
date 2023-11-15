@@ -11,10 +11,9 @@ export default function Map() {
   });
   const { subArea, setSubArea, setIsOpenPin, isOpenPin, setAreaPin } = useMap();
   useEffect(() => {
-    const getSubArea = axios
+    axios
       .get("/map/get-subarea")
       .then((res) => {
-        console.log(res.data.subAreaStation);
         setSubArea(res.data.subAreaStation);
       })
       .catch((error) => {

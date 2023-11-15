@@ -81,27 +81,25 @@ export default function MapContextProvider({ children }) {
       ...onChangeEditLocation,
       [event.target.name]: event.target.value,
     });
-
   };
 
   const addWorkArea = async (input) => {
     axios
       .post("/map/add", input)
-      .then((res) => {
-        
-        getWorkArea()
-        console.log(res.data)
+      .then(() => {
+        getWorkArea();
+        // console.log(res.data)
       })
       .catch((error) => {
-      console.log(error)
+        console.log(error);
       });
   };
 
   const addPinLocation = (input) => {
     axios
       .post("/map/add/sub", input)
-      .then((res) => {
-        console.log(res.data);
+      .then(() => {
+        // console.log(res.data);
         getSubArea();
         setOnChangeAddLocation({
           stationName: "",
@@ -120,7 +118,6 @@ export default function MapContextProvider({ children }) {
     axios
       .get("/map/get-subarea")
       .then((res) => {
-       
         setSubArea(res.data.subAreaStation);
       })
       .catch((error) => {
@@ -129,20 +126,21 @@ export default function MapContextProvider({ children }) {
   };
 
   const editStationName = async (input) => {
-    axios.post("/map/edit-station-name", input).then((res) => {
-      
-      getSubArea()      
-    
-    }).catch((error)=>{
-      console.log(error)
-    });
+    axios
+      .post("/map/edit-station-name", input)
+      .then(() => {
+        getSubArea();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   useEffect(() => {
     if (selectArea) {
       axios
         .post("/map/select-area", { id: selectArea.id })
         .then((res) => {
-          console.log(res.data.toStation);
+          // console.log(res.data.toStation);
           setSubAreaTo(res.data.toStation);
         })
         .catch((error) => {
@@ -156,7 +154,7 @@ export default function MapContextProvider({ children }) {
       axios
         .post("/map/select-area", { id: selectAreaTo.id })
         .then((res) => {
-          console.log(res.data.toStation);
+          // console.log(res.data.toStation);
           setAreaFrom(res.data.toStation);
         })
         .catch((error) => {
@@ -167,7 +165,7 @@ export default function MapContextProvider({ children }) {
       axios
         .post("/map/select-area", { id: areaFromByTo.id })
         .then((res) => {
-          console.log(res.data.toStation);
+          // console.log(res.data.toStation);
           setAreaFrom(res.data.toStation);
         })
         .catch((error) => {
@@ -179,13 +177,13 @@ export default function MapContextProvider({ children }) {
   useEffect(() => {
     if (drop && pickup) {
       // console.log(pickup)
-       axios
+      axios
         .post("/map/calculate", {
           destination: drop,
           origin: pickup,
         })
         .then((res) => {
-          console.log(res.data.price);
+          // console.log(res.data.price);
           setPrice(res.data);
         })
         .catch((error) => {
@@ -245,7 +243,7 @@ export default function MapContextProvider({ children }) {
         getWorkArea,
         handleOnChangeEditLocation,
         editStationName,
-        price
+        price,
       }}
     >
       {children}

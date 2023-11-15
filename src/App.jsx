@@ -18,7 +18,6 @@ function App() {
     }
     socket.disconnect();
   }, [authUser]);
-  console.log(authUser);
 
   if (isLoading) {
     return <Loading isLoading={isLoading} />;
