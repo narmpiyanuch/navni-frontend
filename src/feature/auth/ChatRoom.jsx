@@ -10,6 +10,7 @@ export default function ChatRoom() {
   const [chatroom, setChatroom] = useState("");
   const [inputText, setInputText] = useState("");
 
+
   const { authUser } = useAuth();
 
   useEffect(() => {
