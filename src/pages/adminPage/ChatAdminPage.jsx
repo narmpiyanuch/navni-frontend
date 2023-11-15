@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import axios from "../../config/axios";
 import { useAuth } from "../../feature/hook/use-auth";
 import { useAdmin } from "../../feature/hook/use-admin";
+import { useCallback } from "react";
+import { useRef } from "react";
 
 export default function ChatAdminPage() {
   const [currentMessage, setCurrentMessage] = useState("");
@@ -15,9 +17,18 @@ export default function ChatAdminPage() {
   const [selectedRole, setSelectedRole] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const scroll = useRef(null);
 
   const { authUser } = useAuth();
   const { getAllUsers } = useAdmin();
+
+
+  useEffect(() => {
+    if (scroll.current) {
+      scroll.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messageList]);
+
 
   useEffect(() => {
     if (currentChatUserId !== null) {
@@ -28,7 +39,9 @@ export default function ChatAdminPage() {
   }, [currentChatUserId]);
 
   useEffect(() => {
-    socket.on("new_message", handleReceiveMessage);
+    socket.on("new_message", handleReceiveMessage
+
+    );
 
     return () => socket.off("new_message", handleReceiveMessage);
   }, [currentChatUserId]);
@@ -114,18 +127,19 @@ export default function ChatAdminPage() {
                 onChange={handleSearch}
               />
               <div className="relative">
-                <select
+                <button
+                  onClick={toggleDropdown}
                   type="text"
-                  className="bg-MonoColor-50 rounded-3xl w-[280px] h-[36px] outline-none p-2"
+                  className="text-start bg-MonoColor-50 rounded-3xl w-[280px] h-[36px] outline-none p-2"
                   value={selectedRole || ""}
                   onChange={(e) => handleRoleSelection(e.target.value || null)}
                 >
-                  <option value="" className="text-purple-400">
+                  <option value="" className="text-Primary-dark">
                     {selectedRole ? `Room: ${selectedRole}` : "Choose a room"}
                   </option>
-                </select>
+                </button>
                 <button
-                  onClick={toggleDropdown}
+
                   className="absolute top-0 right-0 bg-MonoColor-50 rounded-3xl w-[36px] h-[36px] outline-none p-2 cursor-pointer"
                 >
                   {isDropdownOpen ? (
@@ -135,7 +149,7 @@ export default function ChatAdminPage() {
                   )}
                 </button>
                 {isDropdownOpen && (
-                  <div className="absolute top-full left-0 right-0 bg-MonoColor-50 rounded-xl p-2">
+                  <div className="absolute mt-2 left-0 right-0 bg-MonoColor-50 rounded-xl p-2">
                     <div
                       onClick={() => handleRoleSelection("USER")}
                       className="cursor-pointer py-2 text-purple-500"
@@ -165,9 +179,10 @@ export default function ChatAdminPage() {
           </div>
           <div className="col-span-2 relative h-[64vh] bg-MonoColor-50 border-4 border-Primary-dark rounded-3xl">
             <div className="flex flex-col sticky gap-2 z-10 w-full h-full justify-center items-end pb-4">
-              <div className="chat-messages bg-gradient-to-t from-Primary-light to-white p-4 rounded-t-3xl shadow-md h-full w-full overflow-auto">
+              <div
+                className="chat-messages bg-gradient-to-t from-Primary-light to-white p-4 rounded-t-3xl shadow-md h-full w-full overflow-auto">
                 {messageList.map((message) => (
-                  <>
+                  <div ref={scroll}>
                     {message.sender.id === authUser.id ? (
                       <div className="flex flex-col items-end">
                         <div
@@ -176,6 +191,7 @@ export default function ChatAdminPage() {
                         >
                           <p className="break-words">{message.message}</p>
                         </div>
+
                       </div>
                     ) : (
                       <div className="flex items-start">
@@ -187,7 +203,7 @@ export default function ChatAdminPage() {
                         </div>
                       </div>
                     )}
-                  </>
+                  </div>
                 ))}
               </div>
               <form className="flex w-full px-4" onSubmit={handleSubmitForm}>
