@@ -21,7 +21,6 @@ export default function UserReservations() {
       console.log(authUser.id);
       if (authUser.id !== data) {
         setUnreadMessages(true);
-        console.log(unreadMessages);
       }
     });
     return () => {

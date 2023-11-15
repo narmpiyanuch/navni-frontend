@@ -1,5 +1,5 @@
-import logoBGpurple from "../../../assets/logoBGpurple.jpg";
 import PurpleButton from "../../../feature/payment/PurpleButton";
+import logoBGpurple from "../../../assets/logoBGpurple.jpg";
 import ModalSearchPin from "../../../component/ModalSeachPin";
 import { useState } from "react";
 import ModalClickPin from "../../../component/ModalClickPin";
@@ -8,15 +8,16 @@ import useMap from "../../../feature/hook/use-map";
 import ModalSearchPinTo from "../../../component/ModalSeachPinTo";
 import { useNavigate } from "react-router-dom";
 import { createErrorSweetAlert } from "../../../utils/sweetAlert";
+// import LogoNavigate from "../../../component/LogoNavigate";
 import { useEffect } from "react";
 
 export default function TaxiPage() {
   const { selectArea, drop, pickup, isOpenPin, setIsOpenPin } = useMap();
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenTo, setIsOpenTo] = useState(false);
-  useEffect(()=>{
-    setIsOpenPin(false)
-  },[])
+  useEffect(() => {
+    setIsOpenPin(false);
+  }, []);
 
   const navigate = useNavigate();
   const handleChooseTrip = () => {
@@ -44,7 +45,7 @@ export default function TaxiPage() {
               className="z-40 rounded-full w-[80px] border-4 border-MonoColor-50 active:border-Primary-main hover:cursor-pointer"
             />
           </div>
-          <Map/>
+          <Map />
         </div>
       </div>
       <div className="fixed top-[60%] items-center justify-start pt-6 bg-MonoColor-50 h-full w-screen  mt-8">

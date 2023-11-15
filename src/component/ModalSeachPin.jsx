@@ -24,7 +24,7 @@ export default function ModalSearchPin({ open, onClose }) {
     selectAreaTo,
     setPickup,
     pickup,
-    drop
+    drop,
   } = useMap();
 
   useEffect(() => {
@@ -32,8 +32,7 @@ export default function ModalSearchPin({ open, onClose }) {
       axios
         .post("/map/select-area", { id: selectArea.id })
         .then((res) => {
-          
-          console.log(res.data.toStation);
+          // console.log(res.data.toStation);
           setSubAreaTo(res.data.toStation);
         })
         .catch((error) => {
@@ -42,7 +41,9 @@ export default function ModalSearchPin({ open, onClose }) {
     }
   }, [selectArea]);
 
-  const openArea = subArea?.filter((area)=>area.status===true&&area.workArea.status===true)
+  const openArea = subArea?.filter(
+    (area) => area.status === true && area.workArea.status === true
+  );
   // useEffect(() => {
   //   setSelectArea();
   //   setSubAreaTo();
@@ -101,61 +102,62 @@ export default function ModalSearchPin({ open, onClose }) {
                   </p>
                   {areaFrom
                     ? areaFrom?.map((el) => (
-                      <div
-                        key={el.id}
-                        className="flex justify-between px-4 py-2 items-center"
-                      >
-                        <button
-                          onClick={() => {
-                            setSelectArea(el);
-                            setPickup(el)
-                            // setSelectAreaTo()
-                          }}
-                          className="flex items-end gap-2"
+                        <div
+                          key={el.id}
+                          className="flex justify-between px-4 py-2 items-center"
                         >
-                          <img
-                            src={purplePin}
-                            alt="pin"
-                            className="w-[32px]"
-                          />
-                          <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
-                            {el.stationName}
+                          <button
+                            onClick={() => {
+                              setSelectArea(el);
+                              setPickup(el);
+                              // setSelectAreaTo()
+                            }}
+                            className="flex items-end gap-2"
+                          >
+                            <img
+                              src={purplePin}
+                              alt="pin"
+                              className="w-[32px]"
+                            />
+                            <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
+                              {el.stationName}
+                            </p>
+                          </button>
+                          <p className="text-[16px] text-MonoColor-400">
+                            {" "}
+                            {el?.distance}
                           </p>
-                        </button>
-                        <p className="text-[16px] text-MonoColor-400">
-                          {" "}
-                          {el?.distance}
-                        </p>
-                      </div>
-                    ))
-                    :openArea && openArea?.map((el) => (
-                      <div
-                        key={el.id}
-                        className="flex justify-between px-4 py-2 items-center"
-                      >
-                        <button
-                          onClick={() => {
-                            setSelectArea(el);
-                            // setSelectAreaTo()
-                            setPickup(el)
-                          }}
-                          className="flex items-end gap-2"
+                        </div>
+                      ))
+                    : openArea &&
+                      openArea?.map((el) => (
+                        <div
+                          key={el.id}
+                          className="flex justify-between px-4 py-2 items-center"
                         >
-                          <img
-                            src={purplePin}
-                            alt="pin"
-                            className="w-[32px]"
-                          />
-                          <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
-                            {el.stationName}
+                          <button
+                            onClick={() => {
+                              setSelectArea(el);
+                              // setSelectAreaTo()
+                              setPickup(el);
+                            }}
+                            className="flex items-end gap-2"
+                          >
+                            <img
+                              src={purplePin}
+                              alt="pin"
+                              className="w-[32px]"
+                            />
+                            <p className="text-[16px] text-MonoColor-700 active:text-MonoColor-300">
+                              {el.stationName}
+                            </p>
+                          </button>
+                          <p className="text-[16px] text-MonoColor-400">
+                            {" "}
+                            {el?.distance}
                           </p>
-                        </button>
-                        <p className="text-[16px] text-MonoColor-400">
-                          {" "}
-                          {el?.distance}
-                        </p>
-                      </div>
-                    ))}
+                        </div>
+                      ))}
                 </div>
               </div>
             </div>

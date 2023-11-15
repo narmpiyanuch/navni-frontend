@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useAuth } from "../../feature/hook/use-auth";
-import axios from "../../config/axios";
 import DriverProfile from "./HomePageComponent/DriverProfile";
 import DriverStartToDrive from "./HomePageComponent/DriverStartToDrive";
 import Logo from "./HomePageComponent/Logo";
@@ -9,7 +8,7 @@ import useDriver from "../../feature/hook/use-driver";
 export default function HomeDriver() {
   const { logout } = useAuth();
 
-  const { profile, setProfile, fetchProfile } = useDriver();
+  const { profile, fetchProfile } = useDriver();
 
   useEffect(() => {
     fetchProfile();
