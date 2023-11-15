@@ -6,21 +6,24 @@ import { useEffect } from "react";
 import socket from "./config/socket";
 
 function App() {
-    const { isLoading, authUser } = useAuth();
-    // const [socket, setSocket] = useState(null);
+  const { isLoading, authUser } = useAuth();
+  // const [socket, setSocket] = useState(null);
 
-    useEffect(() => {
-        if (authUser) {
-            socket.auth = { user: authUser };
-            socket.connect();
-            socket.emit("join_room");
-        }
-    }, [authUser]);
-
-    if (isLoading) {
-        return <Loading isLoading={isLoading} />;
+  useEffect(() => {
+    if (authUser) {
+      socket.auth = { user: authUser };
+      socket.connect();
+      socket.emit("join_room");
+      return;
     }
-    return <Router />;
+    socket.disconnect();
+  }, [authUser]);
+  console.log(authUser);
+
+  if (isLoading) {
+    return <Loading isLoading={isLoading} />;
+  }
+  return <Router />;
 }
 
 export default App;
