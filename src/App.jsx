@@ -16,6 +16,7 @@ function App() {
       socket.emit("join_room");
     }
   }, [authUser]);
+  console.log(authUser);
 
   if (isLoading) {
     return <Loading isLoading={isLoading} />;

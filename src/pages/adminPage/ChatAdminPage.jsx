@@ -14,8 +14,10 @@ export default function ChatAdminPage() {
   const [currentMessage, setCurrentMessage] = useState("");
   const [currentChatUserId, setCurrentChatUserId] = useState(null);
   const [messageList, setMessageList] = useState([]);
+  const [selectedRole, setSelectedRole] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const scroll = useRef(null);
-
 
   const { authUser } = useAuth();
   const { getAllUsers } = useAdmin();
@@ -44,20 +46,20 @@ export default function ChatAdminPage() {
     return () => socket.off("new_message", handleReceiveMessage);
   }, [currentChatUserId]);
 
+  useEffect(() => {
+    setMessageList([]);
+  }, [selectedRole]);
 
   const handleSubmitForm = (e) => {
     e.preventDefault();
     const newMessage = {
-      //   id: messageList.length + 1,
       userId: currentChatUserId,
       senderId: authUser.id,
       message: currentMessage,
       sendDate: new Date(),
     };
     socket.emit("send_message", newMessage);
-    // setMessageList((prevMessages) => [...prevMessages, newMessage]);
     setCurrentMessage("");
-
   };
 
   const handleReceiveMessage = (data) => {
@@ -65,36 +67,114 @@ export default function ChatAdminPage() {
     setMessageList((list) => [...list, data]);
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
+  };
+
+  const handleRoleSelection = (role) => {
+    setSelectedRole(role);
+    closeDropdown();
+  };
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  console.log(getAllUsers);
+  console.log(selectedRole);
+  const filterUsersByRoleAndSearch = () => {
+    let filteredUsers = getAllUsers;
+
+    if (selectedRole !== null) {
+      filteredUsers = filteredUsers.filter(
+        (user) => user.role === selectedRole
+      );
+    }
+
+    if (searchQuery.trim() !== "") {
+      const searchLowerCase = searchQuery.toLowerCase();
+      filteredUsers = filteredUsers.filter((user) => {
+        if (
+          user.memberInformation[0]?.firstName &&
+          user.memberInformation[0]?.lastName
+        ) {
+          const fullName = `${user.memberInformation[0]?.firstName}${user.memberInformation[0]?.lastName}`;
+          return fullName.toLowerCase().includes(searchLowerCase);
+        }
+        return user.email;
+      });
+    }
+
+    return filteredUsers;
+  };
+
   return (
     <div className="flex flex-col w-screen h-screen">
       <HeaderAdminPage />
       <div className="flex pt-10 justify-center pb-[160px]">
         <div className="grid grid-cols-3 w-[1200px] gap-4 ">
-          <div className="flex flex-col relative bg-Primary-light rounded-3xl h-full">
+          <div className="flex flex-col relative bg-Primary-light rounded-3xl h-full overflow-auto">
             <div className="flex sticky rounded-3xl top-0 left-0 right-0 flex-col gap-2 z-10 w-full h-[140px] justify-center items-center bg-Primary-light ">
               <input
                 type="text"
                 className="bg-MonoColor-50 rounded-3xl w-[280px] h-[36px] outline-non p-2"
-                placeholder="search"
+                placeholder="search by name..."
+                value={searchQuery}
+                onChange={handleSearch}
               />
-              <select
-                type="text"
-                className="bg-MonoColor-50 rounded-3xl w-[280px] h-[36px] outline-none p-2"
-              >
-                <option className="text-MonoColor-400">Choose a room</option>
-              </select>
-            </div>
-            <div className="flex max-h-[48vh] overflow-auto justify-center">
-              <div>
-                {getAllUsers.map((user) => (
-                  <UserChatBox
-                    key={user.id}
-                    user={user}
-                    onClick={(userId) => setCurrentChatUserId(userId)}
+              <div className="relative">
+                <button
+                  onClick={toggleDropdown}
+                  type="text"
+                  className="text-start bg-MonoColor-50 rounded-3xl w-[280px] h-[36px] outline-none p-2"
+                  value={selectedRole || ""}
+                  onChange={(e) => handleRoleSelection(e.target.value || null)}
+                >
+                  <option value="" className="text-Primary-dark">
+                    {selectedRole ? `Room: ${selectedRole}` : "Choose a room"}
+                  </option>
+                </button>
+                <button
 
-                  />
-                ))}
+                  className="absolute top-0 right-0 bg-MonoColor-50 rounded-3xl w-[36px] h-[36px] outline-none p-2 cursor-pointer"
+                >
+                  {isDropdownOpen ? (
+                    <span className="text-MonoColor-400">▲</span>
+                  ) : (
+                    <span className="text-MonoColor-400">▼</span>
+                  )}
+                </button>
+                {isDropdownOpen && (
+                  <div className="absolute mt-2 left-0 right-0 bg-MonoColor-50 rounded-xl p-2">
+                    <div
+                      onClick={() => handleRoleSelection("USER")}
+                      className="cursor-pointer py-2 text-purple-500"
+                    >
+                      User :
+                    </div>
+                    <hr className="w-full" />
+                    <div
+                      onClick={() => handleRoleSelection("DRIVER")}
+                      className="cursor-pointer py-2 text-purple-500"
+                    >
+                      Driver :
+                    </div>
+                  </div>
+                )}
               </div>
+            </div>
+            <div className="flex flex-col gap-4 absolute top-36 px-10 w-full items-center z-0 overflow-auto">
+              {filterUsersByRoleAndSearch().map((user) => (
+                <UserChatBox
+                  key={user.id}
+                  user={user}
+                  onClick={(userId) => setCurrentChatUserId(userId)}
+                />
+              ))}
             </div>
           </div>
           <div className="col-span-2 relative h-[64vh] bg-MonoColor-50 border-4 border-Primary-dark rounded-3xl">
@@ -117,31 +197,17 @@ export default function ChatAdminPage() {
                       <div className="flex items-start">
                         <div
                           key={message.id}
-                          className="rounded-xl rounded-tl-sm p-3 shadow-md mb-3 bg-MonoColor-50 text-Primary-darker max-w-[48%] overflow-wrap whitespace-normal ">
+                          className="rounded-xl rounded-tl-sm p-3 shadow-md mb-3 bg-MonoColor-50 text-Primary-darker max-w-[48%] overflow-wrap whitespace-normal "
+                        >
                           <p className="break-words">{message.message}</p>
                         </div>
                       </div>
                     )}
                   </div>
-                  //   <div
-                  //     key={message.id}
-                  //     className={`message flex p-4 rounded-md shadow-md mb-3 bg-white text-purple-500 w-1/2 ${
-                  //       message.senderId === currentChatUserId
-                  //         ? "justify-start"
-                  //         : "justify-end"
-                  //     }`}
-                  //   >
-                  //     {message.message}
-                  //   </div>
                 ))}
               </div>
-              <form
-                className="flex w-full px-4"
-                onSubmit={handleSubmitForm}
-              >
-                <div
-                  className="flex items-center w-full h-[40px] border-4 border-Primary-light p-2 rounded-2xl "
-                >
+              <form className="flex w-full px-4" onSubmit={handleSubmitForm}>
+                <div className="flex items-center w-full h-[40px] border-4 border-Primary-light p-2 rounded-2xl ">
                   <input
                     type="text"
                     value={currentMessage}
