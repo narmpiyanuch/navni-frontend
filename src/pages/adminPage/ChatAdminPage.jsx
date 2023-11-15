@@ -165,13 +165,14 @@ export default function ChatAdminPage() {
               </div>
             </div>
             <div className="flex flex-col gap-4 absolute top-36 px-10 w-full items-center z-0 overflow-auto">
-              {filterUsersByRoleAndSearch().map((user) => (
-                <UserChatBox
-                  key={user.id}
-                  user={user}
-                  onClick={(userId) => setCurrentChatUserId(userId)}
-                />
-              ))}
+              {getAllUsers &&
+                filterUsersByRoleAndSearch().map((user) => (
+                  <UserChatBox
+                    key={user.id}
+                    user={user}
+                    onClick={(userId) => setCurrentChatUserId(userId)}
+                  />
+                ))}
             </div>
           </div>
           <div className="col-span-2 relative h-[64vh] bg-MonoColor-50 border-4 border-Primary-dark rounded-3xl">
