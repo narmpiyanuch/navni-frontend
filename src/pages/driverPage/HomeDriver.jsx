@@ -4,20 +4,13 @@ import axios from "../../config/axios";
 import DriverProfile from "./HomePageComponent/DriverProfile";
 import DriverStartToDrive from "./HomePageComponent/DriverStartToDrive";
 import Logo from "./HomePageComponent/Logo";
+import useDriver from "../../feature/hook/use-driver";
 
 export default function HomeDriver() {
   const { logout } = useAuth();
 
-  const [profile, setProfile] = useState();
+  const {profile, setProfile,fetchProfile} = useDriver();
 
-  const fetchProfile = async () => {
-    try {
-      const profile = await axios.get("/driver/profile");
-      setProfile(profile.data.driverProfile);
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
     fetchProfile();
