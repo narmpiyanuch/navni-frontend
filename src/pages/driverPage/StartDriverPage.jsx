@@ -11,6 +11,7 @@ import ModalDropOffFinish from "../../component/ModalDropOffFinish";
 import ModalCancelTrip from "../../component/ModalCancelTrip";
 import Map from "../../feature/googlemap/Map";
 import useDriver from "../../feature/hook/use-driver";
+import socket from "../../config/socket";
 
 export default function StartDriverPage() {
   const [isPickUp, setIsPickUp] = useState(false); //ModalAlreadyPickup
@@ -28,7 +29,7 @@ export default function StartDriverPage() {
     getAcceptBookingItemForDriver();
   }, []);
 
-  console.log(bookingItem);
+  // console.log(bookingItem);
 
   return (
     <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">

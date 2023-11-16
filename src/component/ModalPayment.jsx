@@ -26,8 +26,8 @@ export default function ModalPayment({ open, onClose, totalPrice, passenger }) {
       );
       console.log(bookItem);
 
+      socket.emit("send_bookingRequest", bookItem);
       navigate("/waitingtaxi");
-      // socket.emit("send_bookingRequest",)
     } catch (error) {
       createErrorSweetAlert(
         "Error",

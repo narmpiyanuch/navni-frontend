@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import OrderCustumerOne from "./OrderCustumerOne";
+import socket from "../../config/socket";
 
 export default function OrderForDriver({
   setIsAccept,
@@ -6,6 +8,12 @@ export default function OrderForDriver({
   setIsOpen,
   bookingItem,
 }) {
+  useEffect(() => {
+    socket.on("receive_requestBooking", (data) => {
+      console.log(data);
+    });
+  }, []);
+
   return (
     <>
       <div className="flex flex-col gap-2 fixed items-center justify-start bottom-0 w-full max-h-[40vh] overflow-auto">
