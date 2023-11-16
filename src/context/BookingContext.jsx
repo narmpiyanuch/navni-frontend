@@ -32,9 +32,11 @@ export default function BookingContextProvider({ children }) {
 
   const userCancelBooking = async (id) => {
     try {
-      await axios.patch("/booking/cancel-booking", id);
+      const data = await axios.patch("/booking/cancel-booking", id);
+      return data;
     } catch (error) {
-      console.log(error);
+      createErrorSweetAlert("ERROR", "Can't cancel booking");
+      // console.log(error);
     }
   };
 
