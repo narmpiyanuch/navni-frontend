@@ -17,7 +17,7 @@ export default function HeaderDriver() {
                     <Link to="/homedriver">navigate_before</Link>
                 </span>
             </div>
-            <div className="flex fixed gap-4 top-[10%] items-center">
+            <div className="flex fixed gap-4 top-[8%] items-center">
                 <img
                     src={profile?.image ? profile?.image : user}
                     className="rounded-full aspect-square w-[60px] border-4 border-MonoColor-50 bg-MonoColor-50 drop-shadow-lg"

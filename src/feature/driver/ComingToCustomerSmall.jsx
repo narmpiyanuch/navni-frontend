@@ -5,7 +5,7 @@ export default function ComingToCustomerSmall({ setIsPickUp, bookingItem }) {
     const { pickupUserForDriver } = useDriver();
 
     return (
-        <div className="flex flex-col items-center border-2 border-Primary-main bg-MonoColor-50 drop-shadow-xl w-[360px] h-[80px] rounded-[40px_40px_40px_40px] drop-shadow-[0_10px_10px_rgba(0,0,0,0.25) py-2 px-10">
+        <div className="flex flex-col items-center border-2 border-Primary-main bg-MonoColor-50 drop-shadow-xl w-[360px] h-[60px] rounded-[40px_40px_40px_40px] drop-shadow-[0_10px_10px_rgba(0,0,0,0.25) py-2 px-10">
             <div className=" flex items-center justify-center h-full rounded-[20px_20px_0px_0px]] w-[360px] pl-4">
                 <div className="flex items-center justify-center h-[40px] gap-2">
                     <div className="flex flex-col justify-center  w-[180px] h-[100px] gap-1">
