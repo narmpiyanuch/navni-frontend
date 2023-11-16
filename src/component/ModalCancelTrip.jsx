@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useBooking from "../feature/hook/use-booking";
 import ModalSuccess from "./ModalSuccess";
 import { useState } from "react";
-import { createAlert } from "../utils/sweetAlert";
+import { createAlert, createErrorSweetAlert } from "../utils/sweetAlert";
 
 export default function ModalCancelTrip({ onClose, open, to, bookingWait }) {
   const [isCancel, setIsCancel] = useState(false);
@@ -15,9 +15,14 @@ export default function ModalCancelTrip({ onClose, open, to, bookingWait }) {
     try {
       e.preventDefault();
 
-      await userCancelBooking({
+      const data = await userCancelBooking({
         id: userItem[0].id,
       });
+      if (!data) {
+        createErrorSweetAlert("ERROR", "Can't caancel booking");
+        onClose();
+        return;
+      }
       createAlert("Cancel Success");
       navigate("/home");
     } catch (error) {
