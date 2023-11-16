@@ -56,12 +56,6 @@ export default function StartDriverPage() {
 
       {/* กล่องข้างบนสามารถวนใช้ได้ */}
 
-      {/* {isOpenDestination && (
-        <ToDestination
-          setIsCancelTrip={setIsCancelTrip}
-        />
-      )} */}
-
       {/* <ModalAlreadyPickUp
         open={isPickUp}
         onCloseAll={() => {
