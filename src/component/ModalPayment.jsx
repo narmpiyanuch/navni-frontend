@@ -9,22 +9,23 @@ import useWallet from "../feature/hook/use-wallet";
 import { createErrorSweetAlert } from "../utils/sweetAlert";
 import socket from "../config/socket";
 
-export default function ModalPayment({ open, onClose, totalPrice, click }) {
+export default function ModalPayment({ open, onClose, totalPrice, passenger }) {
+  const { creatBookingForUser } = useBooking();
   const navigate = useNavigate();
   const { pickup, drop } = useMap();
-  const { setBookingWait } = useBooking();
   const { wallet } = useWallet();
 
   const handleCreateBooking = async (e) => {
     try {
       e.preventDefault();
-      const res = await axios.post("/booking", {
-        pickedUpStationId: pickup.id,
-        dropDownStationId: drop.id,
-        passenger: click,
-        price: totalPrice.price,
-      });
-      setBookingWait(res.data);
+      const bookItem = await creatBookingForUser(
+        pickup.id,
+        drop.id,
+        passenger,
+        totalPrice.price
+      );
+      console.log(bookItem);
+
       navigate("/waitingtaxi");
       // socket.emit("send_bookingRequest",)
     } catch (error) {

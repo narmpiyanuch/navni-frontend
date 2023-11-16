@@ -28,7 +28,8 @@ export default function StartDriverPage() {
     getAcceptBookingItemForDriver();
   }, []);
 
-  // console.log(bookingComingItem);
+  console.log(bookingItem);
+
   return (
     <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">
       <Map />
@@ -45,32 +46,29 @@ export default function StartDriverPage() {
 
       <ComingToCustomer
         setIsPickUp={setIsPickUp}
+        isPickUp={isPickUp}
         open={isAccept}
         bookingItem={bookingComingItem}
+        setIsSuccess={setIsSuccess}
+        setIsAccept={setIsAccept}
       />
+
+      {/* แก้เงื่อนไขของ open ตามที่ map */}
 
       {/* กล่องข้างบนสามารถวนใช้ได้ */}
 
-      {isOpenDestination && (
-        <ToDestination
-          setIsSuccess={setIsSuccess}
-          setIsCancelTrip={setIsCancelTrip}
-        />
-      )}
-
-      <ModalAlreadyPickUp
+      {/* <ModalAlreadyPickUp
         open={isPickUp}
         onCloseAll={() => {
-          setIsAccept(false);
+          setIsAccept(true);
           setIsPickUp(false);
-          setOpenDetination(true);
+          // setOpenDetination(true);
         }}
-      />
+      /> */}
 
       <ModalDropOffFinish
         open={isSuccess}
         onClose={() => {
-          setOpenDetination(false);
           setIsSuccess(false);
         }}
       />

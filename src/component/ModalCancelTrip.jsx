@@ -9,7 +9,6 @@ export default function ModalCancelTrip({ onClose, open, to, bookingWait }) {
 
   const navigate = useNavigate();
   const { userCancelBooking, userItem } = useBooking();
-  console.log(userItem[0]?.id);
 
   // console.log(bookingWait);
   const handdleUserCancelTrip = async (e) => {
