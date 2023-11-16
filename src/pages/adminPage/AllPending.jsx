@@ -2,7 +2,8 @@ import { useState } from 'react'
 import ModalAdminApprovel from "../../component/ModalAdminApprovel"
 import ButtonAdminApprovel from "../../feature/auth/ButtonAdminApprovel";
 import ButtonAdminReject from '../../feature/auth/ButtonAminReject';
-
+import axios from '../../config/axios'
+import Swal from 'sweetalert2';
 
 export default function AllPending({ firstName, lastName, idcard, gender, tel, email, id, getAllPendingDriver, image }) {
     const [isOpenAddApprovel, setIsOpenAddApprovel] = useState(false)
@@ -73,7 +74,31 @@ export default function AllPending({ firstName, lastName, idcard, gender, tel, e
                         onClick={() => setIsOpenAddApprovel(true)}
                         title="Approvel" />
 
-                    <ButtonAdminReject title="Reject" />
+                    <ButtonAdminReject onClick={async ()=>{
+                        try {
+
+                            Swal.fire({
+                                title: "Do you want to save the changes?",
+                                showDenyButton: true,
+                                confirmButtonText: "Yes",
+                                denyButtonText: "No",
+                              }).then(async (result) => {
+                                if (result.isConfirmed) {
+                                    const res = await axios.post('admin/reject-driver',{id:id})
+                                    console.log(res.data.message)
+                                    getAllPendingDriver()
+                                 
+                                  Swal.fire("Delete Complete!", "", "success");
+                                } else if (result.isDenied) {
+                                  Swal.fire("Cancel Delete", "", "info");
+                                }
+                              });
+
+
+                        } catch (error) {
+                            console.log(error)
+                        }
+                    }} title="Reject" />
                 </div>
 
             </div>
