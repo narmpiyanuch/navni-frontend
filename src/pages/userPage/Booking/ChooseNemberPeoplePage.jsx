@@ -14,7 +14,7 @@ export default function ChooseNemberPeoplePage() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [totalPrice, setTotalPrice] = useState();
-  const [click, setClick] = useState("");
+  const [click, setClick] = useState(1);
   const personIconId = [1, 2, 3, 4, 5, 6];
   const { pickup, drop, price } = useMap();
   const { getWallet, wallet } = useWallet();
@@ -23,7 +23,7 @@ export default function ChooseNemberPeoplePage() {
   }
   useEffect(() => {
     if (click) {
-      setTotalPrice({ price: price.price * click });
+      setTotalPrice({ price: price?.price * click });
     }
   }, [click]);
 
@@ -54,7 +54,7 @@ export default function ChooseNemberPeoplePage() {
                 From
               </p>
               <p className="text-[16px] flex font-semibold bg-transparent text-MonoColor-700 ">
-                {pickup ? pickup.stationName : null}
+                {pickup ? pickup?.stationName : null}
               </p>
             </div>
             <div className="flex gap-4">
@@ -62,7 +62,7 @@ export default function ChooseNemberPeoplePage() {
                 To
               </p>
               <p className="text-[16px] flex font-semibold bg-transparent text-MonoColor-700 ">
-                {drop ? drop.stationName : null}
+                {drop ? drop?.stationName : null}
               </p>
             </div>
           </div>
@@ -96,7 +96,7 @@ export default function ChooseNemberPeoplePage() {
           <input
             type="checkbox"
             className="outline-none w-[20px] h-[20px]"
-            onClick={() => {
+            onChange={() => {
               setClick("6");
             }}
           />

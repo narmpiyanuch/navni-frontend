@@ -28,7 +28,8 @@ export default function StartDriverPage() {
     getAcceptBookingItemForDriver();
   }, []);
 
-  // console.log(bookingComingItem);
+  console.log(bookingItem);
+
   return (
     <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">
       <Map />

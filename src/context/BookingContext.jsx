@@ -3,6 +3,7 @@ import { createContext } from "react";
 import axios from "../config/axios";
 import { useEffect } from "react";
 import { useAuth } from "../feature/hook/use-auth";
+import { createErrorSweetAlert } from "../utils/sweetAlert";
 
 export const BookingContext = createContext();
 export default function BookingContextProvider({ children }) {
@@ -55,8 +56,12 @@ export default function BookingContextProvider({ children }) {
         price: price,
       });
       setBookingWait(data);
+      return data;
     } catch (error) {
-      console.log(error);
+      createErrorSweetAlert(
+        "Error",
+        "Can't Book this trip you have trip on booking"
+      );
     }
   };
 

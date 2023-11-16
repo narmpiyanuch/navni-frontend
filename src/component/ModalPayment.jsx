@@ -14,10 +14,17 @@ export default function ModalPayment({ open, onClose, totalPrice, passenger }) {
   const { pickup, drop } = useMap();
   const { wallet } = useWallet();
 
-  const handdleCreateBooking = async (e) => {
+  const handleCreateBooking = async (e) => {
     try {
       e.preventDefault();
-      creatBookingForUser(pickup.id, drop.id, passenger, totalPrice.price);
+      const bookItem = await creatBookingForUser(
+        pickup.id,
+        drop.id,
+        passenger,
+        totalPrice.price
+      );
+      console.log(bookItem);
+
       navigate("/waitingtaxi");
     } catch (error) {
       createErrorSweetAlert(
@@ -63,7 +70,7 @@ export default function ModalPayment({ open, onClose, totalPrice, passenger }) {
                   </div>
                 </div>
                 <button
-                  onClick={(e) => handdleCreateBooking(e)}
+                  onClick={(e) => handleCreateBooking(e)}
                   className="bg-Primary-dark rounded-3xl text-MonoColor-50 py-2 px-4 text-[16px] font-normal  active:text-MonoColor-600 active:bg-Primary-light"
                 >
                   Request a car
