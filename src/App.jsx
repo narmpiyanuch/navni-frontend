@@ -14,6 +14,7 @@ function App() {
       socket.auth = { user: authUser };
       socket.connect();
       socket.emit("join_room");
+      console.log("joined");
       return;
     }
     socket.disconnect();

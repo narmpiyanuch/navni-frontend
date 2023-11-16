@@ -1,12 +1,13 @@
-import { useEffect } from "react";
-import { useState } from "react";
+// import { useEffect } from "react";
+// import { useState } from "react";
 import axios from "../config/axios";
-import { useAuth } from "../feature/hook/use-auth";
+// import { useAuth } from "../feature/hook/use-auth";
 import useMap from "../feature/hook/use-map";
 import useBooking from "../feature/hook/use-booking";
 import { useNavigate } from "react-router-dom";
 import useWallet from "../feature/hook/use-wallet";
 import { createErrorSweetAlert } from "../utils/sweetAlert";
+import socket from "../config/socket";
 
 export default function ModalPayment({ open, onClose, totalPrice, click }) {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function ModalPayment({ open, onClose, totalPrice, click }) {
   const { setBookingWait } = useBooking();
   const { wallet } = useWallet();
 
-  const handdleCreateBooking = async (e) => {
+  const handleCreateBooking = async (e) => {
     try {
       e.preventDefault();
       const res = await axios.post("/booking", {
@@ -25,6 +26,7 @@ export default function ModalPayment({ open, onClose, totalPrice, click }) {
       });
       setBookingWait(res.data);
       navigate("/waitingtaxi");
+      // socket.emit("send_bookingRequest",)
     } catch (error) {
       createErrorSweetAlert(
         "Error",
@@ -69,7 +71,7 @@ export default function ModalPayment({ open, onClose, totalPrice, click }) {
                   </div>
                 </div>
                 <button
-                  onClick={(e) => handdleCreateBooking(e)}
+                  onClick={(e) => handleCreateBooking(e)}
                   className="bg-Primary-dark rounded-3xl text-MonoColor-50 py-2 px-4 text-[16px] font-normal  active:text-MonoColor-600 active:bg-Primary-light"
                 >
                   Request a car

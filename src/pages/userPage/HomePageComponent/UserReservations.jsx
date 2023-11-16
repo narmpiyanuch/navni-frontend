@@ -16,18 +16,20 @@ export default function UserReservations() {
   const { authUser } = useAuth();
 
   useEffect(() => {
-    socket.on("notification", (data) => {
-      console.log(data);
-      console.log(authUser.id);
-      if (authUser.id !== data) {
-        setUnreadMessages(true);
-      }
-    });
-    return () => {
-      socket.off("notification");
-    };
-  }, [unreadMessages]);
-
+    if (isOpenChat === false) {
+      socket.on("notification", (data) => {
+        console.log(data);
+        console.log(authUser.id);
+        if (authUser.id !== data) {
+          setUnreadMessages(true);
+        }
+      });
+      return () => {
+        socket.off("notification");
+      };
+    }
+  }, [isOpenChat === false]);
+  console.log(isOpenChat);
   const joined = () => {
     console.log("Joining the chat!");
     setUnreadMessages(false);
