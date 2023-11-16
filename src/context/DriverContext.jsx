@@ -1,12 +1,17 @@
 import { useState } from "react";
 import { createContext } from "react";
 import axios from "../config/axios";
+import { useEffect } from "react";
 export const DriverContext = createContext();
 
 export default function DriverContextProvider({ children }) {
   const [profile, setProfile] = useState();
   const [bookingComingItem, setBookingComingItem] = useState([]);
   const [bookingPickedItem, setBookingPickedItem] = useState([]);
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
 
   const fetchProfile = async () => {
     try {

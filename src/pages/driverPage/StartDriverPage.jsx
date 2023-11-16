@@ -21,7 +21,7 @@ export default function StartDriverPage() {
   const [isSuccess, setIsSuccess] = useState(false); //modalDropoffFinish
   const [isCancelTrip, setIsCancelTrip] = useState(false);
 
-  const { getBookingItemForDriver, bookingItem } = useBooking();
+  const { getBookingItemForDriver, bookingItem, setBookingItem } = useBooking();
   const {
     bookingComingItem,
     getAcceptBookingItemForDriver,
@@ -29,10 +29,32 @@ export default function StartDriverPage() {
     bookingPickedItem,
   } = useDriver();
 
+  console.log(bookingItem);
   useEffect(() => {
-    getBookingItemForDriver();
-    getAcceptBookingItemForDriver();
-    getPickedBookingItemForDriver();
+    socket.on("receive_requestBooking", () => {
+      getBookingItemForDriver();
+      // setBookingItem([data, ...bookingItem]);
+    });
+
+    socket.on("cancel_requestBooking", () => {
+      getBookingItemForDriver();
+      getAcceptBookingItemForDriver();
+    });
+    const activeAsync = async () => {
+      try {
+        await getBookingItemForDriver();
+        await getAcceptBookingItemForDriver();
+        await getPickedBookingItemForDriver();
+
+        return () => {
+          socket.off("receive_requestBooking");
+          socket.off("cancel_requestBooking");
+        };
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    activeAsync();
   }, []);
 
   return (

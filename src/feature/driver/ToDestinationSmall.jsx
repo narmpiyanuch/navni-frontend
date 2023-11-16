@@ -1,6 +1,7 @@
 import purplePerson from "../../assets/purplePerson.png";
 import useDriver from "../hook/use-driver";
 import useBooking from "../hook/use-booking";
+import socket from "../../config/socket";
 
 export default function ToDestinationSmall({
   setIsSuccess,
@@ -9,10 +10,12 @@ export default function ToDestinationSmall({
 }) {
   const { getBookingItemForDriver } = useBooking();
   const {
+    fetchProfile,
     dropOffUserForDriver,
     getAcceptBookingItemForDriver,
     getPickedBookingItemForDriver,
   } = useDriver();
+  console.log(bookingItem);
   const handdleDropOffUser = async (e) => {
     try {
       e.preventDefault();
@@ -20,6 +23,8 @@ export default function ToDestinationSmall({
       await getBookingItemForDriver();
       await getAcceptBookingItemForDriver();
       await getPickedBookingItemForDriver();
+      await fetchProfile();
+      socket.emit("mission_completed", bookingItem);
       setIsSuccess(true);
     } catch (error) {
       console.log(error);

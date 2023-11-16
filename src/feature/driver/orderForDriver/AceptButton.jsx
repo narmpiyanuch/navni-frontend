@@ -4,6 +4,7 @@ import useDriver from "../../hook/use-driver";
 
 export default function AceptButton({ setIsAccept, onClose, setIsOpen, el }) {
   const {
+    fetchProfile,
     acceptBookingForDriver,
     getAcceptBookingItemForDriver,
     getPickedBookingItemForDriver,
@@ -15,13 +16,14 @@ export default function AceptButton({ setIsAccept, onClose, setIsOpen, el }) {
     setIsOpen(test);
   });
 
-  const handdleAcceptBooking = async (e) => {
+  const handleAcceptBooking = async (e) => {
     try {
       e.preventDefault();
       await acceptBookingForDriver(el.id);
-
+      await fetchProfile();
       setIsAccept(true);
       onClose();
+      socket.emit("accept_requestBooking");
     } catch (error) {
       console.log(error);
     } finally {
@@ -34,7 +36,7 @@ export default function AceptButton({ setIsAccept, onClose, setIsOpen, el }) {
   return (
     <button
       onClick={(e) => {
-        handdleAcceptBooking(e);
+        handleAcceptBooking(e);
       }}
       className="w-[100px] py-4 bg-OtherColor-darkGreen text-MonoColor-50 rounded-xl text-[14px] active:bg-OtherColor-lightGreen active:text-MonoColor-700"
     >

@@ -77,6 +77,8 @@ export default function BookingContextProvider({ children }) {
         userCancelBooking,
         userItem,
         creatBookingForUser,
+        setBookingItem,
+        getBookingItemForUser,
       }}
     >
       {children}

@@ -7,6 +7,7 @@ import useBooking from "../feature/hook/use-booking";
 import { useNavigate } from "react-router-dom";
 import useWallet from "../feature/hook/use-wallet";
 import { createErrorSweetAlert } from "../utils/sweetAlert";
+import socket from "../config/socket";
 
 export default function ModalPayment({ open, onClose, totalPrice, passenger }) {
   const { creatBookingForUser } = useBooking();
@@ -25,6 +26,7 @@ export default function ModalPayment({ open, onClose, totalPrice, passenger }) {
       );
       console.log(bookItem);
 
+      socket.emit("send_bookingRequest", bookItem);
       navigate("/waitingtaxi");
     } catch (error) {
       createErrorSweetAlert(
