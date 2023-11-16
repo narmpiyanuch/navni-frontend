@@ -4,9 +4,9 @@ import HeaderDriver from "../../feature/driver/HeaderDriver";
 // import WaitingOrder from "../../feature/driver/WaitingOrder";
 import OrderForDriver from "../../feature/driver/OrderForDriver";
 import ComingToCustomer from "../../feature/driver/ComingToCustomer";
-import ModalAlreadyPickUp from "../../component/ModalAlreadyPickUp";
+// import ModalAlreadyPickUp from "../../component/ModalAlreadyPickUp";
 import { useState } from "react";
-import ToDestination from "../../feature/driver/ToDestination";
+// import ToDestination from "../../feature/driver/ToDestination";
 import ModalDropOffFinish from "../../component/ModalDropOffFinish";
 import ModalCancelTrip from "../../component/ModalCancelTrip";
 import Map from "../../feature/googlemap/Map";
@@ -22,14 +22,18 @@ export default function StartDriverPage() {
   const [isCancelTrip, setIsCancelTrip] = useState(false);
 
   const { getBookingItemForDriver, bookingItem } = useBooking();
-  const { bookingComingItem, getAcceptBookingItemForDriver } = useDriver();
+  const {
+    bookingComingItem,
+    getAcceptBookingItemForDriver,
+    getPickedBookingItemForDriver,
+    bookingPickedItem,
+  } = useDriver();
 
   useEffect(() => {
     getBookingItemForDriver();
     getAcceptBookingItemForDriver();
+    getPickedBookingItemForDriver();
   }, []);
-
-  // console.log(bookingItem);
 
   return (
     <div className="flex flex-col m-auto items-center justify-center h-screen w-screen gap-2">
@@ -37,35 +41,24 @@ export default function StartDriverPage() {
       <HeaderDriver />
       {/* <WaitingOrder /> */}
 
-      {isOpen && (
-        <OrderForDriver
-          setIsAccept={setIsAccept}
-          onClose={() => setIsOpen(false)}
-          bookingItem={bookingItem}
-        />
-      )}
+      {/* {isOpen && ( */}
+      <OrderForDriver
+        setIsAccept={setIsAccept}
+        onClose={() => setIsOpen(false)}
+        bookingItem={bookingItem}
+        getBookingItemForDriver={getBookingItemForDriver}
+      />
+      {/* )} */}
 
       <ComingToCustomer
         setIsPickUp={setIsPickUp}
         isPickUp={isPickUp}
         open={isAccept}
-        bookingItem={bookingComingItem}
         setIsSuccess={setIsSuccess}
         setIsAccept={setIsAccept}
+        bookingComingItem={bookingComingItem}
+        bookingPickedItem={bookingPickedItem}
       />
-
-      {/* แก้เงื่อนไขของ open ตามที่ map */}
-
-      {/* กล่องข้างบนสามารถวนใช้ได้ */}
-
-      {/* <ModalAlreadyPickUp
-        open={isPickUp}
-        onCloseAll={() => {
-          setIsAccept(true);
-          setIsPickUp(false);
-          // setOpenDetination(true);
-        }}
-      /> */}
 
       <ModalDropOffFinish
         open={isSuccess}

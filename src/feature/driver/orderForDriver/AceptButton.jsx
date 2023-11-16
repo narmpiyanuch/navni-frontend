@@ -1,13 +1,14 @@
-// import Countdown from "react-countdown";
 import socket from "../../../config/socket";
+import useBooking from "../../hook/use-booking";
 import useDriver from "../../hook/use-driver";
 
 export default function AceptButton({ setIsAccept, onClose, setIsOpen, el }) {
-  const { acceptBookingForDriver } = useDriver();
-
-  //   const testSocket = () => {
-  //     socket.emit("test", false);
-  //   };
+  const {
+    acceptBookingForDriver,
+    getAcceptBookingItemForDriver,
+    getPickedBookingItemForDriver,
+  } = useDriver();
+  const { getBookingItemForDriver } = useBooking();
 
   socket.on("test2", (test) => {
     console.log(test);
@@ -17,11 +18,16 @@ export default function AceptButton({ setIsAccept, onClose, setIsOpen, el }) {
   const handleAcceptBooking = async (e) => {
     try {
       e.preventDefault();
-      acceptBookingForDriver(el.id);
+      await acceptBookingForDriver(el.id);
+
       setIsAccept(true);
       onClose();
     } catch (error) {
       console.log(error);
+    } finally {
+      await getAcceptBookingItemForDriver();
+      await getBookingItemForDriver();
+      await getPickedBookingItemForDriver();
     }
   };
 

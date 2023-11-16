@@ -1,14 +1,6 @@
-import { useEffect } from "react";
 import ToDestinationSmall from "./ToDestinationSmall";
-import useDriver from "../hook/use-driver";
 
-export default function ToDestination({ setIsSuccess }) {
-  const { getPickedBookingItemForDriver, bookingPickedItem } = useDriver();
-
-  useEffect(() => {
-    getPickedBookingItemForDriver();
-  }, []);
-
+export default function ToDestination({ setIsSuccess, bookingPickedItem }) {
   return (
     <>
       <div className=" flex flex-col gap-1 fixed items-center justify-start top-[20%] w-full max-h-[28vh] drop-shadow-xl overflow-auto">

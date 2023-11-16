@@ -1,6 +1,6 @@
 // import { useEffect } from "react";
 // import { useState } from "react";
-import axios from "../config/axios";
+// import axios from "../config/axios";
 // import { useAuth } from "../feature/hook/use-auth";
 import useMap from "../feature/hook/use-map";
 import useBooking from "../feature/hook/use-booking";
