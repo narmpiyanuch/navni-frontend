@@ -4,6 +4,7 @@ import useDriver from "../../hook/use-driver";
 
 export default function AceptButton({ setIsAccept, onClose, setIsOpen, el }) {
   const {
+    fetchProfile,
     acceptBookingForDriver,
     getAcceptBookingItemForDriver,
     getPickedBookingItemForDriver,
@@ -19,9 +20,10 @@ export default function AceptButton({ setIsAccept, onClose, setIsOpen, el }) {
     try {
       e.preventDefault();
       await acceptBookingForDriver(el.id);
-
+      await fetchProfile();
       setIsAccept(true);
       onClose();
+      socket.emit("accept_requestBooking");
     } catch (error) {
       console.log(error);
     } finally {

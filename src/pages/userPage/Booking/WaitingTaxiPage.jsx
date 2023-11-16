@@ -5,13 +5,49 @@ import { useState } from "react";
 import Map from "../../../feature/googlemap/Map";
 // import useMap from "../../../feature/hook/use-map";
 import useBooking from "../../../feature/hook/use-booking";
+import { useEffect } from "react";
+import socket from "../../../config/socket";
+import { useNavigate } from "react-router-dom";
+import { createAlert } from "../../../utils/sweetAlert";
+import { useAuth } from "../../../feature/hook/use-auth";
+import useDriver from "../../../feature/hook/use-driver";
 
 export default function WaitingTaxiPage() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCancel, setIsCancel] = useState(false);
+
+  const navigate = useNavigate();
   // const { pickup, drop } = useMap();
 
-  const { bookingWait, userItem } = useBooking();
+  const { authUser } = useAuth();
+  const { fetchProfile } = useDriver();
+
+  const { bookingWait, userItem, getBookingItemForUser } = useBooking();
+
+  console.log(authUser.id);
+
+  useEffect(() => {
+    socket.on("update_status", async () => {
+      await getBookingItemForUser();
+    });
+
+    socket.on("changing_status", () => {
+      getBookingItemForUser();
+    });
+
+    socket.on("take_me_home", async (memberInfor) => {
+      console.log("e=on ", memberInfor, authUser);
+      if (memberInfor.userId === authUser.id) {
+        navigate("/home");
+        createAlert("Thank you, have a nice day");
+      }
+    });
+    return () => {
+      socket.off("update_status");
+      socket.off("changing_status");
+      socket.off("take_me_home");
+    };
+  }, []);
 
   return (
     <div className=" flex flex-col m-auto items-center justify-center bg-MonoColor-50 h-screen w-screen gap-2">
@@ -73,7 +109,8 @@ export default function WaitingTaxiPage() {
               </p>
               <p className="text-[16px] flex text-center font-semibold bg-transparent text-MonoColor-700 ">
                 {bookingWait
-                  ? userItem?.[0]?.status
+                  ? userItem?.[0]?.carInformation?.plateNumber ||
+                    bookingWait.status
                   : userItem?.[0]?.carInformation?.plateNumber}
               </p>
             </div>

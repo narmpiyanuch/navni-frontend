@@ -3,6 +3,7 @@ import useBooking from "../feature/hook/use-booking";
 import ModalSuccess from "./ModalSuccess";
 import { useState } from "react";
 import { createAlert, createErrorSweetAlert } from "../utils/sweetAlert";
+import socket from "../config/socket";
 
 export default function ModalCancelTrip({ onClose, open, to, bookingWait }) {
   const [isCancel, setIsCancel] = useState(false);
@@ -18,8 +19,11 @@ export default function ModalCancelTrip({ onClose, open, to, bookingWait }) {
       const data = await userCancelBooking({
         id: userItem[0].id,
       });
+
+      socket.emit("cancel_requestBooking");
+
       if (!data) {
-        createErrorSweetAlert("ERROR", "Can't caancel booking");
+        createErrorSweetAlert("ERROR", "Can't cancel booking");
         onClose();
         return;
       }

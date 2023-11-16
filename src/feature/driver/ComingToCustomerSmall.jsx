@@ -1,4 +1,5 @@
 import purplePerson from "../../assets/purplePerson.png";
+import socket from "../../config/socket";
 import useBooking from "../hook/use-booking";
 import useDriver from "../hook/use-driver";
 
@@ -12,6 +13,7 @@ export default function ComingToCustomerSmall({ bookingItem }) {
     try {
       e.preventDefault();
       await pickupUserForDriver(bookingItem.id);
+      socket.emit("confirm_pickup");
     } catch (error) {
       console.log(error);
     } finally {
