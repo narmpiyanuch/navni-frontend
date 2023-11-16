@@ -1,7 +1,7 @@
 import purplePerson from "../../assets/purplePerson.png";
 import useDriver from "../hook/use-driver";
 
-export default function ToDestinationSmall({ setIsSuccess, bookingItem }) {
+export default function ToDestinationSmall({ setIsSuccess, bookingItem, setIsAccept }) {
     const { dropOffUserForDriver } = useDriver();
 
     const handdleDropOffUser = async (e) => {
@@ -15,7 +15,7 @@ export default function ToDestinationSmall({ setIsSuccess, bookingItem }) {
     };
 
     return (
-        <div className="flex flex-col items-center border-2 border-Primary-main bg-Primary-lightest drop-shadow-xl w-[360px] h-[50px] rounded-[40px_40px_40px_40px] drop-shadow-[0_10px_10px_rgba(0,0,0,0.25) py-2 px-10">
+        <div className="flex flex-col items-center border-2 border-Primary-main bg-Primary-lightest drop-shadow-xl w-[360px] h-[60px] rounded-[40px_40px_40px_40px] drop-shadow-[0_10px_10px_rgba(0,0,0,0.25) py-2 px-10">
             <div className="flex items-center justify-center h-full rounded-[20px_20px_0px_0px]] w-[360px] pl-4">
                 <div className="flex items-center justify-center h-[80px] gap-2">
                     <div className="flex flex-col  justify-center w-[160px] h-[100px] ">
@@ -24,7 +24,7 @@ export default function ToDestinationSmall({ setIsSuccess, bookingItem }) {
                                 To
                             </p>
                             <p className="text-[16px] flex font-semibold bg-transparent text-MonoColor-700 ">
-                                {bookingItem.dropDownStation.stationName}
+                                {bookingItem.dropDownStation?.stationName}
                             </p>
                         </div>
                     </div>
@@ -43,7 +43,8 @@ export default function ToDestinationSmall({ setIsSuccess, bookingItem }) {
                     <div className="flex gap-1 justify-start items-start">
                         <button
                             onClick={(e) => {
-                                handdleDropOffUser(e);
+                                handdleDropOffUser(e)
+                                setIsAccept(false);
                             }}
                             className="w-[56px] py-1 bg-OtherColor-darkGreen text-MonoColor-50 rounded-xl text-[14px] active:bg-OtherColor-lightGreen active:text-MonoColor-700"
                         >

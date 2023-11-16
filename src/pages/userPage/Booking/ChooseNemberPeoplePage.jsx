@@ -23,7 +23,7 @@ export default function ChooseNemberPeoplePage() {
     }
     useEffect(() => {
         if (click) {
-            setTotalPrice({ price: price.price * click });
+            setTotalPrice({ price: price?.price * click });
         }
     }, [click]);
 
@@ -77,11 +77,10 @@ export default function ChooseNemberPeoplePage() {
                         {personIconId.map((el) => (
                             <span
                                 key={el}
-                                className={`material-symbols-outlined text-[40px] ${
-                                    el <= click
+                                className={`material-symbols-outlined text-[40px] ${el <= click
                                         ? "text-Primary-dark"
                                         : "text-MonoColor-400"
-                                } `}
+                                    } `}
                             >
                                 boy
                             </span>

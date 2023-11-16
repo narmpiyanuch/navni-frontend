@@ -45,32 +45,35 @@ export default function StartDriverPage() {
 
       <ComingToCustomer
         setIsPickUp={setIsPickUp}
+        isPickUp={isPickUp}
         open={isAccept}
         bookingItem={bookingComingItem}
+        setIsSuccess={setIsSuccess}
+        setIsAccept={setIsAccept}
       />
+
+      {/* แก้เงื่อนไขของ open ตามที่ map */}
 
       {/* กล่องข้างบนสามารถวนใช้ได้ */}
 
-      {isOpenDestination && (
+      {/* {isOpenDestination && (
         <ToDestination
-          setIsSuccess={setIsSuccess}
           setIsCancelTrip={setIsCancelTrip}
         />
-      )}
+      )} */}
 
-      <ModalAlreadyPickUp
+      {/* <ModalAlreadyPickUp
         open={isPickUp}
         onCloseAll={() => {
-          setIsAccept(false);
+          setIsAccept(true);
           setIsPickUp(false);
-          setOpenDetination(true);
+          // setOpenDetination(true);
         }}
-      />
+      /> */}
 
       <ModalDropOffFinish
         open={isSuccess}
         onClose={() => {
-          setOpenDetination(false);
           setIsSuccess(false);
         }}
       />
