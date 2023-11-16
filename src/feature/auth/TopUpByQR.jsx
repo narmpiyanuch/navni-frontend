@@ -6,13 +6,13 @@ export default function TopUpByQR({ history }) {
       <div className="flex flex-col justify-center">
         {history?.allTransaction?.map((item, index) => {
           return (
-            <div key={index + 1} className="flex">
+            <div key={index + 1} className="flex justify-center">
               <div className="flex flex-row text-[14px] items-center gap-20 border-t-2">
-                <div className="flex flex-col p-2">
+                <div className="flex flex-col p-1 items-center">
                   <p className="text-MonoColor-600 font-bold p-2">
                     {dayjs(item.createdAt).format("D MMM, YYYY h:mm A")}
                   </p>
-                  <p className="flex justify-center text-MonoColor-500 p-1">
+                  <p className="flex justify-center text-MonoColor-500 p-2">
                     {item.transactionId ? "top-up" : "paid"}
                   </p>
                 </div>

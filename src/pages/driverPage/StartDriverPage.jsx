@@ -23,6 +23,7 @@ export default function StartDriverPage() {
 
   const { getBookingItemForDriver, bookingItem, setBookingItem } = useBooking();
   const {
+    fetchProfile,
     bookingComingItem,
     getAcceptBookingItemForDriver,
     getPickedBookingItemForDriver,
@@ -39,6 +40,7 @@ export default function StartDriverPage() {
     socket.on("cancel_requestBooking", () => {
       getBookingItemForDriver();
       getAcceptBookingItemForDriver();
+      fetchProfile();
     });
     const activeAsync = async () => {
       try {
