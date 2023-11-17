@@ -206,13 +206,13 @@ export default function ChatAdminPage() {
                   <input
                     type="text"
                     value={currentMessage}
-                    className="outline-none w-full rounded-2xl bg-MonoColor-50 px-4"
+                    className="outline-none w-full rounded-2xl bg-MonoColor-50 text-MonoColor-600 px-4"
                     placeholder="Type a message here..."
                     onChange={(e) => setCurrentMessage(e.target.value)}
                   />
                   <button
                     type="submit"
-                    className="material-symbols-outlined text-Primary-light"
+                    className="material-symbols-outlined text-Primary-dark"
                   >
                     send
                   </button>

@@ -20,7 +20,7 @@ export default function AllDriverPendingPage() {
 
             <button className="border-2 bg-Primary-main rounded-full text-center py-2 px-6 active:bg-Primary-dark hover:cursor-pointer hover:bg-Primary-light">
               <p className="text-[20px] font-bold text-MonoColor-50">
-                Pending to appoval
+                Pending to approval
               </p>
             </button>
           </div>

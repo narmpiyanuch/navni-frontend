@@ -58,7 +58,7 @@ export default function LocationPin({
           onClick={(event) => {
             event.preventDefault();
             Swal.fire({
-              title: "Do you want to save the changes?",
+              title: "Do you want to delete?",
               showDenyButton: true,
               confirmButtonText: "Yes",
               denyButtonText: "No",
