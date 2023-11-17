@@ -15,8 +15,7 @@ export default function Dropdown({
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isHide, setIsHide] = useState(true);
-const{    getSubArea,
-    getWorkArea}=useMap()
+  const { getSubArea, getWorkArea } = useMap();
 
   return (
     <>
@@ -37,32 +36,28 @@ const{    getSubArea,
             onClick={(event) => {
               event.preventDefault();
               Swal.fire({
-                title: 'Do you want to save the changes?',
+                title: "Do you want to delete?",
                 showDenyButton: true,
-               
-                confirmButtonText: 'Yes',
-                denyButtonText: 'No',
-                
+
+                confirmButtonText: "Yes",
+                denyButtonText: "No",
               }).then((result) => {
                 if (result.isConfirmed) {
                   const deleteArea = axios
-                .post("/map/deletearea",{id:workarea.id})
-                .then((res) => {
-                  
-                  getSubArea();
-                  getWorkArea();
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-                  
-                  Swal.fire('Delete Complete!', '', 'success')
-                } else if (result.isDenied) {
-                  Swal.fire('Cancel Delete', '', 'info')
-                }
-              })
+                    .post("/map/deletearea", { id: workarea.id })
+                    .then((res) => {
+                      getSubArea();
+                      getWorkArea();
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    });
 
-              
+                  Swal.fire("Delete Complete!", "", "success");
+                } else if (result.isDenied) {
+                  Swal.fire("Cancel Delete", "", "info");
+                }
+              });
             }}
             className={`border-2 py-1 px-4 rounded-xl border-Primary-darker  
              
@@ -76,7 +71,7 @@ const{    getSubArea,
             onClick={(event) => {
               event.preventDefault();
               const changeStatus = axios
-                .post("/map/hidearea",{workAreaId:workarea.id})
+                .post("/map/hidearea", { workAreaId: workarea.id })
                 .then((res) => {
                   console.log(res.data);
                   getSubArea();
@@ -87,7 +82,7 @@ const{    getSubArea,
                 });
             }}
             className={`border-2 py-1 px-4 rounded-xl border-Primary-darker  ${
-              workarea.status===false
+              workarea.status === false
                 ? "text-MonoColor-50 bg-Primary-darker"
                 : "text-Primary-darker"
             }`}

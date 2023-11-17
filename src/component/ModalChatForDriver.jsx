@@ -11,12 +11,13 @@ export default function ModalChatForDriver({ open, onClose }) {
   const [chatroom, setChatroom] = useState("");
   const [inputText, setInputText] = useState("");
 
-  const { authUser } = useAuth();
   const scroll = useRef();
-
+  const { authUser } = useAuth();
+  console.log(open);
   useEffect(() => {
     if (scroll.current) {
       scroll.current.scrollIntoView({ behavior: "smooth" });
+      console.log("open line18");
     }
   }, [messageList, open]);
 
@@ -27,7 +28,7 @@ export default function ModalChatForDriver({ open, onClose }) {
         .then((response) => {
           setMessageList(response.data);
           setChatroom(response.data.chatroomId);
-          console.log("chatMessages", response.data);
+          // console.log("chatMessages", response.data);
         })
         .catch((error) => {
           console.error("Error fetching messages:", error);
@@ -151,13 +152,13 @@ export default function ModalChatForDriver({ open, onClose }) {
                   <input
                     type="text"
                     placeholder="Type your message..."
-                    className="flex-1 py-2 px-4 rounded-md shadow-md text-[14px]"
+                    className="flex-1 py-2 px-4 rounded-md shadow-md text-[14px] text-MonoColor-50"
                     value={inputText}
                     onChange={handleInput}
                   />
                   <button
                     type="submit"
-                    className="material-symbols-outlined text-Primary-main"
+                    className="material-symbols-outlined text-Primary-dark"
                   >
                     Send
                   </button>

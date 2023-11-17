@@ -13,7 +13,7 @@ export default function HistoryForm({ services }) {
               {dayjs(item.createdAt).format("D MMM, YYYY h:mm A")}
             </p>
           </div>
-          <div className="  grid grid-cols-5 items-center ">
+          <div className="  grid grid-cols-5 items-center">
             <div className="flex flex-col relative top-[6px] left-[32px] ">
               <div className="absolute outline-none top-[-32px] left-[6px] w-[20px] h-[20px] border-4 border-MonoColor-400 bg-MonoColor-50 rounded-full z-10"></div>
               <hr className="absolute border-2 border-MonoColor-400 w-[32px] rotate-90" />

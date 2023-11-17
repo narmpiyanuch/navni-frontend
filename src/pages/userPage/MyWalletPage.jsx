@@ -16,14 +16,14 @@ export default function MyWalletPage() {
     }
   };
 
-  console.log(history)
+  console.log(history);
 
   useEffect(() => {
     fetchHistory();
   }, []);
 
   return (
-    <div className="flex flex-col items-center w-screen h-screen">
+    <div className="flex flex-col items-center w-screen h-full">
       <div className="flex flex-col w-full sticky top-0 left-0 right-0 bg-MonoColor-100">
         <div className="flex items-start pt-10">
           <Link to="/home">

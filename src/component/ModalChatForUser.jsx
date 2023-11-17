@@ -149,13 +149,13 @@ export default function ModalChatForUser({ open, onClose }) {
                   <input
                     type="text"
                     placeholder="Type your message..."
-                    className="flex-1 py-2 px-4 rounded-md shadow-md text-[14px]"
+                    className="flex-1 py-2 px-4 rounded-md shadow-md text-[14px] text-MonoColor-50"
                     value={inputText}
                     onChange={handleInput}
                   />
                   <button
                     type="submit"
-                    className="material-symbols-outlined text-Secondary-main"
+                    className="material-symbols-outlined text-Secondary-dark"
                   >
                     Send
                   </button>

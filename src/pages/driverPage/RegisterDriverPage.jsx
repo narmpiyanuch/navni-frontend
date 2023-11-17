@@ -112,7 +112,7 @@ export default function RegisterDriverPage() {
           setLoading(true);
           createAlert(
             "Register Driver Successful!",
-            "Please, wait for the approval"
+            `Pendding for approval, Please check your email.`
           );
           Navigate(`/login`);
         } catch (err) {
@@ -154,7 +154,7 @@ export default function RegisterDriverPage() {
               onSubmit={(event) => {
                 handleSubmitForm(event);
               }}
-              className="flex flex-col justify-center items-center w-full"
+              className="flex flex-col justify-center items-center w-full text-MonoColor-600"
             >
               <input
                 type="file"
