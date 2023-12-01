@@ -16,9 +16,11 @@ export default function ModalChatForUser({ open, onClose }) {
   const { authUser } = useAuth();
 
   useEffect(() => {
+    console.log(scroll.current);
     if (scroll.current) {
       scroll.current.scrollIntoView({ behavior: "smooth" });
     }
+    console.log(messageList);
   }, [messageList, open]);
 
   useEffect(() => {
@@ -28,6 +30,7 @@ export default function ModalChatForUser({ open, onClose }) {
         .then((response) => {
           setMessageList(response.data);
           setChatroom(response.data.chatroomId);
+          console.log("chatMessages", response.data);
         })
         .catch((error) => {
           console.error("Error fetching messages:", error);
@@ -61,6 +64,7 @@ export default function ModalChatForUser({ open, onClose }) {
   };
 
   useEffect(() => {
+    console.log("dddddd");
     socket.emit("join_room");
 
     socket.on("room_id", (data) => {
@@ -94,6 +98,8 @@ export default function ModalChatForUser({ open, onClose }) {
       socket.off("join_room");
     };
   }, [authUser, chatroom]);
+
+  console.log(currentMessage);
 
   return (
     <>
@@ -149,13 +155,13 @@ export default function ModalChatForUser({ open, onClose }) {
                   <input
                     type="text"
                     placeholder="Type your message..."
-                    className="flex-1 py-2 px-4 rounded-md shadow-md text-[14px] text-MonoColor-50"
+                    className="flex-1 py-2 px-4 rounded-md shadow-md text-[14px]"
                     value={inputText}
                     onChange={handleInput}
                   />
                   <button
                     type="submit"
-                    className="material-symbols-outlined text-Secondary-dark"
+                    className="material-symbols-outlined text-Secondary-main"
                   >
                     Send
                   </button>
